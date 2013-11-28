@@ -1,0 +1,24 @@
+!!! 5
+%html#no-js{:lang => "ru"}
+  %head
+    %meta{:charset => "utf-8"}
+    %title= @meta_title || "Horsey!"
+    /[if lt IE 9]
+      = javascript_include_tag "html5shiv.min.js"
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "keywords"}
+    %meta{:name => "viewport", :content => "width=980"}
+    %link{:href => "/favicon.ico", :rel => "shortcut icon"}
+    = stylesheet_link_tag :app, :media => "all"
+    %script
+      document.getElementById('no-js').id = 'js';
+    /[if gte IE 9]
+      = stylesheet_link_tag :ie9, :media => "all"
+    /[if lt IE 9]
+      = stylesheet_link_tag :ie8, :media => "all"
+      = javascript_include_tag "respond.js"
+      = javascript_include_tag "printshiv.min.js"
+  %body
+    = yield
+    = javascript_include_tag :app
+    = yield :javascript
