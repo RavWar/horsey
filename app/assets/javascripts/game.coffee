@@ -1,8 +1,8 @@
 class @Game
   @options =
-    width: 76
-    height: 42
-    element: '#main'
+    width: 60
+    height: 36
+    element: 'main'
 
     tile:
       width: 16
