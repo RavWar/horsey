@@ -1,0 +1,50 @@
+* {margin: 0; padding: 0; box-sizing: border-box}
+html, body, div, span, object, iframe, embed, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strong, sub, sup, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, output, section, summary, time, mark, audio, video {margin: 0; padding: 0; border: 0; font-size: 100%; font-family: inherit; vertical-align: baseline; background: transparent}
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {display: block}
+audio, canvas, video {display: inline-block}
+
+body {width: 100%; color: $font-color; font-family: $font-family; font-size: 0.625em; line-height: 1; background-color: $background-color}
+
+h1 {color: $heading-font-color; margin: 0 0 0.5em 0; font: normal 360%/1.2 $heading-font-family}
+h2 {color: $heading-font-color; margin: 1.5em 0 0.75em 0; font: normal 240%/1.2 $heading-font-family}
+h3 {color: $heading-font-color; margin: 1em 0 1em 0; font: bold 160%/1.4 $heading-font-family}
+h4, h5, h6 {color: $heading-font-color; margin: 1em 0 1em 0; font: bold 160%/1.4 $font-family}
+
+a {color: $link-color; text-decoration: underline}
+a:link {}
+a:visited {}
+a:hover, a:active {color: $link-hover-color; outline: 0}
+:focus {outline: 0}
+
+p {margin: 0 0 1em; font-size: 160%; line-height: 1.4}
+b, strong {font-weight: bold}
+i, em {font-style: italic}
+small {font-size: 80%}
+sup {vertical-align: baseline; position: relative; top: -0.5em; font-size: 75%}
+sub {vertical-align: baseline; position: relative; bottom: -0.25em; font-size: 75%}
+blockquote, q {quotes: none; margin: 0 0 1em; padding: 0 20px; font-size: 160%; line-height: 1.4; font-style: italic; background-color: transparent}
+blockquote:before, blockquote:after, q:before, q:after {content: ''; content: none}
+abbr[title] {border-bottom: 1px dotted}
+ul {list-style: disc; margin: 0 0 1.6em; padding: 0 0 0 2.75em}
+ol {list-style: decimal; margin: 0 0 1.6em; padding: 0 0 0 3em}
+li {margin: 0 0 0.5em; padding: 0; font-size: 160%; line-height: 1.4}
+li ul, li ol {margin-top: 0.75em}
+
+table {margin: 0; padding: 0; border-collapse: collapse; border-spacing: 0}
+table tr, table th, table td {vertical-align: top}
+table th, table td {padding: 4px; font-size: 160%; line-height: 1.4; font-weight: normal; text-align: left; border-bottom: 1px solid #000}
+
+li li, th p, td p, th blockquote, td blockquote, th li, td li, blockquote p, li p {font-size: 100%}
+table th p, table td p, blockquote p {margin: 0}
+
+hr {display: block; margin: 0 0 1.6em 0; padding: 0; width: 100%; height: 1px; color: $font-color; background-color: $font-color; border: 0}
+
+img {border: 0}
+audio:not([controls]) {display: none; height: 0}
+
+span.fx {display: block; margin: 0; padding: 0; font-size: 0; line-height: 0}
+mark, span.match {}
+
+[hidden], .hidden {display: none}
+
+#activity {display: none; position: fixed; z-index: 9999; left: 50%; top: 50%; width: 42px; height: 42px; margin: -21px 0 0 -21px; background-color: rgba(0,0,0,0.5); border-radius: 8px}

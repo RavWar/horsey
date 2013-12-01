@@ -1,0 +1,135 @@
+@import "partials/vars";
+@import "partials/normalize";
+
+html, body {
+  height: 100%;
+}
+
+#container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 962px;
+  min-height: 578px;
+  overflow: hidden;
+}
+
+#frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 962px;
+  height: 578px;
+  min-width: 962px;
+  min-height: 578px;
+  margin: -289px 0 0 -481px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+#start {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 240px;
+  margin: -0.75em 0 0 -120px;
+  padding: 0.25em 0;
+  background-color: #000;
+  color: #F3DB43;
+  font-size: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#pause {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  left: 50%;
+  top: 8px;
+  width: 30px;
+  margin: 0 0 0 -15px;
+  color: #000;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  &:after {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    content: "\275A\275A";
+    letter-spacing: 1px;
+  }
+  &.active:after {
+    content: "\25B6";
+  }
+}
+
+#lives {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  left: 10px;
+  top: 5px;
+  color: #000;
+  font-size: 24px;
+  &:before, &:after {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    letter-spacing: 2px;
+  }
+  &:before {
+    color: rgba(0,0,0,0.2);
+    content: "\2665\2665\2665"
+  }
+  &.one:after {
+    content: "\2665";
+  }
+  &.two:after {
+    content: "\2665\2665";
+  }
+  &.three:after {
+    content: "\2665\2665\2665";
+  }
+}
+
+#score {
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  color: #000;
+  font-size: 20px;
+}
+
+#horse {
+  display: block;
+  position: absolute;
+  left: 20px;
+  top: 168px;
+  width: 200px;
+  height: 240px;
+  margin: 0;
+  background: url(horse.png) no-repeat;
+}
+
+#gameover {
+  #result {
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    width: 240px;
+    margin: 0 0 2em -120px;
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+  }
+  #start {}
+}
+
+@import "partials/mq";
