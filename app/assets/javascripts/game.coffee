@@ -1,20 +1,20 @@
 class @Game
   @options =
-    width: 15
-    height: 9
-    element: 'main'
+    el: 'main'
+    lanes: 4
+    header: 2
 
-    tile:
-      width: 64
-      height: 64
+  @tile =
+    width: 100
+    height: 100
 
-  @width  = @options.width * @options.tile.width
-  @height = @options.height * @options.tile.height
+  @width  = 960
+  @height = (Game.options.lanes + Game.options.header) * Game.tile.height
 
   constructor: ->
-    Crafty.init Game.width, Game.height, Game.options.element
-    Crafty.background('#F3DB43')
-    @player = Crafty.e('Player').at(1, 8)
+    Crafty.init(Game.width, Game.height, Game.options.el).background('#F3DB43')
+    @player = Crafty.e('Player')
+    #@lanes  = Crafty.e('Lanes')
     @generateStones()
 
   generateStones: ->
@@ -22,4 +22,4 @@ class @Game
       return if Math.random() > 0.05
 
       lane = (Math.floor(Math.random()*3) + 2) * 2
-      Crafty.e('Stone').at 18 - Crafty.viewport.x / Game.options.tile.width, lane
+      Crafty.e('Stone').at 18 - Crafty.viewport.x / Game.tile.width, lane
