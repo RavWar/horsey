@@ -1,0 +1,5 @@
+browsers:
+  - "last 2 versions"
+  - "> 1%"
+  - "ie 8"
+  - "ie 9"

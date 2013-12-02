@@ -30,6 +30,10 @@ html, body {
   border: 1px solid rgba(0,0,0,0.1);
 }
 
+.Player {
+  
+}
+
 #start {
   display: block;
   position: absolute;
@@ -109,17 +113,6 @@ html, body {
   top: 8px;
   color: #000;
   font-size: 20px;
-}
-
-#horse {
-  display: block;
-  position: absolute;
-  left: 20px;
-  top: 168px;
-  width: 200px;
-  height: 240px;
-  margin: 0;
-  background: url(horse.png) no-repeat;
 }
 
 #gameover {
