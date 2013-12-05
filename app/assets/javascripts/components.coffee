@@ -32,7 +32,7 @@ Crafty.c 'Player',
 
     @requires('Grid, Collision, SpriteAnimation, PlayerSprite')
       .collision(new Crafty.polygon([40,180], [40,280], [200,280], [200,180]))
-      .onHit('Stone', @stoneHit).bindKeyboard().movement().attr(x: 100, y: 320)
+      .onHit('Stone', @stoneHit).bindKeyboard().movement().attr(x: 100, y: 310)
       .reel('PlayerRunning', 1000, 0, 0, 30).animate('PlayerRunning', -1)
 
   player: (scoreboard) ->
@@ -43,9 +43,9 @@ Crafty.c 'Player',
 
   bindKeyboard: ->
     @.bind 'KeyDown', (e) =>
-      if e.keyCode == 38 and @.y > @calcHeight(Game.options.header) - 280
+      if e.keyCode == 38 and @.y > @calcHeight(Game.options.header) - 290
         @.y -= Game.tile.height
-      else if e.keyCode == 40 and @.y < @calcHeight(Game.options.lanes) - 180
+      else if e.keyCode == 40 and @.y < @calcHeight(Game.options.lanes) - 190
         @.y += Game.tile.height
 
   calcHeight: (lanes) ->
@@ -59,7 +59,7 @@ Crafty.c 'Player',
 
 Crafty.c 'Stone',
   init: ->
-    Crafty.sprite 140, 50, 'assets/stone.png',
+    Crafty.sprite 140, 50, 'assets/stone1.png',
       StoneSprite: [0, 0]
 
     @requires('Grid, Solid, Collision, StoneSprite')
