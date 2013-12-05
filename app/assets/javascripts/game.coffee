@@ -20,7 +20,9 @@ class @Game
 
   generateStones: ->
     @player.bind 'EnterFrame', =>
-      return if Math.random() > 0.05
+      return if Math.random() > 0.035
 
-      lane = Math.floor(Math.random()*4) + 2
-      Crafty.e('Stone').at 18 - Crafty.viewport.x / Game.tile.width, lane
+      lane  = Math.floor(Math.random()*4) + 2
+      posx  = 10 - Crafty.viewport.x / Game.tile.width
+      stone = Crafty.e('Stone').at posx, lane
+      stone.destroy() if stone.hit('Stone')

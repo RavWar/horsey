@@ -23,7 +23,8 @@ Crafty.c 'Scoreboard',
 
   updateLives: (change) ->
     @lives += change
-    console.log @lives
+    $('.life:last').remove()
+    Crafty.stop(true) if @lives <= 0
 
 Crafty.c 'Player',
   init: (scoreboard) ->
@@ -32,14 +33,22 @@ Crafty.c 'Player',
 
     @requires('Grid, Collision, SpriteAnimation, PlayerSprite')
       .collision(new Crafty.polygon([40,180], [40,280], [200,280], [200,180]))
-      .onHit('Stone', @stoneHit).bindKeyboard().movement().attr(x: 100, y: 310)
       .reel('PlayerRunning', 1000, 0, 0, 30).animate('PlayerRunning', -1)
+      .onHit('Stone', @stoneHit).bindKeyboard().movement()
+      .attr(x: 100, y: 310, z: 5)
 
   player: (scoreboard) ->
     @scoreboard = scoreboard
 
   stoneHit: ->
+    Crafty.pause()
     @scoreboard.updateLives -1
+
+    setTimeout (=>
+      @.x += 300
+      Crafty.viewport.x -= 300
+      Crafty.pause()
+    ), 2000
 
   bindKeyboard: ->
     @.bind 'KeyDown', (e) =>
@@ -52,10 +61,12 @@ Crafty.c 'Player',
     (lanes + 1) * Game.tile.height
 
   movement: ->
-    @.bind 'EnterFrame', =>
-      @.x += 8
-      Crafty.viewport.x -= 8
-      @scoreboard.updateScore 1
+    @.bind 'EnterFrame', => @moveScene()
+
+  moveScene: ->
+    @.x += 8
+    Crafty.viewport.x -= 8
+    @scoreboard.updateScore 1
 
 Crafty.c 'Stone',
   init: ->
