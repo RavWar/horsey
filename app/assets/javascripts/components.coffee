@@ -26,6 +26,11 @@ Crafty.c 'Scoreboard',
     $('.life:last').remove()
     Crafty.stop(true) if @lives <= 0
 
+Crafty.audio.add 'creak', [
+  '/sounds/creak.mp3',
+  '/sounds/creak.ogg'
+]
+
 Crafty.c 'Player',
   init: (scoreboard) ->
     @speed = 8
@@ -42,6 +47,8 @@ Crafty.c 'Player',
     setInterval (=>
       @speed += 1
     ), 5000
+
+    Crafty.audio.play 'creak', -1
 
   player: (scoreboard) ->
     @scoreboard = scoreboard
