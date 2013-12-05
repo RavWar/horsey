@@ -20,9 +20,25 @@ class @Game
 
   generateStones: ->
     @player.bind 'EnterFrame', =>
-      return if Math.random() > 0.035
+      return if Math.random() > 0.04
 
-      lane  = Math.floor(Math.random()*4) + 2
-      posx  = 10 - Crafty.viewport.x / Game.tile.width
-      stone = Crafty.e('Stone').at posx, lane
-      stone.destroy() if stone.hit('Stone')
+      lane = Math.floor(Math.random()*4) + 2
+      posx = 10 * Game.tile.width - Crafty.viewport.x
+      posy = lane * Game.tile.height
+
+      return if @horizontalStoneLimit(posx, posy)
+      return if @verticalStoneLimit(posx)
+
+      Crafty.e('Stone').at posx / Game.tile.width, lane
+
+  verticalStoneLimit: (x) ->
+    y = Game.options.header * Game.tile.height
+    h = Game.options.lanes * Game.tile.width
+    Crafty.map.search(_x: x-600, _y: y, _w: 740, _h: h).map((v) ->
+      v.has 'Stone'
+    ).length > 2
+
+  horizontalStoneLimit: (x, y) ->
+    Crafty.map.search(_x: x-400, _y: y, _w: 540, _h: 50).map((v) ->
+      v.has 'Stone'
+    ).length

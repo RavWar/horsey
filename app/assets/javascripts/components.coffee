@@ -28,6 +28,8 @@ Crafty.c 'Scoreboard',
 
 Crafty.c 'Player',
   init: (scoreboard) ->
+    @speed = 8
+
     Crafty.sprite 200, 240, 'assets/horse.png',
       PlayerSprite: [0, 0]
 
@@ -36,6 +38,10 @@ Crafty.c 'Player',
       .reel('PlayerRunning', 1000, 0, 0, 30).animate('PlayerRunning', -1)
       .onHit('Stone', @stoneHit).bindKeyboard().movement()
       .attr(x: 100, y: 310, z: 5)
+
+    setInterval (=>
+      @speed += 1
+    ), 5000
 
   player: (scoreboard) ->
     @scoreboard = scoreboard
@@ -48,7 +54,7 @@ Crafty.c 'Player',
       @.x += 300
       Crafty.viewport.x -= 300
       Crafty.pause()
-    ), 2000
+    ), 1000
 
   bindKeyboard: ->
     @.bind 'KeyDown', (e) =>
@@ -64,8 +70,8 @@ Crafty.c 'Player',
     @.bind 'EnterFrame', => @moveScene()
 
   moveScene: ->
-    @.x += 8
-    Crafty.viewport.x -= 8
+    @.x += @speed
+    Crafty.viewport.x -= @speed
     @scoreboard.updateScore 1
 
 Crafty.c 'Stone',
