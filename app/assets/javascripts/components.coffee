@@ -1,3 +1,14 @@
+Crafty.audio.add 'creak', [
+  '/sounds/creak.mp3',
+  '/sounds/creak.ogg'
+]
+
+Crafty.sprite 200, 240, 'assets/horse.png',
+  PlayerSprite: [0, 0]
+
+Crafty.sprite 140, 50, 'assets/stone1.png',
+  StoneSprite: [0, 0]
+
 Crafty.c 'Grid',
   init: ->
     @requires('2D, DOM').attr
@@ -26,17 +37,9 @@ Crafty.c 'Scoreboard',
     $('.life:last').remove()
     Crafty.stop(true) if @lives <= 0
 
-Crafty.audio.add 'creak', [
-  '/sounds/creak.mp3',
-  '/sounds/creak.ogg'
-]
-
 Crafty.c 'Player',
   init: (scoreboard) ->
     @speed = 8
-
-    Crafty.sprite 200, 240, 'assets/horse.png',
-      PlayerSprite: [0, 0]
 
     @requires('Grid, Collision, SpriteAnimation, PlayerSprite')
       .collision(new Crafty.polygon([40,180], [40,280], [200,280], [200,180]))
@@ -83,7 +86,4 @@ Crafty.c 'Player',
 
 Crafty.c 'Stone',
   init: ->
-    Crafty.sprite 140, 50, 'assets/stone1.png',
-      StoneSprite: [0, 0]
-
     @requires('Grid, Solid, Collision, StoneSprite')
