@@ -25,6 +25,27 @@ html, body {
   min-height: 602px;
   margin: -301px 0 0 -481px;
   border: 1px solid rgba(0,0,0,0.1);
+  &:after {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 200px;
+    height: 1px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    content: "";
+  }
+}
+
+.Player {
+  margin-top: 20px;
+}
+.Stone {
+  margin-top: 20px;
+  margin-left: -16px;
+}
+.PlayField {
+  background-position: 0 20px !important;
 }
 
 #start {
@@ -73,21 +94,14 @@ html, body {
   position: absolute;
   z-index: 100;
   left: 10px;
-  top: 5px;
-  color: #000;
-  font-size: 24px;
+  top: 10px;
   .life {
     position: relative;
     display: inline-block;
-    width: 16px;
-    height: 16px;
-    &:before, &:after {
-      display: block;
-      position: absolute;
-      left: 0;
-      top: 0;
-      content: "\2665";
-    }
+    width: 23px;
+    height: 20px;
+    margin: 0 4px 0 0;
+    background: url(/assets/life-small.png) no-repeat;
   }
 }
 
@@ -95,7 +109,7 @@ html, body {
   display: block;
   position: absolute;
   right: 10px;
-  top: 8px;
+  top: 14px;
   color: #000;
   font-size: 20px;
 }

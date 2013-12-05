@@ -1,7 +1,8 @@
-Crafty.audio.add 'creak', [
-  '/sounds/creak.mp3',
-  '/sounds/creak.ogg'
-]
+Crafty.audio.add
+  bell: ['sounds/bell.mp3', 'sounds/bell.ogg'],
+  wheels: ['sounds/wheels.mp3', 'sounds/wheels.ogg'],
+  creak: ['sounds/creak.mp3', 'sounds/creak.ogg'],
+  hit: ['sounds/hit.mp3', 'sounds/hit.ogg']
 
 Crafty.sprite 200, 240, 'assets/horse.png',
   PlayerSprite: [0, 0]
@@ -46,6 +47,7 @@ Crafty.c 'Scoreboard',
     @lives += change
     $('.life:last').remove()
     Crafty.stop(true) if @lives <= 0
+    Crafty.audio.play 'hit', 1
 
 Crafty.c 'Player',
   init: (scoreboard) ->
@@ -57,9 +59,9 @@ Crafty.c 'Player',
 
     setInterval (=>
       Game.speed += 1
-    ), 5000
+    ), 2000
 
-    #Crafty.audio.play 'creak', -1
+    Crafty.audio.play 'bell', 1
 
   player: (scoreboard) ->
     @scoreboard = scoreboard
@@ -80,6 +82,8 @@ Crafty.c 'Player',
         @y -= Game.tile.height
       else if e.keyCode == 40 and @y < @calcHeight(Game.options.lanes) - 190
         @y += Game.tile.height
+      else if e.keyCode == 80
+        Crafty.pause()
 
   calcHeight: (lanes) ->
     (lanes + 1) * Game.tile.height
