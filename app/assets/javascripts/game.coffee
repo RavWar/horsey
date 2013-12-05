@@ -1,6 +1,7 @@
 class @Game
   @options =
     el: 'main'
+    lives: 3
     lanes: 4
     header: 2
 
@@ -13,8 +14,8 @@ class @Game
 
   constructor: ->
     Crafty.init(Game.width, Game.height, Game.options.el).background('#F3DB43')
-    @player = Crafty.e('Player')
-    #@lanes  = Crafty.e('Lanes')
+    @scoreboard = Crafty.e('Scoreboard')
+    @player = Crafty.e('Player').player(@scoreboard)
     @generateStones()
 
   generateStones: ->

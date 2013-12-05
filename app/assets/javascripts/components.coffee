@@ -12,36 +12,34 @@ Crafty.c 'Grid',
         x: x * Game.tile.width
         y: y * Game.tile.height
 
-###Crafty.c 'Lanes',
-  init: ->
-    @requires('Lane')
-    @ids = []
-
-    for i in [1..Game.options.lanes]
-      @ids.push Crafty.e('Lane').at(9.6, i)
-
-Crafty.c 'Lane',
-  init: ->
-    @requires('Grid, Color').color('rgb(20, 50, 40)').attr(h: 100)###
-
-Crafty.c 'Stone',
-  init: ->
-    @requires('Grid, Color, Solid, Collision, WiredHitBox').color('rgb(20, 185, 40)')
-
-Crafty.c 'Player',
+Crafty.c 'Scoreboard',
   init: ->
     @score = 0
+    @lives = Game.options.lives
 
+  updateScore: (change) ->
+    @score += change
+    $('#score').text @score
+
+  updateLives: (change) ->
+    @lives += change
+    console.log @lives
+
+Crafty.c 'Player',
+  init: (scoreboard) ->
     Crafty.sprite 200, 240, 'assets/horse.png',
       PlayerSprite: [0, 0]
 
-    @requires('Grid, Collision, SpriteAnimation, PlayerSprite, WiredHitBox')
+    @requires('Grid, Collision, SpriteAnimation, PlayerSprite')
       .collision(new Crafty.polygon([40,180], [40,280], [200,280], [200,180]))
       .onHit('Stone', @stoneHit).bindKeyboard().movement().attr(x: 100, y: 320)
       .reel('PlayerRunning', 1000, 0, 0, 30).animate('PlayerRunning', -1)
 
+  player: (scoreboard) ->
+    @scoreboard = scoreboard
+
   stoneHit: ->
-    console.log 1
+    @scoreboard.updateLives -1
 
   bindKeyboard: ->
     @.bind 'KeyDown', (e) =>
@@ -57,5 +55,11 @@ Crafty.c 'Player',
     @.bind 'EnterFrame', =>
       @.x += 8
       Crafty.viewport.x -= 8
-      @score += 1
-      $('#score').text @score
+      @scoreboard.updateScore 1
+
+Crafty.c 'Stone',
+  init: ->
+    Crafty.sprite 140, 50, 'assets/stone.png',
+      StoneSprite: [0, 0]
+
+    @requires('Grid, Solid, Collision, StoneSprite')
