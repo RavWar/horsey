@@ -9,20 +9,25 @@ class @Game
     width: 100
     height: 100
 
+  @speed  = 8
   @width  = 960
   @height = (Game.options.lanes + Game.options.header) * Game.tile.height
 
   constructor: ->
     Crafty.init(Game.width, Game.height, Game.options.el)
-    @field = Crafty.e('Grid, Image').image('assets/dirt.png', 'repeat')
-      .at(1, Game.options.header).attr({ w: 960, h: 400 })
+    @initBackground()
     @scoreboard = Crafty.e('Scoreboard')
     @player = Crafty.e('Player').player(@scoreboard)
     @generateStones()
 
+  initBackground: ->
+    Crafty.e('PlayField')
+    Crafty.e('PlayField')
+      .attr
+        x: Crafty.viewport.width
+
   generateStones: ->
     @player.bind 'EnterFrame', =>
-      @field.attr({ w: Crafty.viewport.width - Crafty.viewport.x })
       return if Math.random() > 0.04
 
       lane = Math.floor(Math.random()*4) + 2
