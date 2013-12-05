@@ -14,6 +14,7 @@ class @Game
 
   constructor: ->
     Crafty.init(Game.width, Game.height, Game.options.el).background('#F3DB43')
+    Crafty.e('PlayField')
     @scoreboard = Crafty.e('Scoreboard')
     @player = Crafty.e('Player').player(@scoreboard)
     @generateStones()
