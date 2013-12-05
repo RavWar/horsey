@@ -1,3 +1,4 @@
+@import "partials/fonts";
 @import "partials/vars";
 @import "partials/normalize";
 
@@ -28,10 +29,6 @@ html, body {
   min-height: 602px;
   margin: -301px 0 0 -481px;
   border: 1px solid rgba(0,0,0,0.1);
-}
-
-.Player {
-  
 }
 
 #start {
@@ -83,26 +80,18 @@ html, body {
   top: 5px;
   color: #000;
   font-size: 24px;
-  &:before, &:after {
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    content: "";
-    letter-spacing: 2px;
-  }
-  &:before {
-    color: rgba(0,0,0,0.2);
-    content: "\2665\2665\2665"
-  }
-  &.one:after {
-    content: "\2665";
-  }
-  &.two:after {
-    content: "\2665\2665";
-  }
-  &.three:after {
-    content: "\2665\2665\2665";
+  .life {
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    &:before, &:after {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: "\2665";
+    }
   }
 }
 
