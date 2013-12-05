@@ -10815,6 +10815,7 @@ Crafty.c("Sprite", {
                     style = this._element.style;
 
                 style.background = style.backgroundColor + " url('" + this.__image + "') no-repeat -" + co.x * hscale + "px -" + co.y * vscale + "px";
+                style.backgroundPosition = "-" + co.x * hscale + "px -" + co.y * vscale + "px";
                 // style.backgroundSize must be set AFTER style.background!
                 if (vscale != 1 || hscale != 1) {
                     style.backgroundSize = (this.img.width * hscale) + "px" + " " + (this.img.height * vscale) + "px";
