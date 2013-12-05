@@ -51,7 +51,7 @@ Crafty.c 'Player',
       @speed += 1
     ), 5000
 
-    Crafty.audio.play 'creak', -1
+    #Crafty.audio.play 'creak', -1
 
   player: (scoreboard) ->
     @scoreboard = scoreboard
