@@ -26,7 +26,7 @@ Crafty.c 'Lane',
 
 Crafty.c 'Stone',
   init: ->
-    @requires('Grid, Color, Solid').color('rgb(20, 185, 40)')
+    @requires('Grid, Color, Solid, Collision, WiredHitBox').color('rgb(20, 185, 40)')
 
 Crafty.c 'Player',
   init: ->
@@ -35,14 +35,13 @@ Crafty.c 'Player',
     Crafty.sprite 200, 240, 'assets/horse.png',
       PlayerSprite: [0, 0]
 
-    @requires('Grid, Collision, SpriteAnimation, PlayerSprite')
-      .onHit('Stone', @stoneHit).bindKeyboard().movement()
-      .collision(new Crafty.polygon([0,180], [0,280], [200,280], [200,180]))
+    @requires('Grid, Collision, SpriteAnimation, PlayerSprite, WiredHitBox')
+      .collision(new Crafty.polygon([40,180], [40,280], [200,280], [200,180]))
+      .onHit('Stone', @stoneHit).bindKeyboard().movement().attr(x: 100, y: 320)
       .reel('PlayerRunning', 1000, 0, 0, 30).animate('PlayerRunning', -1)
-      .attr(x: 100, y: 320)
 
   stoneHit: ->
-
+    console.log 1
 
   bindKeyboard: ->
     @.bind 'KeyDown', (e) =>

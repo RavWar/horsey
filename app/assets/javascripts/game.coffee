@@ -21,5 +21,5 @@ class @Game
     @player.bind 'EnterFrame', =>
       return if Math.random() > 0.05
 
-      lane = (Math.floor(Math.random()*3) + 2) * 2
+      lane = Math.floor(Math.random()*4) + 2
       Crafty.e('Stone').at 18 - Crafty.viewport.x / Game.tile.width, lane
