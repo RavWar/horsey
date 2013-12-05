@@ -12,13 +12,6 @@ Crafty.c 'Grid',
         x: x * Game.tile.width
         y: y * Game.tile.height
 
-Crafty.c 'PlayField',
-  init: ->
-    Crafty.sprite 960, 400, 'assets/dirt.png',
-      DirtSprite: [0, 0]
-
-    @requires('Grid, DirtSprite').at(1, Game.options.header)
-
 Crafty.c 'Scoreboard',
   init: ->
     @score = 0

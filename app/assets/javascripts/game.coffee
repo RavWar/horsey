@@ -13,8 +13,9 @@ class @Game
   @height = (Game.options.lanes + Game.options.header) * Game.tile.height
 
   constructor: ->
-    Crafty.init(Game.width, Game.height, Game.options.el).background('#F3DB43')
-    Crafty.e('PlayField')
+    Crafty.init(Game.width, Game.height, Game.options.el)
+    Crafty.e('Grid, Image').image('assets/dirt.png', 'repeat')
+      .at(1, Game.options.header).attr({ w: 960, h: 400 })
     @scoreboard = Crafty.e('Scoreboard')
     @player = Crafty.e('Player').player(@scoreboard)
     @generateStones()
@@ -35,11 +36,11 @@ class @Game
   verticalStoneLimit: (x) ->
     y = Game.options.header * Game.tile.height
     h = Game.options.lanes * Game.tile.width
-    Crafty.map.search(_x: x-600, _y: y, _w: 740, _h: h).map((v) ->
+    Crafty.map.search(_x: x-600, _y: y, _w: 740, _h: h).filter((v) ->
       v.has 'Stone'
     ).length > 2
 
   horizontalStoneLimit: (x, y) ->
-    Crafty.map.search(_x: x-400, _y: y, _w: 540, _h: 50).map((v) ->
+    Crafty.map.search(_x: x-400, _y: y, _w: 540, _h: 50).filter((v) ->
       v.has 'Stone'
     ).length
