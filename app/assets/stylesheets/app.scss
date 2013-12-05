@@ -1,3 +1,4 @@
+@import "partials/fonts";
 @import "partials/vars";
 @import "partials/normalize";
 
@@ -28,10 +29,6 @@ html, body {
   min-height: 602px;
   margin: -301px 0 0 -481px;
   border: 1px solid rgba(0,0,0,0.1);
-}
-
-.Player {
-  
 }
 
 #start {
