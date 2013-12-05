@@ -14,7 +14,7 @@ class @Game
 
   constructor: ->
     Crafty.init(Game.width, Game.height, Game.options.el)
-    Crafty.e('Grid, Image').image('assets/dirt.png', 'repeat')
+    @field = Crafty.e('Grid, Image').image('assets/dirt.png', 'repeat')
       .at(1, Game.options.header).attr({ w: 960, h: 400 })
     @scoreboard = Crafty.e('Scoreboard')
     @player = Crafty.e('Player').player(@scoreboard)
@@ -22,6 +22,7 @@ class @Game
 
   generateStones: ->
     @player.bind 'EnterFrame', =>
+      @field.attr({ w: Crafty.viewport.width - Crafty.viewport.x })
       return if Math.random() > 0.04
 
       lane = Math.floor(Math.random()*4) + 2
