@@ -78,12 +78,20 @@ Crafty.c 'Player',
 
   bindKeyboard: ->
     @bind 'KeyDown', (e) =>
-      if e.keyCode == 38 and @y > @calcHeight(Game.options.header) - 290
-        @y -= Game.tile.height
-      else if e.keyCode == 40 and @y < @calcHeight(Game.options.lanes) - 190
-        @y += Game.tile.height
+      if e.keyCode == 38 and @y > @calcHeight(Game.options.header) - 220
+        @moveLane 'down'
+      else if e.keyCode == 40 and @y < @calcHeight(Game.options.lanes) - 240
+        @moveLane 'up'
       else if e.keyCode == 80
         Crafty.pause()
+
+  moveLane: (direction) ->
+    timesRun = 0
+    interval = setInterval (=>
+      @y += if direction == 'up' then 2 else -2
+      timesRun += 2
+      clearInterval interval if timesRun >= Game.tile.height
+    ), 1
 
   calcHeight: (lanes) ->
     (lanes + 1) * Game.tile.height
