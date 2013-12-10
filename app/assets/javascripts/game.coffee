@@ -18,7 +18,7 @@ class @Game
     @initBackground()
     @scoreboard = Crafty.e('Scoreboard')
     @player = Crafty.e('Player').player(@scoreboard)
-    @generateStones()
+    @generateElements()
 
   initBackground: ->
     Crafty.e('PlayField')
@@ -26,27 +26,50 @@ class @Game
       .attr
         x: Crafty.viewport.width
 
-  generateStones: ->
+  generateElements: ->
     @player.bind 'EnterFrame', =>
-      return if Math.random() > 0.04
+      @generateStones()
+      @generateLives()
 
-      lane = Math.floor(Math.random()*4) + 2
-      posx = 10 * Game.tile.width - Crafty.viewport.x
-      posy = lane * Game.tile.height
+  generateStones: ->
+    return if Math.random() > 0.045 + Game.speed / 1000
+    pos = @randPosition()
 
-      return if @horizontalStoneLimit(posx, posy)
-      return if @verticalStoneLimit(posx)
+    return if @horizontalStoneLimit(pos.x, pos.y)
+    return if @verticalStoneLimit(pos.x)
 
-      Crafty.e('Stone').at posx / Game.tile.width, lane
+    Crafty.e('Stone').at pos.x / Game.tile.width, pos.lane
+
+  generateLives: ->
+    return if Math.random() > 0.002
+    pos = @randPosition()
+    pos.x = pos.x - 200
+
+    return if @lifeLimit(pos.x, pos.y)
+
+    Crafty.e('Life').at pos.x / Game.tile.width, pos.lane
+
+  randPosition: ->
+    lane = Math.floor(Math.random()*4) + 2
+    posx = 12 * Game.tile.width - Crafty.viewport.x
+    posy = lane * Game.tile.height
+
+    { lane: lane, x: posx, y: posy }
 
   verticalStoneLimit: (x) ->
     y = Game.options.header * Game.tile.height
     h = Game.options.lanes * Game.tile.width
-    Crafty.map.search(_x: x-600, _y: y, _w: 740, _h: h).filter((v) ->
+    Crafty.map.search(_x: x-575, _y: y, _w: 715, _h: h).filter((v) ->
       v.has 'Stone'
     ).length > 2
 
   horizontalStoneLimit: (x, y) ->
     Crafty.map.search(_x: x-400, _y: y, _w: 540, _h: 50).filter((v) ->
       v.has 'Stone'
+    ).length
+
+  lifeLimit: (x, y) ->
+    console.log x, y
+    Crafty.map.search(_x: x-200, _y: y, _w: 340, _h: 50).filter((v) ->
+      v.has 'Stone' or v.has 'Life'
     ).length

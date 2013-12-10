@@ -13,6 +13,9 @@ Crafty.sprite 140, 50, 'assets/stone1.png',
 Crafty.sprite 960, 400, 'assets/dirt.png',
   DirtSprite: [0, 0]
 
+Crafty.sprite 56, 48, 'assets/life-big.png',
+  LifeSprite: [0, 0]
+
 Crafty.c 'Grid',
   init: ->
     @requires('2D, DOM').attr
@@ -45,21 +48,26 @@ Crafty.c 'Scoreboard',
 
   updateLives: (change) ->
     @lives += change
-    $('.life:last').remove()
+
+    if change > 0
+      $('#lives').append "<div class='life'>"
+    else
+      $('.life:last').remove()
+      Crafty.audio.play 'hit', 1
+
     Crafty.stop(true) if @lives <= 0
-    Crafty.audio.play 'hit', 1
 
 Crafty.c 'Player',
   init: (scoreboard) ->
     @requires('Grid, Collision, SpriteAnimation, PlayerSprite')
       .collision(new Crafty.polygon([40,180], [40,280], [200,280], [200,180]))
       .reel('PlayerRunning', 1000, 0, 0, 30).animate('PlayerRunning', -1)
-      .onHit('Stone', @stoneHit).bindKeyboard().movement()
+      .onHit('Stone', @stoneHit).onHit('Life', @lifeHit).bindKeyboard().movement()
       .attr(x: 100, y: 310, z: 5)
 
     setInterval (=>
       Game.speed += 1
-    ), 2000
+    ), 2500
 
     Crafty.audio.play 'bell', 1
 
@@ -75,6 +83,10 @@ Crafty.c 'Player',
       Crafty.viewport.x -= 300
       Crafty.pause()
     ), 1000
+
+  lifeHit: (object) ->
+    @scoreboard.updateLives 1
+    object[0].obj.destroy()
 
   bindKeyboard: ->
     $('body').bind 'keydown', (e) =>
@@ -115,3 +127,7 @@ Crafty.c 'Player',
 Crafty.c 'Stone',
   init: ->
     @requires('Grid, Solid, Collision, StoneSprite')
+
+Crafty.c 'Life',
+  init: ->
+    @requires('Grid, Solid, Collision, LifeSprite')
