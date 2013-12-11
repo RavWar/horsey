@@ -1,6 +1,6 @@
-after 'deploy:update_code', 'deploy:symlink'
+after 'deploy:finalize_update', 'app:symlink'
 
-namespace :deploy do
+namespace :app do
   task :symlink do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end

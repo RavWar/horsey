@@ -8,4 +8,4 @@
 //= require game
 
 $ ->
-  game = new Game
+  game = new Game if $('#container').length
