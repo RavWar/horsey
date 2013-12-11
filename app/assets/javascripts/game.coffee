@@ -59,7 +59,7 @@ class @Game
   verticalStoneLimit: (x) ->
     y = Game.options.header * Game.tile.height
     h = Game.options.lanes * Game.tile.width
-    Crafty.map.search(_x: x-575, _y: y, _w: 715, _h: h).filter((v) ->
+    Crafty.map.search(_x: x-600, _y: y, _w: 740, _h: h).filter((v) ->
       v.has 'Stone'
     ).length > 2
 
