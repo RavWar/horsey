@@ -14,11 +14,21 @@ class @Game
   @height = (Game.options.lanes + Game.options.header) * Game.tile.height
 
   constructor: ->
-    Crafty.init(Game.width, Game.height, Game.options.el)
-    @initBackground()
-    @scoreboard = Crafty.e('Scoreboard')
-    @player = Crafty.e('Player').player(@scoreboard)
-    @generateElements()
+    Crafty.load @assets(), =>
+      Crafty.init(Game.width, Game.height, Game.options.el)
+      @initBackground()
+      @scoreboard = Crafty.e('Scoreboard')
+      @player = Crafty.e('Player').player(@scoreboard)
+      @generateElements()
+
+  assets: ->
+    [
+      "<%= asset_path 'horse.png' %>", "<%= asset_path 'stone1.png' %>",
+      "<%= asset_path 'dirt.png' %>", "<%= asset_path 'life-big.png' %>",
+      'sounds/bell.mp3', 'sounds/bell.ogg', 'sounds/wheels.mp3',
+      'sounds/wheels.ogg', 'sounds/creak.mp3', 'sounds/creak.ogg',
+      'sounds/hit.mp3', 'sounds/hit.ogg'
+    ]
 
   initBackground: ->
     Crafty.e('PlayField')
