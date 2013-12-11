@@ -22,14 +22,3 @@ set :default_stage, 'production'
 set(:logs_dir)   { "#{current_path}/log" }
 set(:pids_dir)   { "#{current_path}/tmp/pids" }
 set(:config_dir) { "#{current_path}/config" }
-
-load 'config/deploy_tasks/unicorn'
-load 'config/deploy_tasks/setup'
-
-after 'deploy:restart', 'deploy:cleanup'
-
-namespace :deploy do
-  task :restart, roles: :app, except: { no_release: true } do
-    unicorn.restart
-  end
-end
