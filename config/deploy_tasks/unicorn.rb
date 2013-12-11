@@ -2,7 +2,7 @@ after 'deploy:finalize_update', 'unicorn:compile_config'
 
 namespace :unicorn do
   task :start, roles: :app do
-    run "cd #{current_path} && " +
+    run "cd #{current_path} && RAILS_ENV=production " + \
         "bundle exec unicorn_rails -c #{current_path}/config/unicorn.rb -D"
   end
 

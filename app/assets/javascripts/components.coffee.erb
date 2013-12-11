@@ -4,16 +4,16 @@ Crafty.audio.add
   creak: ['sounds/creak.mp3', 'sounds/creak.ogg'],
   hit: ['sounds/hit.mp3', 'sounds/hit.ogg']
 
-Crafty.sprite 200, 240, 'assets/horse.png',
+Crafty.sprite 200, 240, "<%= asset_path 'horse.png' %>",
   PlayerSprite: [0, 0]
 
-Crafty.sprite 140, 50, 'assets/stone1.png',
+Crafty.sprite 140, 50, "<%= asset_path 'stone1.png' %>",
   StoneSprite: [0, 0]
 
-Crafty.sprite 960, 400, 'assets/dirt.png',
+Crafty.sprite 960, 400, "<%= asset_path 'dirt.png' %>",
   DirtSprite: [0, 0]
 
-Crafty.sprite 56, 48, 'assets/life-big.png',
+Crafty.sprite 56, 48, "<%= asset_path 'life-big.png' %>",
   LifeSprite: [0, 0]
 
 Crafty.c 'Grid',
