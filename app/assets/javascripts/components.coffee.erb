@@ -66,8 +66,8 @@ Crafty.c 'Scoreboard',
     @score = 0
     @lives = Game.options.lives
 
-  updateScore: (change) ->
-    @score += change
+  updateScore: (score) ->
+    @score = score
     $('#score').text @score
 
   updateLives: (change) ->
@@ -146,7 +146,7 @@ Crafty.c 'Player',
   moveScene: ->
     @x += Game.speed
     Crafty.viewport.x -= Game.speed
-    @scoreboard.updateScore Game.speed
+    @scoreboard.updateScore parseInt -Crafty.viewport.x / 200
 
 Crafty.c 'Stone',
   init: ->

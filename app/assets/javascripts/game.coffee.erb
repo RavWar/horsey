@@ -75,8 +75,7 @@ class @Game
     random = Math.floor(Math.random()*5) + 1
     sprite = "Object#{random}Sprite"
     object = Crafty.e('Object').addComponent(sprite)
-    console.log pos.y - (120 - object.h)
-    object.attr x: pos.x, y: pos.y - 20 + (120 - object.h)
+    object.attr x: pos.x, y: pos.y + 100 - object.h
 
   randPosition: (lane = null) ->
     lane = lane || Math.floor(Math.random() * 4) + 2
