@@ -8,7 +8,31 @@ Crafty.sprite 200, 240, "<%= asset_path 'horse.png' %>",
   PlayerSprite: [0, 0]
 
 Crafty.sprite 140, 50, "<%= asset_path 'stone1.png' %>",
-  StoneSprite: [0, 0]
+  Stone1Sprite: [0, 0]
+
+Crafty.sprite 118, 50, "<%= asset_path 'stone2.png' %>",
+  Stone2Sprite: [0, 0]
+
+Crafty.sprite 114, 52, "<%= asset_path 'stone3.png' %>",
+  Stone3Sprite: [0, 0]
+
+Crafty.sprite 100, 50, "<%= asset_path 'stone4.png' %>",
+  Stone4Sprite: [0, 0]
+
+Crafty.sprite 194, 120, "<%= asset_path 'object1.png' %>",
+  Object1Sprite: [0, 0]
+
+Crafty.sprite 44, 104, "<%= asset_path 'object2.png' %>",
+  Object2Sprite: [0, 0]
+
+Crafty.sprite 43, 86, "<%= asset_path 'object3.png' %>",
+  Object3Sprite: [0, 0]
+
+Crafty.sprite 41, 120, "<%= asset_path 'object4.png' %>",
+  Object4Sprite: [0, 0]
+
+Crafty.sprite 48, 97, "<%= asset_path 'object5.png' %>",
+  Object5Sprite: [0, 0]
 
 Crafty.sprite 960, 400, "<%= asset_path 'dirt.png' %>",
   DirtSprite: [0, 0]
@@ -126,7 +150,11 @@ Crafty.c 'Player',
 
 Crafty.c 'Stone',
   init: ->
-    @requires('Grid, Solid, Collision, StoneSprite')
+    @requires('Grid, Solid, Collision')
+
+Crafty.c 'Object',
+  init: ->
+    @requires('Grid, Solid, Collision')
 
 Crafty.c 'Life',
   init: ->

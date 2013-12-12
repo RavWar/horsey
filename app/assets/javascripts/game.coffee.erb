@@ -24,7 +24,11 @@ class @Game
   assets: ->
     [
       "<%= asset_path 'horse.png' %>", "<%= asset_path 'stone1.png' %>",
-      "<%= asset_path 'dirt.png' %>", "<%= asset_path 'life-big.png' %>",
+      "<%= asset_path 'stone2.png' %>", "<%= asset_path 'stone3.png' %>"
+      "<%= asset_path 'stone4.png' %>", "<%= asset_path 'dirt.png' %>",
+      "<%= asset_path 'life-big.png' %>", "<%= asset_path 'object1.png' %>",
+      "<%= asset_path 'object2.png' %>", "<%= asset_path 'object3.png' %>",
+      "<%= asset_path 'object4.png' %>", "<%= asset_path 'object5.png' %>",
       'sounds/bell.mp3', 'sounds/bell.ogg', 'sounds/wheels.mp3',
       'sounds/wheels.ogg', 'sounds/creak.mp3', 'sounds/creak.ogg',
       'sounds/hit.mp3', 'sounds/hit.ogg'
@@ -40,6 +44,7 @@ class @Game
     @player.bind 'EnterFrame', =>
       @generateStones()
       @generateLives()
+      @generateObjects()
 
   generateStones: ->
     return if Math.random() > 0.045 + Game.speed / 1000
@@ -48,7 +53,9 @@ class @Game
     return if @horizontalStoneLimit(pos.x, pos.y)
     return if @verticalStoneLimit(pos.x)
 
-    Crafty.e('Stone').at pos.x / Game.tile.width, pos.lane
+    random = Math.floor(Math.random()*4) + 1
+    sprite = "Stone#{random}Sprite"
+    Crafty.e('Stone').addComponent(sprite).at pos.x / Game.tile.width, pos.lane
 
   generateLives: ->
     return if Math.random() > 0.002
@@ -59,8 +66,20 @@ class @Game
 
     Crafty.e('Life').at pos.x / Game.tile.width, pos.lane
 
-  randPosition: ->
-    lane = Math.floor(Math.random()*4) + 2
+  generateObjects: ->
+    return if Math.random() > 0.025
+    pos = @randPosition 1
+
+    return if @objectLimit(pos.x, pos.y)
+
+    random = Math.floor(Math.random()*5) + 1
+    sprite = "Object#{random}Sprite"
+    object = Crafty.e('Object').addComponent(sprite)
+    console.log pos.y - (120 - object.h)
+    object.attr x: pos.x, y: pos.y - 20 + (120 - object.h)
+
+  randPosition: (lane = null) ->
+    lane = lane || Math.floor(Math.random() * 4) + 2
     posx = 12 * Game.tile.width - Crafty.viewport.x
     posy = lane * Game.tile.height
 
@@ -79,7 +98,11 @@ class @Game
     ).length
 
   lifeLimit: (x, y) ->
-    console.log x, y
     Crafty.map.search(_x: x-200, _y: y, _w: 340, _h: 50).filter((v) ->
       v.has 'Stone' or v.has 'Life'
+    ).length
+
+  objectLimit: (x, y) ->
+    Crafty.map.search(_x: x-5, _y: y, _w: 5, _h: 120).filter((v) ->
+      v.has 'Object'
     ).length
