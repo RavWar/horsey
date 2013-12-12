@@ -58,7 +58,7 @@ class @Game
     Crafty.e('Stone').addComponent(sprite).at pos.x / Game.tile.width, pos.lane
 
   generateLives: ->
-    return if Math.random() > 0.02
+    return if Math.random() > 0.0022
     pos = @randPosition()
     pos.x = pos.x - 200
 
