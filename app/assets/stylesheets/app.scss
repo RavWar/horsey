@@ -4,6 +4,7 @@
 
 html, body {
   height: 100%;
+  background: $background-color url(/assets/noise.png) repeat;
 }
 
 #container {
@@ -24,7 +25,7 @@ html, body {
   min-width: 962px;
   min-height: 602px;
   margin: -301px 0 0 -481px;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.05);
   &:after {
     display: block;
     position: absolute;
@@ -103,6 +104,16 @@ html, body {
     margin: 0 4px 0 0;
     background: image-url('life-small.png') no-repeat;
   }
+}
+
+.noise {
+  position: absolute;
+  z-index: 99;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: url(/assets/noise.png) repeat;
 }
 
 #score {
