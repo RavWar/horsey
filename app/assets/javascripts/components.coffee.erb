@@ -122,6 +122,7 @@ Crafty.c 'Player',
     object[0].obj.collision(new Crafty.polygon([]))
 
     @unbind 'EnterFrame', @movePlayer
+    $('body').unbind 'keydown'
     @scoreboard.updateLives -1
 
     @removeComponent('PlayerSprite').addComponent('PlayerDropSprite')
@@ -134,6 +135,7 @@ Crafty.c 'Player',
       @x += x
       Crafty.viewport.x -= x
       @movement()
+      @bindKeyboard()
 
       @removeComponent('PlayerDropSprite').addComponent('PlayerSprite')
         .reel('PlayerRunning', 1000, 0, 0, 30).animate('PlayerRunning', -1)
