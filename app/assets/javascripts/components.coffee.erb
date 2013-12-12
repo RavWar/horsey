@@ -4,7 +4,10 @@ Crafty.audio.add
   creak: ['sounds/creak.mp3', 'sounds/creak.ogg'],
   hit: ['sounds/hit.mp3', 'sounds/hit.ogg']
 
-Crafty.sprite 200, 240, "<%= asset_path 'horse.png' %>",
+Crafty.sprite 210, 270, "<%= asset_path 'main-motion.png' %>",
+  PlayerSprite: [0, 0]
+
+Crafty.sprite 520, 300, "<%= asset_path 'drop-motion.png' %>",
   PlayerSprite: [0, 0]
 
 Crafty.sprite 140, 50, "<%= asset_path 'stone1.png' %>",
@@ -37,7 +40,7 @@ Crafty.sprite 48, 97, "<%= asset_path 'object5.png' %>",
 Crafty.sprite 960, 400, "<%= asset_path 'dirt.png' %>",
   DirtSprite: [0, 0]
 
-Crafty.sprite 56, 48, "<%= asset_path 'life-big.png' %>",
+Crafty.sprite 65, 95, "<%= asset_path 'bonus-life.png' %>",
   LifeSprite: [0, 0]
 
 Crafty.c 'Grid',
@@ -60,6 +63,20 @@ Crafty.c 'PlayField',
     @bind 'EnterFrame', ->
       if @x <= -Crafty.viewport.x - Crafty.viewport.width
         @x = -Crafty.viewport.x + Crafty.viewport.width
+
+Crafty.c 'Stone',
+  init: ->
+    @requires('Grid, Solid, Collision')
+
+Crafty.c 'Object',
+  init: ->
+    @requires('Grid, Solid, Collision')
+
+Crafty.c 'Life',
+  init: ->
+    @requires('Grid, Solid, Collision, SpriteAnimation, LifeSprite')
+    .collision(new Crafty.polygon([0,40], [0,90], [65,90], [65,40]))
+    .reel('LifeBounce', 1000, 0, 0, 16).animate('LifeBounce', -1)
 
 Crafty.c 'Scoreboard',
   init: ->
@@ -84,10 +101,10 @@ Crafty.c 'Scoreboard',
 Crafty.c 'Player',
   init: (scoreboard) ->
     @requires('Grid, Collision, SpriteAnimation, PlayerSprite')
-      .collision(new Crafty.polygon([40,180], [40,280], [200,280], [200,180]))
+      .collision(new Crafty.polygon([45,180], [45,280], [200,280], [200,180]))
       .reel('PlayerRunning', 1000, 0, 0, 30).animate('PlayerRunning', -1)
       .onHit('Stone', @stoneHit).onHit('Life', @lifeHit).bindKeyboard().movement()
-      .attr(x: 100, y: 310, z: 5)
+      .attr(x: 100, y: 290, z: 5)
 
     setInterval (=>
       Game.speed += 1
@@ -147,15 +164,3 @@ Crafty.c 'Player',
     @x += Game.speed
     Crafty.viewport.x -= Game.speed
     @scoreboard.updateScore parseInt -Crafty.viewport.x / 200
-
-Crafty.c 'Stone',
-  init: ->
-    @requires('Grid, Solid, Collision')
-
-Crafty.c 'Object',
-  init: ->
-    @requires('Grid, Solid, Collision')
-
-Crafty.c 'Life',
-  init: ->
-    @requires('Grid, Solid, Collision, LifeSprite')

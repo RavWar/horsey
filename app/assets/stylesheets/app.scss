@@ -4,7 +4,7 @@
 
 html, body {
   height: 100%;
-  background: $background-color url(/assets/noise.png) repeat;
+  background: $background-color image-url('noise.png') repeat;
 }
 
 #container {
@@ -113,7 +113,7 @@ html, body {
   right: 0;
   top: 0;
   bottom: 0;
-  background: url(/assets/noise.png) repeat;
+  background: image-url('noise.png') repeat;
 }
 
 #score {

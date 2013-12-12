@@ -23,15 +23,15 @@ class @Game
 
   assets: ->
     [
-      "<%= asset_path 'horse.png' %>", "<%= asset_path 'stone1.png' %>",
-      "<%= asset_path 'stone2.png' %>", "<%= asset_path 'stone3.png' %>"
-      "<%= asset_path 'stone4.png' %>", "<%= asset_path 'dirt.png' %>",
-      "<%= asset_path 'life-big.png' %>", "<%= asset_path 'object1.png' %>",
-      "<%= asset_path 'object2.png' %>", "<%= asset_path 'object3.png' %>",
-      "<%= asset_path 'object4.png' %>", "<%= asset_path 'object5.png' %>",
-      'sounds/bell.mp3', 'sounds/bell.ogg', 'sounds/wheels.mp3',
-      'sounds/wheels.ogg', 'sounds/creak.mp3', 'sounds/creak.ogg',
-      'sounds/hit.mp3', 'sounds/hit.ogg'
+      "<%= asset_path 'main-motion.png' %>", "<%= asset_path 'drop-motion.png' %>",
+      "<%= asset_path 'stone1.png' %>", "<%= asset_path 'stone2.png' %>",
+      "<%= asset_path 'stone3.png' %>", "<%= asset_path 'stone4.png' %>",
+      "<%= asset_path 'dirt.png' %>", "<%= asset_path 'bonus-life.png' %>",
+      "<%= asset_path 'object1.png' %>", "<%= asset_path 'object2.png' %>",
+      "<%= asset_path 'object3.png' %>", "<%= asset_path 'object4.png' %>",
+      "<%= asset_path 'object5.png' %>", 'sounds/bell.mp3', 'sounds/bell.ogg',
+      'sounds/wheels.mp3', 'sounds/wheels.ogg', 'sounds/creak.mp3',
+      'sounds/creak.ogg', 'sounds/hit.mp3', 'sounds/hit.ogg'
     ]
 
   initBackground: ->
@@ -58,13 +58,13 @@ class @Game
     Crafty.e('Stone').addComponent(sprite).at pos.x / Game.tile.width, pos.lane
 
   generateLives: ->
-    return if Math.random() > 0.002
+    return if Math.random() > 0.02
     pos = @randPosition()
     pos.x = pos.x - 200
 
     return if @lifeLimit(pos.x, pos.y)
 
-    Crafty.e('Life').at pos.x / Game.tile.width, pos.lane
+    Crafty.e('Life').attr x: pos.x, y: pos.y - 20
 
   generateObjects: ->
     return if Math.random() > 0.025
