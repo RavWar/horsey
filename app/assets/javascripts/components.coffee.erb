@@ -88,7 +88,6 @@ Crafty.c 'Scoreboard',
     $('#score').text @score
 
   updateLives: (change) ->
-    console.log @lives
     @lives += change
 
     if change > 0
@@ -97,14 +96,11 @@ Crafty.c 'Scoreboard',
       $('.life:last').remove()
       Crafty.audio.play 'hit', 1
 
-    Crafty.stop(true) if @lives <= 0
-
 Crafty.c 'Player',
   init: (scoreboard) ->
     @requires('Grid, Collision, SpriteAnimation, PlayerSprite')
       .collision(new Crafty.polygon([45,180], [45,280], [200,280], [200,180]))
       .reel('PlayerRunning', 1000, 0, 0, 30)
-      .reel('PlayerDropping', 1000, 0, 0, 23)
       .animate('PlayerRunning', -1)
       .attr(x: 100, y: 290, z: 5)
       .onHit('Stone', @stoneHit)
@@ -125,14 +121,22 @@ Crafty.c 'Player',
     # Remove stone collision
     object[0].obj.collision(new Crafty.polygon([]))
 
-    @unbind 'EnterFrame', @moveScene
+    @unbind 'EnterFrame', @movePlayer
     @scoreboard.updateLives -1
 
+    @removeComponent('PlayerSprite').addComponent('PlayerDropSprite')
+      .reel('PlayerDropping', 1050, 0, 0, 23).animate('PlayerDropping', -1)
+
     setTimeout (=>
+      return Crafty.stop(true) if @scoreboard.lives <= 0
+
       x = object[0].obj.x + 50 - @x
       @x += x
       Crafty.viewport.x -= x
-      @bind 'EnterFrame', @moveScene
+      @movement()
+
+      @removeComponent('PlayerDropSprite').addComponent('PlayerSprite')
+        .reel('PlayerRunning', 1000, 0, 0, 30).animate('PlayerRunning', -1)
     ), 1000
 
   lifeHit: (object) ->
@@ -168,9 +172,9 @@ Crafty.c 'Player',
     (lanes + 1) * Game.tile.height
 
   movement: ->
-    @bind 'EnterFrame', @moveScene
+    @bind 'EnterFrame', @movePlayer
 
-  moveScene: ->
+  movePlayer: ->
     @x += Game.speed
     Crafty.viewport.x -= Game.speed
     @scoreboard.updateScore parseInt -Crafty.viewport.x / 200
