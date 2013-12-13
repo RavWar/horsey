@@ -47,7 +47,7 @@ class @Game
       @generateObjects()
 
   generateStones: ->
-    return if Math.random() > 0.045 + Game.speed / 1000
+    return if Math.random() > 0.055 + Game.speed / 1000
     pos = @randPosition()
 
     return if @horizontalStoneLimit(pos.x, pos.y)
@@ -89,7 +89,7 @@ class @Game
     h = Game.options.lanes * Game.tile.width
     Crafty.map.search(_x: x-600, _y: y, _w: 740, _h: h).filter((v) ->
       v.has 'Stone'
-    ).length > 2
+    ).length > 1
 
   horizontalStoneLimit: (x, y) ->
     Crafty.map.search(_x: x-400, _y: y, _w: 540, _h: 50).filter((v) ->
@@ -97,7 +97,7 @@ class @Game
     ).length
 
   lifeLimit: (x, y) ->
-    Crafty.map.search(_x: x-200, _y: y, _w: 340, _h: 50).filter((v) ->
+    Crafty.map.search(_x: x-250, _y: y, _w: 390, _h: 50).filter((v) ->
       v.has 'Stone' or v.has 'Life'
     ).length
 
