@@ -99,7 +99,7 @@ Crafty.c 'Scoreboard',
 Crafty.c 'Player',
   init: (scoreboard) ->
     @requires('Grid, Collision, SpriteAnimation, PlayerSprite')
-      .collision(new Crafty.polygon([45,180], [45,280], [200,280], [200,180]))
+      .collision(new Crafty.polygon([90,180], [90,280], [200,280], [200,180]))
       .reel('PlayerRunning', 1000, 0, 0, 30)
       .animate('PlayerRunning', -1)
       .attr(x: 100, y: 290, z: 5)
