@@ -26,6 +26,7 @@ html, body {
   min-height: 602px;
   margin: -301px 0 0 -481px;
   border: 1px solid rgba(0,0,0,0.05);
+  background: $background-color;
   &:after {
     display: block;
     position: absolute;
