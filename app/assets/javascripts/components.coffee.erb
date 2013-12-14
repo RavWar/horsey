@@ -1,3 +1,5 @@
+playing = true
+
 Crafty.audio.add
   bell: ['sounds/bell.mp3', 'sounds/bell.ogg'],
   wheels: ['sounds/wheels.mp3', 'sounds/wheels.ogg'],
@@ -85,9 +87,11 @@ Crafty.c 'Scoreboard',
 
   updateScore: (score) ->
     @score = score
-    $('#score').text @score
-    digits = score.toString().split('');
-    console.log digits
+    # $('#score').text @score
+    $('#score').empty()
+    digits = @score.toString().split ''
+    for digit in digits
+      $('#score').append '<span>'+digit+'</span>'
 
   updateLives: (change) ->
     @lives += change
@@ -111,7 +115,7 @@ Crafty.c 'Player',
       .movement()
 
     setInterval (=>
-      Game.speed += 1
+      Game.speed += 1 if playing
     ), 2500
 
     # Crafty.audio.play 'bell', 1
@@ -153,8 +157,10 @@ Crafty.c 'Player',
         @moveLane 'down'
       else if e.keyCode == 40 and @y < @calcHeight(Game.options.lanes) - 240
         @moveLane 'up'
-      else if e.keyCode == 80
+      else if e.keyCode == 32
         Crafty.pause()
+        $('#pause').toggleClass('active')
+        playing = not playing
     @
 
   moveLane: (direction) ->
