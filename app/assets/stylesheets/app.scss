@@ -59,20 +59,20 @@ html, body {
   background-position: 0 20px !important;
 }
 
-.play {
-  display: block;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 240px;
-  margin: -0.75em 0 0 -120px;
-  padding: 0.25em 0;
-  background-color: #000;
+button {
+  display: inline-block;
+  vertical-align: top;
+  min-width: 240px;
+  padding: 0.25em 20px;
   color: #F3DB43;
   font-size: 40px;
   text-align: center;
+  border: 0;
+  background-color: #000;
   cursor: pointer;
 }
+
+.play {}
 
 #pause {
   display: block;
@@ -142,15 +142,15 @@ html, body {
 }
 
 #gameover {
-  .result {
-    position: absolute;
-    left: 50%;
-    bottom: 50%;
-    width: 240px;
-    margin: 0 0 2em -120px;
-    color: #000;
-    font-size: 20px;
-    text-align: center;
+  .result {}
+  form {
+    .field {}
+    .submit {
+      button {
+        min-width: 0;
+        font-size: 20px;
+      }
+    }
   }
   .play {}
 }

@@ -1,7 +1,9 @@
 #container
   #start
     .frame
-      .play Играть
+      %h1 Велоконь
+      %button.play Играть
+      %button.top TOP 15
   #game
     .frame
       #main
@@ -13,11 +15,43 @@
         .life
       #score 0
       .noise
-  -#
-    #gameover
-      .frame
-        .result
-          Результат:
-          %span 2560
-        .play Ещё разок
+  #gameover
+    .frame
+      %h2 Приехали…
+      .result
+        Результат:
+        %span 2560
+      .place
+        Место
+        %span 12
+      -# Минимальный функционал — простая форма для ввода имени.
+      %form
+        .field
+          %label Представтесь
+          %input
+        .submit
+          %button Прославиться
+      -# Желательно — авторизация через фейсбуки.
+      -# Тогда форма для ввода имени не нужна? Можно обсудить.
+      %ul
+        %li
+          %a.vk{:href => "#"} ВКонтакте
+        %li
+          %a.fb{:href => "#"} Фейсбук
+      -# По макету после авторизации здесь выводится таблица. Можно обсудить.
+      .top
+        %table
+          %tr
+            %td 11
+            %td Александр Друзь
+            %td 1&thinsp;282
+          %tr.result
+            %td 12
+            %td Константин Жеребцов
+            %td 1&thinsp;154
+          %tr
+            %td 13
+            %td Алексей Ёжиков
+            %td 420
+      %button.play Ещё разок
 #activity
