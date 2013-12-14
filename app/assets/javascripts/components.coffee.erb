@@ -87,11 +87,11 @@ Crafty.c 'Scoreboard',
 
   updateScore: (score) ->
     @score = score
-    # $('#score').text @score
-    $('#score').empty()
+    $('#score').text @score
+    ###$('#score').empty()
     digits = @score.toString().split ''
     for digit in digits
-      $('#score').append '<span>'+digit+'</span>'
+      $('#score').append '<span>'+digit+'</span>'###
 
   updateLives: (change) ->
     @lives += change
