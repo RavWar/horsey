@@ -1,5 +1,3 @@
-playing = true
-
 Crafty.audio.add
   bell: ['sounds/bell.mp3', 'sounds/bell.ogg'],
   wheels: ['sounds/wheels.mp3', 'sounds/wheels.ogg'],
@@ -11,6 +9,21 @@ Crafty.sprite 210, 270, "<%= asset_path 'main-motion.png' %>",
 
 Crafty.sprite 520, 300, "<%= asset_path 'drop-motion.png' %>",
   PlayerDropSprite: [0, 0]
+
+Crafty.sprite 65, 95, "<%= asset_path 'bonus-life.png' %>",
+  LifeSprite: [0, 0]
+
+Crafty.sprite 960, 400, "<%= asset_path 'dirt.png' %>",
+  DirtSprite: [0, 0]
+
+Crafty.sprite 3900, 125, "<%= asset_path 'clouds.png' %>",
+  CloudsSprite: [0, 0]
+
+Crafty.sprite 3900, 44, "<%= asset_path 'mountains.png' %>",
+  MountainsSprite: [0, 0]
+
+Crafty.sprite 65, 95, "<%= asset_path 'bonus-life.png' %>",
+  LifeSprite: [0, 0]
 
 Crafty.sprite 140, 50, "<%= asset_path 'stone1.png' %>",
   Stone1Sprite: [0, 0]
@@ -39,12 +52,6 @@ Crafty.sprite 41, 120, "<%= asset_path 'object4.png' %>",
 Crafty.sprite 48, 97, "<%= asset_path 'object5.png' %>",
   Object5Sprite: [0, 0]
 
-Crafty.sprite 960, 400, "<%= asset_path 'dirt.png' %>",
-  DirtSprite: [0, 0]
-
-Crafty.sprite 65, 95, "<%= asset_path 'bonus-life.png' %>",
-  LifeSprite: [0, 0]
-
 Crafty.c 'Grid',
   init: ->
     @requires('2D, DOM').attr
@@ -63,8 +70,22 @@ Crafty.c 'PlayField',
   init: ->
     @requires('Grid, DirtSprite').attr y: Game.options.header * Game.tile.height
     @bind 'EnterFrame', ->
-      if @x <= -Crafty.viewport.x - Crafty.viewport.width
-        @x = -Crafty.viewport.x + Crafty.viewport.width
+      if @x <= -Crafty.viewport.x - @w
+        @x = -Crafty.viewport.x + @w
+
+Crafty.c 'Clouds',
+  init: ->
+    @requires('Grid, CloudsSprite')
+    @bind 'EnterFrame', ->
+      if @x <= -Crafty.viewport.x - @w
+        @x = -Crafty.viewport.x + @w
+
+Crafty.c 'Mountains',
+  init: ->
+    @requires('Grid, MountainsSprite').attr y: Game.options.header * Game.tile.height - 44
+    @bind 'EnterFrame', ->
+      if @x <= -Crafty.viewport.x - @w
+        @x = -Crafty.viewport.x + @w
 
 Crafty.c 'Stone',
   init: ->
@@ -114,20 +135,18 @@ Crafty.c 'Player',
       .bindKeyboard()
       .movement()
 
-    setInterval (=>
-      Game.speed += 1 if playing
-    ), 2500
-
     # Crafty.audio.play 'bell', 1
 
   player: (scoreboard) ->
+    @count = 0
     @scoreboard = scoreboard
+    @
 
   stoneHit: (object) ->
     # Remove stone collision
     object[0].obj.collision(new Crafty.polygon([]))
 
-    @unbind 'EnterFrame', @movePlayer
+    @unbind 'EnterFrame', @moveGame
     $('body').unbind 'keydown'
     @scoreboard.updateLives -1
 
@@ -138,8 +157,7 @@ Crafty.c 'Player',
       return Crafty.stop(true) if @scoreboard.lives <= 0
 
       x = object[0].obj.x + 50 - @x
-      @x += x
-      Crafty.viewport.x -= x
+      @advance x
       @movement()
       @bindKeyboard()
 
@@ -160,7 +178,6 @@ Crafty.c 'Player',
       else if e.keyCode == 32
         Crafty.pause()
         $('#pause').toggleClass('active')
-        playing = not playing
     @
 
   moveLane: (direction) ->
@@ -181,10 +198,29 @@ Crafty.c 'Player',
   calcHeight: (lanes) ->
     (lanes + 1) * Game.tile.height
 
-  movement: ->
-    @bind 'EnterFrame', @movePlayer
+  advance: (x) ->
+    Crafty('Player').x += x
 
-  movePlayer: ->
-    @x += Game.speed
-    Crafty.viewport.x -= Game.speed
+    for id in Crafty('Clouds')
+      Crafty(id).x += x * 0.98
+
+    for id in Crafty('Mountains')
+      Crafty(id).x += x * 0.9
+
+    Crafty.viewport.x -= x
+
+  movement: ->
+    @bind 'EnterFrame', @moveGame
+
+  moveGame: ->
+    # Move everything
+    @advance Game.speed
+
+    # Increase game speed
+    @count += 1
+    if @count >= 125
+      Game.speed += 1
+      @count = 0
+
+    # Update scoreboard
     @scoreboard.updateScore parseInt -Crafty.viewport.x / 200

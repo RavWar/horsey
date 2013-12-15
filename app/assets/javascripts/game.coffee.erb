@@ -35,10 +35,20 @@ class @Game
     ]
 
   initBackground: ->
-    Crafty.e('PlayField')
+    field = Crafty.e('PlayField')
     Crafty.e('PlayField')
       .attr
-        x: Crafty.viewport.width
+        x: field.w
+
+    clouds = Crafty.e('Clouds')
+    Crafty.e('Clouds')
+      .attr
+        x: clouds.w
+
+    mountains = Crafty.e('Mountains')
+    Crafty.e('Mountains')
+      .attr
+        x: mountains.w
 
   generateElements: ->
     @player.bind 'EnterFrame', =>
