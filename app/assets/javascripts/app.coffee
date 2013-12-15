@@ -4,6 +4,7 @@
 
 //= require crafty
 
+//= require assets
 //= require components
 //= require game
 

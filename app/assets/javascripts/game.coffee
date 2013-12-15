@@ -1,4 +1,4 @@
-class @Game
+class @Game extends GameAssets
   @options =
     el: 'main'
     lives: 3
@@ -21,19 +21,6 @@ class @Game
       @player = Crafty.e('Player').player(@scoreboard)
       @generateElements()
 
-  assets: ->
-    [
-      "<%= asset_path 'main-motion.png' %>", "<%= asset_path 'drop-motion.png' %>",
-      "<%= asset_path 'stone1.png' %>", "<%= asset_path 'stone2.png' %>",
-      "<%= asset_path 'stone3.png' %>", "<%= asset_path 'stone4.png' %>",
-      "<%= asset_path 'dirt.png' %>", "<%= asset_path 'bonus-life.png' %>",
-      "<%= asset_path 'object1.png' %>", "<%= asset_path 'object2.png' %>",
-      "<%= asset_path 'object3.png' %>", "<%= asset_path 'object4.png' %>",
-      "<%= asset_path 'object5.png' %>", 'sounds/bell.mp3', 'sounds/bell.ogg',
-      'sounds/wheels.mp3', 'sounds/wheels.ogg', 'sounds/creak.mp3',
-      'sounds/creak.ogg', 'sounds/hit.mp3', 'sounds/hit.ogg'
-    ]
-
   initBackground: ->
     field = Crafty.e('PlayField')
     Crafty.e('PlayField')
@@ -54,7 +41,7 @@ class @Game
     @player.bind 'EnterFrame', =>
       @generateStones()
       @generateLives()
-      @generateObjects()
+      #@generateObjects()
 
   generateStones: ->
     return if Math.random() > 0.055 + Game.speed / 1000

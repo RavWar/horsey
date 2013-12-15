@@ -1,0 +1,97 @@
+Crafty.audio.add
+  bell: ['sounds/bell.mp3', 'sounds/bell.ogg'],
+  wheels: ['sounds/wheels.mp3', 'sounds/wheels.ogg'],
+  creak: ['sounds/creak.mp3', 'sounds/creak.ogg'],
+  hit: ['sounds/hit.mp3', 'sounds/hit.ogg']
+
+Crafty.sprite 210, 270, "<%= asset_path 'main-motion.png' %>",
+  PlayerSprite: [0, 0]
+
+Crafty.sprite 520, 300, "<%= asset_path 'drop-motion.png' %>",
+  PlayerDropSprite: [0, 0]
+
+Crafty.sprite 65, 95, "<%= asset_path 'bonus-life.png' %>",
+  LifeSprite: [0, 0]
+
+Crafty.sprite 960, 400, "<%= asset_path 'dirt.png' %>",
+  DirtSprite: [0, 0]
+
+Crafty.sprite 3900, 125, "<%= asset_path 'clouds.png' %>",
+  CloudsSprite: [0, 0]
+
+Crafty.sprite 3900, 44, "<%= asset_path 'mountains.png' %>",
+  MountainsSprite: [0, 0]
+
+Crafty.sprite 65, 95, "<%= asset_path 'bonus-life.png' %>",
+  LifeSprite: [0, 0]
+
+Crafty.sprite 140, 50, "<%= asset_path 'stone1.png' %>",
+  Stone1Sprite: [0, 0]
+
+Crafty.sprite 118, 50, "<%= asset_path 'stone2.png' %>",
+  Stone2Sprite: [0, 0]
+
+Crafty.sprite 114, 52, "<%= asset_path 'stone3.png' %>",
+  Stone3Sprite: [0, 0]
+
+Crafty.sprite 100, 50, "<%= asset_path 'stone4.png' %>",
+  Stone4Sprite: [0, 0]
+
+Crafty.sprite 194, 120, "<%= asset_path 'object7.png' %>",
+  Object1Sprite: [0, 0]
+
+Crafty.sprite 44, 104, "<%= asset_path 'object8.png' %>",
+  Object2Sprite: [0, 0]
+
+Crafty.sprite 43, 86, "<%= asset_path 'object9.png' %>",
+  Object3Sprite: [0, 0]
+
+Crafty.sprite 41, 120, "<%= asset_path 'object10.png' %>",
+  Object4Sprite: [0, 0]
+
+Crafty.sprite 48, 97, "<%= asset_path 'object11.png' %>",
+  Object5Sprite: [0, 0]
+
+Crafty.sprite 194, 120, "<%= asset_path 'object12.png' %>",
+  Object1Sprite: [0, 0]
+
+Crafty.sprite 44, 104, "<%= asset_path 'object13.png' %>",
+  Object2Sprite: [0, 0]
+
+Crafty.sprite 43, 86, "<%= asset_path 'object14.png' %>",
+  Object3Sprite: [0, 0]
+
+Crafty.sprite 41, 120, "<%= asset_path 'object15.png' %>",
+  Object4Sprite: [0, 0]
+
+Crafty.sprite 48, 97, "<%= asset_path 'object16.png' %>",
+  Object5Sprite: [0, 0]
+
+Crafty.sprite 44, 104, "<%= asset_path 'object17.png' %>",
+  Object2Sprite: [0, 0]
+
+Crafty.sprite 43, 86, "<%= asset_path 'object18.png' %>",
+  Object3Sprite: [0, 0]
+
+Crafty.sprite 41, 120, "<%= asset_path 'object19.png' %>",
+  Object4Sprite: [0, 0]
+
+Crafty.sprite 48, 97, "<%= asset_path 'object20.png' %>",
+  Object5Sprite: [0, 0]
+
+Crafty.sprite 48, 97, "<%= asset_path 'object21.png' %>",
+  Object5Sprite: [0, 0]
+
+class @GameAssets
+  assets: ->
+    [
+      "<%= asset_path 'main-motion.png' %>", "<%= asset_path 'drop-motion.png' %>",
+      "<%= asset_path 'stone1.png' %>", "<%= asset_path 'stone2.png' %>",
+      "<%= asset_path 'stone3.png' %>", "<%= asset_path 'stone4.png' %>",
+      "<%= asset_path 'dirt.png' %>", "<%= asset_path 'bonus-life.png' %>",
+      "<%= asset_path 'object1.png' %>", "<%= asset_path 'object2.png' %>",
+      "<%= asset_path 'object3.png' %>", "<%= asset_path 'object4.png' %>",
+      "<%= asset_path 'object5.png' %>", 'sounds/bell.mp3', 'sounds/bell.ogg',
+      'sounds/wheels.mp3', 'sounds/wheels.ogg', 'sounds/creak.mp3',
+      'sounds/creak.ogg', 'sounds/hit.mp3', 'sounds/hit.ogg'
+    ]
