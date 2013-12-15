@@ -21,14 +21,14 @@ Crafty.c 'PlayField',
 
 Crafty.c 'Clouds',
   init: ->
-    @requires('Grid, CloudsSprite')
+    @requires('Grid, CloudsSprite').attr y: Game.options.header * Game.tile.height - @h
     @bind 'EnterFrame', ->
       if @x <= -Crafty.viewport.x - @w
         @x = -Crafty.viewport.x + @w
 
 Crafty.c 'Mountains',
   init: ->
-    @requires('Grid, MountainsSprite').attr y: Game.options.header * Game.tile.height - 44
+    @requires('Grid, MountainsSprite').attr y: Game.options.header * Game.tile.height - @h
     @bind 'EnterFrame', ->
       if @x <= -Crafty.viewport.x - @w
         @x = -Crafty.viewport.x + @w
@@ -96,6 +96,11 @@ Crafty.c 'Player',
     $('body').unbind 'keydown'
     @scoreboard.updateLives -1
 
+    # Stop lane movement
+    clearInterval @changeLane
+    @running = false
+    @y = object[0].obj.y - 210
+
     @removeComponent('PlayerSprite').addComponent('PlayerDropSprite')
       .reel('PlayerDropping', 1050, 0, 0, 23).animate('PlayerDropping', -1)
 
@@ -132,12 +137,13 @@ Crafty.c 'Player',
     @running = true
     timesRun = 0
 
-    interval = setInterval (=>
-      @y += if direction == 'up' then 4 else -4
-      timesRun += 4
+    @changeLane = setInterval (=>
+      tiles = Game.tile.height / 25
+      @y += if direction == 'up' then tiles else -tiles
+      timesRun += tiles
 
       if timesRun >= Game.tile.height
-        clearInterval interval
+        clearInterval @changeLane
         @running = false
     ), 1
 
