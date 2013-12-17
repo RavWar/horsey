@@ -22,3 +22,5 @@ set :default_stage, 'production'
 set(:logs_dir)   { "#{current_path}/log" }
 set(:pids_dir)   { "#{current_path}/tmp/pids" }
 set(:config_dir) { "#{current_path}/config" }
+
+after 'deploy:restart', 'deploy:cleanup'
