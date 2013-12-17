@@ -69,8 +69,6 @@ Horsey::Application.configure do
     html5shiv.min.js
     printshiv.min.js
     respond.js
-    mail-bg.png
-    mail-button.png
   )
 
   # Ignore bad email addresses and do not raise email delivery errors.
