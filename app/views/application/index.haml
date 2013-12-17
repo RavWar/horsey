@@ -1,0 +1,40 @@
+.pumping-up
+  .frame
+    .intro
+      %p
+        %span Немного терпения,
+        идёт подготовка к запуску...
+      %p.nb
+        %span 23 декабря здесь будет игра
+        о жизни,
+        %s смерти
+        и коне
+      = image_tag "pumping-up.png", :alt => ""
+    .buttons
+      .facebook
+        #fb-root
+        .fb-like{:data => {:href => "http://velogame.molinos.ru", :layout => "button_count", :action => "like", :"show-faces" => "false", :share => "false"}}
+      .vkontakte
+        #vk_like
+      .twitter
+        %a.twitter-share-button{:href => "https://twitter.com/share", :data => {:url => "http://velogame.molinos.ru", :text => "фывфывфы", :lang => "en"}}
+    .footer
+      &copy;
+      %a{:href => "http://molinos.ru"} Molinos.Ru
+
+- content_for :javascript do
+  %script{:src => "//vk.com/js/api/openapi.js?105"}
+  :javascript
+    // Twitter
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+    // Facebook
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=457100904321833";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    // VK
+    VK.init({apiId: 4064171, onlyWidgets: true});
+    VK.Widgets.Like("vk_like", {type: "mini", height: 20});

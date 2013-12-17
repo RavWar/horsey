@@ -6,7 +6,7 @@
 
 html, body {
   height: 100%;
-  background: $background-color image-url('noise.png') repeat;
+  background: $background-color;
 }
 
 #container {
@@ -128,6 +128,7 @@ button {
 }
 
 .noise {
+  display: none;
   position: absolute;
   z-index: 99;
   left: 0;
@@ -164,6 +165,61 @@ button {
     }
   }
   .play {}
+}
+
+.footer {
+  margin: 60px 0 0;
+  padding: 0 0 30px;
+  font-size: 240%;
+  line-height: 1.2;
+  text-align: center;
+  a {
+    text-decoration: none;
+  }
+}
+
+.pumping-up {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 962px;
+  min-height: 700px;
+  background: image-url('dirt-bg.png') no-repeat 50% 50%;
+  .frame {
+    height: 700px;
+    min-height: 700px;
+    margin-top: -350px;
+    border: 0;
+  }
+  .intro {
+    margin: 30px 0;
+    text-align: center;
+    p {
+      margin: 0 0 20px;
+      font-size: 240%;
+      line-height: 1.2;
+      span {
+        display: block;
+      }
+      &.nb {
+        font-size: 480%;
+      }
+    }
+    s {
+      text-decoration: none;
+      background: image-url('line.png') no-repeat 0 50%;
+    }
+  }
+  .buttons {
+    margin: 60px 0;
+    text-align: center;
+    > div {
+      display: inline-block;
+      vertical-align: top;
+      width: 100px;
+      margin: 0 12px;
+    }
+  }
 }
 
 @import "partials/mq";
