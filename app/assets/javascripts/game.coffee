@@ -27,21 +27,21 @@ class @Game extends GameAssets
       .attr
         x: field.w
 
-    clouds = Crafty.e('Clouds')
-    Crafty.e('Clouds')
-      .attr
-        x: clouds.w
+    #clouds = Crafty.e('Clouds')
+    #Crafty.e('Clouds')
+    #  .attr
+    #    x: clouds.w
 
-    mountains = Crafty.e('Mountains')
-    Crafty.e('Mountains')
-      .attr
-        x: mountains.w
+    #mountains = Crafty.e('Mountains')
+    #Crafty.e('Mountains')
+    #  .attr
+    #    x: mountains.w
 
   generateElements: ->
     @player.bind 'EnterFrame', =>
       @generateStones()
       @generateLives()
-      #@generateObjects()
+      @generateObjects()
 
   generateStones: ->
     return if Math.random() > 0.055 + Game.speed / 1000
@@ -64,12 +64,12 @@ class @Game extends GameAssets
     Crafty.e('Life').attr x: pos.x, y: pos.y - 20
 
   generateObjects: ->
-    return if Math.random() > 0.025
+    return if Math.random() > 0.05
     pos = @randPosition 1
 
     return if @objectLimit(pos.x, pos.y)
 
-    random = Math.floor(Math.random()*5) + 1
+    random = Math.floor(Math.random()*14) + 7
     sprite = "Object#{random}Sprite"
     object = Crafty.e('Object').addComponent(sprite)
     object.attr x: pos.x, y: pos.y + 100 - object.h

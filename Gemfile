@@ -16,7 +16,6 @@ end
 
 gem 'haml'
 
-gem 'non-stupid-digest-assets'
 gem 'autoprefixer-rails'
 gem 'capistrano', group: :development
 gem 'unicorn'
