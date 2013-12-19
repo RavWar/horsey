@@ -1,3 +1,7 @@
+//= require crafty
+//= require assets
+//= require components
+
 window.isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
 
 class @Game extends GameAssets
@@ -105,3 +109,17 @@ class @Game extends GameAssets
     Crafty.map.search(_x: x-5, _y: y, _w: 5, _h: 120).filter((v) ->
       v.has 'Object'
     ).length
+
+$ ->
+  game = new Game
+
+  $(document).on 'click', '.play', (e) ->
+    e.preventDefault()
+    $('#start').hide()
+    $('#game').show()
+
+  $(document).on 'click', '#pause', (e) ->
+    e.preventDefault()
+    Crafty.pause()
+    $(this).toggleClass('active')
+    playing = not playing

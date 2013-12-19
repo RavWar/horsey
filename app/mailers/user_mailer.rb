@@ -1,3 +1,5 @@
+require 'mail'
+
 class UserMailer < ActionMailer::Base
   def new_years_mail params
     return unless to = params[:to] and to.present?
