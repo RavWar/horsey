@@ -17,6 +17,6 @@
     = yield
 
     = javascript_include_tag :app
-    = yield :javascript
+    = javascript_include_tag :game if controller.action_name == 'game'
 
     = render 'shared/analytics'
