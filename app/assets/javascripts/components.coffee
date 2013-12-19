@@ -67,7 +67,8 @@ Crafty.c 'Scoreboard',
       $('#lives').append "<div class='life'>"
     else
       $('.life:last').remove()
-      Crafty.audio.play 'hit', 1, 0.4
+      #Crafty.audio.play 'hit', 1, 0.4
+      #hit.play()
 
 Crafty.c 'Player',
   init: (scoreboard) ->
@@ -81,7 +82,7 @@ Crafty.c 'Player',
       .bindKeyboard()
       .movement()
 
-    # Crafty.audio.play 'bell', 1
+    #Crafty.audio.play 'bell', 1
 
   player: (scoreboard) ->
     @count = 0

@@ -6,6 +6,7 @@ input, textarea, select, button {color: $font-color; font: 200%/1.2 $font-family
 textarea {vertical-align: top}
 
 .mail {
+  min-width: 540px;
   padding: 20px;
 }
 
@@ -16,6 +17,7 @@ textarea {vertical-align: top}
   label, input {
     display: inline-block;
     vertical-align: middle;
+    margin-bottom: 4px;
     letter-spacing: normal;
   }
   label {
@@ -24,6 +26,7 @@ textarea {vertical-align: top}
   }
   input {
     width: 50%;
+    min-width: 300px;
     padding: 8px 10px;
     font-size: 20px;
     font-family: $normal-font-family;

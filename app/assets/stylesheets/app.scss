@@ -33,6 +33,10 @@ html, body {
   border: 1px solid rgba(0,0,0,0.1);
   overflow: hidden;
 }
+#main {
+  width: 960px;
+  height: 600px;
+}
 
 #game .frame {
   background: $background-color;

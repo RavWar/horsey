@@ -6,11 +6,19 @@
     %title= @meta_title || "Велоконь"
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "keywords"}
-    %meta{:name => "viewport", :content => "width=1280"}
-    %meta{:name => "HandheldFriendly", :content => "True"}
+    %meta{:name => "viewport", :content => "width=1440"}
     %link{:href => "/favicon.ico", :rel => "shortcut icon"}
     %link{:href => "http://fonts.googleapis.com/css?family=Bad+Script&subset=latin,cyrillic", :rel => "stylesheet"}
     = stylesheet_link_tag :app, :media => "all"
+
+    %meta{:property => "og:title", :content => "Велоконь"}
+    %meta{:property => "og:description", :content => "Я наконял 1234, кто больше?"}
+    %meta{:property => "og:url", :content => "http://velogame.molinos.ru"}
+    %meta{:property => "og:image", :content => "http://velogame.molinos.ru/i/share.png"}
+    %meta{:name => "title", :content => "Велоконь"}
+    %meta{:name => "description", :content => "Я наконял 1234, кто больше?"}
+    %link{:rel => "image_src", :href => "http://velogame.molinos.ru/i/share.png"}
+
   %body
     - if flash[:notice]
       .message= flash[:notice]

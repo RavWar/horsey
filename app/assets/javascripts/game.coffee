@@ -126,6 +126,15 @@ $ ->
     $(this).toggleClass('active')
     playing = not playing
 
+  #hit = $('#hit').get(0)
+  #hit.volume = 0.3
+
   $('#controls').show() if hasTouch
-  $(document).on 'click', '#controls button', (e) ->
+  $(document).on 'click touchstart', '#controls button', (e) ->
     e.preventDefault()
+    #hit.play()
+    #hit.pause()
+
+  #w = $(window).width()
+  #h = $(window).height()
+  #$('#container').css 'zoom', 0.5 if hasTouch && (w < 962 || h < 602)
