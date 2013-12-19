@@ -62,6 +62,7 @@ Horsey::Application.configure do
   config.assets.precompile += %w(
     app.js
     app.css
+    game.js
     ie.css
     ie7.css
     ie8.css
