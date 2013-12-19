@@ -89,6 +89,9 @@ Crafty.sprite 1656, 156, "<%= asset_path 'ny.png' %>",
 Crafty.sprite 3924, 10, "<%= asset_path 'line.png' %>",
   LineSprite: [0, 0]
 
+Crafty.sprite 798, 80, "<%= asset_path 'town1.png' %>",
+  Town1Sprite: [0, 0]
+
 class @GameAssets
   assets: ->
     [
@@ -104,7 +107,8 @@ class @GameAssets
       "<%= asset_path 'object17.png' %>", "<%= asset_path 'object18.png' %>",
       "<%= asset_path 'object19.png' %>", "<%= asset_path 'object20.png' %>",
       "<%= asset_path 'object21.png' %>", "<%= asset_path 'ny.png' %>",
-      "<%= asset_path 'line.png' %>", 'sounds/bell.mp3', 'sounds/bell.ogg',
+      "<%= asset_path 'line.png' %>", "<%= asset_path 'town1.png' %>",
+      'sounds/bell.mp3', 'sounds/bell.ogg',
       'sounds/wheels.mp3', 'sounds/wheels.ogg', 'sounds/creak.mp3',
       'sounds/creak.ogg', 'sounds/hit.mp3', 'sounds/hit.ogg'
     ]

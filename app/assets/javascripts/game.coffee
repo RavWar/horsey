@@ -17,14 +17,40 @@ class @Game extends GameAssets
   @width  = 960
   @height = (Game.options.lanes + Game.options.header) * Game.tile.height
 
+  @appendLife: ->
+    $('#lives').append "<div class='life'>"
+
   constructor: ->
     Crafty.init(Game.width, Game.height, Game.options.el)
-    @initBackground()
-    @scoreboard = Crafty.e('Scoreboard')
-    @player = Crafty.e('Player').player(@scoreboard)
-    @generateElements()
+    @initScenes()
+    Crafty.scene 'start'
+
+  initScenes: ->
+    Crafty.scene 'start', =>
+      $('#start').show()
+    , =>
+      $('#start').hide()
+
+    Crafty.scene 'game', =>
+      @initBackground()
+      @scoreboard = Crafty.e('Scoreboard')
+      @player = Crafty.e('Player').player(@scoreboard)
+    , =>
+      $('#game').hide()
+
+      # Reset game state
+      Game.speed = 8
+      Crafty.viewport.x = 0
+      for num in [$('#lives .life').length..2]
+        Game.appendLife()
+
+    Crafty.scene 'end', =>
+      $('#gameover').show()
+    , =>
+      $('#gameover').hide()
 
   initBackground: ->
+    $('#game').show()
     Crafty.e('Object').addComponent('NewYearsSprite').attr x: 1200, y: 46, z: 4
 
     field = Crafty.e('PlayField')
@@ -49,10 +75,9 @@ class @Game extends GameAssets
        x: mountains.w
 
   generateElements: ->
-    @player.bind 'EnterFrame', =>
-      @generateStones()
-      @generateLives()
-      @generateObjects()
+    @generateStones()
+    @generateLives()
+    @generateObjects()
 
   generateStones: ->
     return if Math.random() > 0.055 + Game.speed / 1000
@@ -111,12 +136,16 @@ class @Game extends GameAssets
   verticalStoneLimit: (x) ->
     y = Game.options.header * Game.tile.height
     h = Game.options.lanes * Game.tile.width
-    Crafty.map.search(_x: x-600, _y: y, _w: 740, _h: h).filter((v) ->
+    add = Game.speed * 3
+
+    Crafty.map.search(_x: x-400-add, _y: y, _w: 540+add, _h: h).filter((v) ->
       v.has 'Stone'
     ).length > 1
 
   horizontalStoneLimit: (x, y) ->
-    Crafty.map.search(_x: x-400, _y: y, _w: 540, _h: 50).filter((v) ->
+    add = Game.speed * 3
+
+    Crafty.map.search(_x: x-400-add, _y: y, _w: 540+add, _h: 50).filter((v) ->
       v.has 'Stone'
     ).length
 
@@ -134,7 +163,7 @@ $ ->
   isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
   hasTouch = "ontouchstart" of window or navigator.msMaxTouchPoints
 
-  game = new Game
+  window.game = new Game
 
   $(document).on 'click', '.play', (e) ->
     e.preventDefault()
@@ -159,3 +188,7 @@ $ ->
   #w = $(window).width()
   #h = $(window).height()
   #$('#container').css 'zoom', 0.5 if hasTouch && (w < 962 || h < 602)
+
+  $('body').on 'click touchstart', 'button.play', (e) ->
+    e.preventDefault()
+    Crafty.scene 'game'

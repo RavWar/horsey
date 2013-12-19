@@ -15,30 +15,22 @@ Crafty.c 'Grid',
 Crafty.c 'PlayField',
   init: ->
     @requires('Grid, DirtSprite').attr y: Game.options.header * Game.tile.height
-    @bind 'EnterFrame', ->
-      if @x <= -Crafty.viewport.x - @w
-        @x = -Crafty.viewport.x + @w - 12
 
 Crafty.c 'Clouds',
   init: ->
     @requires('Grid, CloudsSprite').attr y: Game.options.header * Game.tile.height - @h
-    @bind 'EnterFrame', ->
-      if @x <= -Crafty.viewport.x - @w
-        @x = -Crafty.viewport.x + @w - 12
 
 Crafty.c 'Mountains',
   init: ->
     @requires('Grid, MountainsSprite').attr y: Game.options.header * Game.tile.height - @h
-    @bind 'EnterFrame', ->
-      if @x <= -Crafty.viewport.x - @w
-        @x = -Crafty.viewport.x + @w - 12
 
 Crafty.c 'Line',
   init: ->
     @requires('Grid, LineSprite').attr y: Game.options.header * Game.tile.height - 4, z: 2
-    @bind 'EnterFrame', ->
-      if @x <= -Crafty.viewport.x - @w
-        @x = -Crafty.viewport.x + @w - 12
+
+Crafty.c 'Town',
+  init: ->
+    @requires('Grid, Town1Sprite').attr y: Game.options.header * Game.tile.height - @h, z: 3
 
 Crafty.c 'Stone',
   init: ->
@@ -51,7 +43,7 @@ Crafty.c 'Object',
 Crafty.c 'Life',
   init: ->
     @requires('Grid, Solid, Collision, SpriteAnimation, LifeSprite')
-    .collision(new Crafty.polygon([0,40], [0,90], [65,90], [65,40]))
+    .collision(new Crafty.polygon([0,40], [0,90], [100,90], [100,40]))
     .reel('LifeBounce', 1000, 0, 0, 16).animate('LifeBounce', -1)
 
 Crafty.c 'Scoreboard',
@@ -71,7 +63,7 @@ Crafty.c 'Scoreboard',
     @lives += change
 
     if change > 0
-      $('#lives').append "<div class='life'>"
+      Game.appendLife()
     else
       $('.life:last').remove()
       #Crafty.audio.play 'hit', 1, 0.4
@@ -93,6 +85,7 @@ Crafty.c 'Player',
 
   player: (scoreboard) ->
     @count = 0
+    @last_town  = 0
     @last_speed = Game.speed
     @scoreboard = scoreboard
     @
@@ -103,7 +96,7 @@ Crafty.c 'Player',
     # Remove stone collision
     object[0].obj.collision(new Crafty.polygon([]))
 
-    @unbind 'EnterFrame', @moveGame
+    @unbind 'EnterFrame', @gameFrame
     $('body').unbind 'keydown'
     $('#controls .up, #controls .down').unbind 'touchstart'
     @scoreboard.updateLives -1
@@ -119,7 +112,7 @@ Crafty.c 'Player',
     @last_speed = Game.speed + 1
 
     setTimeout (=>
-      return Crafty.stop(true) if @scoreboard.lives <= 0
+      return Crafty.scene('end') if @scoreboard.lives <= 0
 
       x = object[0].obj.x + 50 - @x
       @advance x
@@ -154,6 +147,9 @@ Crafty.c 'Player',
   moveLane: (direction) ->
     return if @running
 
+    # Always unpause
+    Crafty.pause false
+
     @running = true
     timesRun = 0
 
@@ -179,12 +175,20 @@ Crafty.c 'Player',
     for id in Crafty('Mountains')
       Crafty(id).x += x * 0.9
 
+    # Slow down last visible town
+    id = Crafty('Town')[Crafty('Town').length-1]
+    town = Crafty(id) if id
+    if town and town.x > -Crafty.viewport.x - 1000
+      town.x += x * 0.75
+
     Crafty.viewport.x -= x
 
   movement: ->
-    @bind 'EnterFrame', @moveGame
+    @bind 'EnterFrame', @gameFrame
 
-  moveGame: ->
+  gameFrame: ->
+    game.generateElements()
+
     # Move everything
     @advance Game.speed
 
@@ -205,5 +209,16 @@ Crafty.c 'Player',
       @reel('PlayerRunning', @spriteSpeed(), 0, 0, 30).animate('PlayerRunning', -1)
         .reelPosition(position)
 
+    # Move some background entities if needed
+    for entity in ['PlayField', 'Clouds', 'Mountains', 'Line']
+      for id in Crafty(entity)
+        if Crafty(id).x <= -Crafty.viewport.x - Crafty(id).w
+          Crafty(id).x = -Crafty.viewport.x + Crafty(id).w - 12
+
     # Update scoreboard
     @scoreboard.updateScore parseInt -Crafty.viewport.x / 200
+
+    # Generate town
+    if parseInt(@scoreboard.score / 97) > @last_town
+      @last_town += 1
+      Crafty.e('Town').attr x: -Crafty.viewport.x + 1000
