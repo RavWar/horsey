@@ -2,7 +2,7 @@
 //= require assets
 //= require components
 
-window.isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
+#window.isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
 
 class @Game extends GameAssets
   @options =
@@ -32,16 +32,16 @@ class @Game extends GameAssets
       .attr
         x: field.w
 
-    unless isMobile
-      clouds = Crafty.e('Clouds')
-      Crafty.e('Clouds')
-       .attr
-         x: clouds.w
+    #unless isMobile
+    clouds = Crafty.e('Clouds')
+    Crafty.e('Clouds')
+     .attr
+       x: clouds.w
 
-      mountains = Crafty.e('Mountains')
-      Crafty.e('Mountains')
-       .attr
-         x: mountains.w
+    mountains = Crafty.e('Mountains')
+    Crafty.e('Mountains')
+     .attr
+       x: mountains.w
 
   generateElements: ->
     @player.bind 'EnterFrame', =>
