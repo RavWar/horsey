@@ -1,3 +1,9 @@
+//= require crafty
+//= require assets
+//= require components
+
+window.isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
+
 class @Game extends GameAssets
   @options =
     el: 'main'
@@ -27,15 +33,16 @@ class @Game extends GameAssets
       .attr
         x: field.w
 
-    #clouds = Crafty.e('Clouds')
-    #Crafty.e('Clouds')
-    #  .attr
-    #    x: clouds.w
+    unless isMobile
+      clouds = Crafty.e('Clouds')
+      Crafty.e('Clouds')
+       .attr
+         x: clouds.w
 
-    #mountains = Crafty.e('Mountains')
-    #Crafty.e('Mountains')
-    #  .attr
-    #    x: mountains.w
+      mountains = Crafty.e('Mountains')
+      Crafty.e('Mountains')
+       .attr
+         x: mountains.w
 
   generateElements: ->
     @player.bind 'EnterFrame', =>
@@ -102,3 +109,24 @@ class @Game extends GameAssets
     Crafty.map.search(_x: x-5, _y: y, _w: 5, _h: 120).filter((v) ->
       v.has 'Object'
     ).length
+
+$ ->
+  isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
+  hasTouch = "ontouchstart" of window or navigator.msMaxTouchPoints
+
+  game = new Game
+
+  $(document).on 'click', '.play', (e) ->
+    e.preventDefault()
+    $('#start').hide()
+    $('#game').show()
+
+  $(document).on 'click', '#pause', (e) ->
+    e.preventDefault()
+    Crafty.pause()
+    $(this).toggleClass('active')
+    playing = not playing
+
+  $('#controls').show() if hasTouch
+  $(document).on 'click', '#controls button', (e) ->
+    e.preventDefault()
