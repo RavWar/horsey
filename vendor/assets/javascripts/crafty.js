@@ -7471,7 +7471,8 @@ var Crafty = require('./core.js'),
      *
      * @see Crafty.viewport
      */
-    if (mobile) Crafty.mobile = mobile[0];
+    //if (mobile) Crafty.mobile = mobile[0];
+    if (mobile) Crafty.mobile = false;
 
     /**@
      * #Crafty.support.setter
