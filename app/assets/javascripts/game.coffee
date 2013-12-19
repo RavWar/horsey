@@ -27,10 +27,10 @@ class @Game extends GameAssets
       .attr
         x: field.w
 
-    clouds = Crafty.e('Clouds')
-    Crafty.e('Clouds')
-      .attr
-        x: clouds.w
+    #clouds = Crafty.e('Clouds')
+    #Crafty.e('Clouds')
+    #  .attr
+    #    x: clouds.w
 
     mountains = Crafty.e('Mountains')
     Crafty.e('Mountains')
@@ -69,7 +69,7 @@ class @Game extends GameAssets
 
     return if @objectLimit(pos.x, pos.y)
 
-    random = Math.floor(Math.random()*5) + 1
+    random = Math.floor(Math.random()*14) + 7
     sprite = "Object#{random}Sprite"
     object = Crafty.e('Object').addComponent(sprite)
     object.attr x: pos.x, y: pos.y + 100 - object.h
