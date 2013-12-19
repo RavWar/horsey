@@ -1,8 +1,19 @@
+/*
 @font-face {
   font-family: 'Game';
   src: url('/fonts/game.eot?#iefix') format('embedded-opentype'), 
        url('/fonts/game.woff') format('woff'), 
        url('/fonts/game.ttf')  format('truetype'),
        url('/fonts/game.svg#Game') format('svg');
+  font-weight: normal;
+}
+*/
+
+@font-face {
+  font-family: 'Score';
+  src: url('/fonts/score.eot?#iefix') format('embedded-opentype'), 
+       url('/fonts/score.woff') format('woff'), 
+       url('/fonts/score.ttf')  format('truetype'),
+       url('/fonts/score.svg#Score') format('svg');
   font-weight: normal;
 }
