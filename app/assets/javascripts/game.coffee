@@ -2,8 +2,6 @@
 //= require assets
 //= require components
 
-#window.isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
-
 class @Game extends GameAssets
   @options =
     el: 'main'
@@ -27,10 +25,17 @@ class @Game extends GameAssets
     @generateElements()
 
   initBackground: ->
+    Crafty.e('Object').addComponent('NewYearsSprite').attr x: 1200, y: 46, z: 4
+
     field = Crafty.e('PlayField')
     Crafty.e('PlayField')
       .attr
         x: field.w
+
+    line = Crafty.e('Line')
+    Crafty.e('Line')
+      .attr
+        x: line.w
 
     #unless isMobile
     clouds = Crafty.e('Clouds')
@@ -63,19 +68,35 @@ class @Game extends GameAssets
   generateLives: ->
     return if Math.random() > 0.0022
     pos = @randPosition()
-    pos.x = pos.x - 200
+    pos.x -= 200
 
     return if @lifeLimit(pos.x, pos.y)
 
     Crafty.e('Life').attr x: pos.x, y: pos.y - 20
 
   generateObjects: ->
-    return if Math.random() > 0.05
-    pos = @randPosition 1
+    random = Math.floor(Math.random()*15) + 7
 
+    chance = if random in [13, 14, 15, 16]
+      0.08
+    else if random in [7, 8, 9, 10, 11, 12]
+      0.16
+    else if random in [17, 18]
+      0.04
+    else if random is 19
+      0.0005
+    else if random is 20
+      0.001
+    else if random is 21
+      0.0005
+    else
+      0.05
+
+    return if Math.random() > chance
+
+    pos = @randPosition 1
     return if @objectLimit(pos.x, pos.y)
 
-    random = Math.floor(Math.random()*14) + 7
     sprite = "Object#{random}Sprite"
     object = Crafty.e('Object').addComponent(sprite)
     object.attr x: pos.x, y: pos.y + 100 - object.h
