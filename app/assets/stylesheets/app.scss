@@ -78,7 +78,7 @@ button {
   position: absolute;
   z-index: 100;
   left: 50%;
-  top: 14px;
+  top: 13px;
   width: 30px;
   margin: 0 0 0 -15px;
   color: #000;
@@ -142,7 +142,7 @@ button {
   position: absolute;
   z-index: 100;
   right: 10px;
-  top: 14px;
+  top: 13px;
   color: #000;
   font-size: 20px;
   span {
@@ -164,6 +164,35 @@ button {
     }
   }
   .play {}
+}
+
+#controls {
+  display: none;
+  button {
+    display: block;
+    position: absolute;
+    z-index: 100;
+    bottom: 20px;
+    min-width: 0;
+    width: 83px;
+    height: 87px;
+    padding: 0;
+    background: transparent image-url('controls.png') no-repeat 0 0;
+  }
+  .up {
+    right: 20px;
+    background-position: -170px 0;
+    &:active {
+      background-position: -255px 0;
+    }
+  }
+  .down {
+    left: 20px;
+    background-position: 0 0;
+    &:active {
+      background-position: -85px 0;
+    }
+  }
 }
 
 .footer {

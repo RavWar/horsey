@@ -110,6 +110,9 @@ class @Game extends GameAssets
     ).length
 
 $ ->
+  isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
+  hasTouch = "ontouchstart" of window or navigator.msMaxTouchPoints
+
   game = new Game
 
   $(document).on 'click', '.play', (e) ->
@@ -122,3 +125,7 @@ $ ->
     Crafty.pause()
     $(this).toggleClass('active')
     playing = not playing
+
+  $('#controls').show() if hasTouch
+  $(document).on 'click', '#controls button', (e) ->
+    e.preventDefault()
