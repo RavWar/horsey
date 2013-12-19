@@ -32,10 +32,10 @@ class @Game extends GameAssets
     #  .attr
     #    x: clouds.w
 
-    mountains = Crafty.e('Mountains')
-    Crafty.e('Mountains')
-      .attr
-        x: mountains.w
+    #mountains = Crafty.e('Mountains')
+    #Crafty.e('Mountains')
+    #  .attr
+    #    x: mountains.w
 
   generateElements: ->
     @player.bind 'EnterFrame', =>
