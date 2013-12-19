@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
 
   def send_mail
     UserMailer.new_years_mail(params[:mail]).deliver
-    redirect_to :back, notice: 'Письма отправлены'
+    redirect_to :back, notice: 'Письма отправлены.'
   end
 end

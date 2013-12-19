@@ -1,29 +1,63 @@
 form {}
 fieldset {}
 legend {white-space: normal}
-label {font: 160%/1.2 $font-family}
-input, textarea, select, button {color: $font-color; font: 160%/1.2 $font-family; vertical-align: baseline}
+label {font: 200%/1.2 $font-family}
+input, textarea, select, button {color: $font-color; font: 200%/1.2 $font-family; vertical-align: baseline}
 textarea {vertical-align: top}
 
-input.button, a.button, span.button, button, .submit input, input[type=submit] {
+.mail {
+  padding: 20px;
+}
+
+.field {
+  margin: 0 0 20px;
+  font-size: 0;
+  letter-spacing: -1px;
+  label, input {
+    display: inline-block;
+    vertical-align: middle;
+    letter-spacing: normal;
+  }
+  label {
+    width: 200px;
+    font-size: 20px;
+  }
+  input {
+    width: 50%;
+    padding: 8px 10px;
+    font-size: 20px;
+    font-family: $normal-font-family;
+    background: transparent;
+    border: 1px solid #C5B344;
+    border-radius: 8px;
+  }
+}
+
+.submit {
+  padding: 0 0 0 200px;
+  input {
+    background: transparent;
+    border: 1px solid $font-color;
+  }
+}
+
+input.button, a.button, span.button, .submit input, input[type=submit] {
   display: inline-block;
   vertical-align: top;
   margin: 0;
-  padding: 8px 20px;
-  color: #fff;
-  font-size: 160%;
+  padding: 11px 20px;
+  color: $background-color;
+  font-size: 200%;
   line-height: 1;
   text-decoration: none;
-  text-shadow: 0 -1px 0 #666;
   border: 0;
-  background: #999;
-  border-radius: 4px;
-  box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+  background: $font-color;
+  border-radius: 8px;
   cursor: pointer;
 }
-input.button:hover, a.button:hover, button:hover, .submit input:hover, input[type=submit]:hover {}
-input.button:active, a.button:active, button:active, .submit input:active, input[type=submit]:active {}
-input.button:disabled, button:disabled, .submit input:disabled, input[type=submit]:disabled {}
+input.button:hover, a.button:hover, .submit input:hover, input[type=submit]:hover {}
+input.button:active, a.button:active, .submit input:active, input[type=submit]:active {}
+input.button:disabled, .submit input:disabled, input[type=submit]:disabled {}
 
 html input[type="button"], input[type="submit"], button {-webkit-appearance: button; cursor: pointer}
 input[disabled], button[disabled] {cursor: default}

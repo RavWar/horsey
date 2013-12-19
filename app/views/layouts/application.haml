@@ -13,7 +13,7 @@
     = stylesheet_link_tag :app, :media => "all"
   %body
     - if flash[:notice]
-      .flash-notice= flash[:notice]
+      .message= flash[:notice]
 
     = yield
 

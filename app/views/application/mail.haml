@@ -1,15 +1,16 @@
-= form_for :mail, url: mail_path, html: { id: 'mail' } do |f|
-  .field
-    = f.label :to, 'Адреса (через запятую)'
-    = f.text_field :to
-  .field
-    = f.label :name, 'От кого (имя)'
-    = f.text_field :name, value: 'Molinos'
-  .field
-    = f.label :email, 'От кого (email)'
-    = f.text_field :email, value: 'studio@molinos.ru'
-  .field
-    = f.label :subject, 'Тема письма'
-    = f.text_field :subject, value: 'С новым годом!'
-
-  = f.submit 'Отправить'
+.mail
+  = form_for :mail, url: mail_path, html: { id: 'mail' } do |f|
+    .field
+      = f.label :to, 'Адреса (через запятую)'
+      = f.text_field :to
+    .field
+      = f.label :name, 'От кого (имя)'
+      = f.text_field :name, value: 'Molinos'
+    .field
+      = f.label :email, 'От кого (email)'
+      = f.text_field :email, value: 'studio@molinos.ru'
+    .field
+      = f.label :subject, 'Тема письма'
+      = f.text_field :subject, value: 'С Новым Годом!'
+    .submit
+      = f.submit 'Отправить'
