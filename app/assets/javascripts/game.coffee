@@ -41,7 +41,7 @@ class @Game extends GameAssets
     @player.bind 'EnterFrame', =>
       @generateStones()
       @generateLives()
-      #@generateObjects()
+      @generateObjects()
 
   generateStones: ->
     return if Math.random() > 0.055 + Game.speed / 1000
@@ -64,7 +64,7 @@ class @Game extends GameAssets
     Crafty.e('Life').attr x: pos.x, y: pos.y - 20
 
   generateObjects: ->
-    return if Math.random() > 0.025
+    return if Math.random() > 0.05
     pos = @randPosition 1
 
     return if @objectLimit(pos.x, pos.y)
