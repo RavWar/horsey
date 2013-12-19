@@ -20,12 +20,11 @@ class @Game extends GameAssets
   @height = (Game.options.lanes + Game.options.header) * Game.tile.height
 
   constructor: ->
-    Crafty.load @assets(), =>
-      Crafty.init(Game.width, Game.height, Game.options.el)
-      @initBackground()
-      @scoreboard = Crafty.e('Scoreboard')
-      @player = Crafty.e('Player').player(@scoreboard)
-      @generateElements()
+    Crafty.init(Game.width, Game.height, Game.options.el)
+    @initBackground()
+    @scoreboard = Crafty.e('Scoreboard')
+    @player = Crafty.e('Player').player(@scoreboard)
+    @generateElements()
 
   initBackground: ->
     field = Crafty.e('PlayField')
