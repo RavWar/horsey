@@ -67,7 +67,7 @@ Crafty.c 'Scoreboard',
       $('#lives').append "<div class='life'>"
     else
       $('.life:last').remove()
-      Crafty.audio.play 'hit', 1
+      Crafty.audio.play 'hit', 1, 0.4
 
 Crafty.c 'Player',
   init: (scoreboard) ->
@@ -94,6 +94,7 @@ Crafty.c 'Player',
 
     @unbind 'EnterFrame', @moveGame
     $('body').unbind 'keydown'
+    $('#controls .up, #controls .down').unbind 'touchstart'
     @scoreboard.updateLives -1
 
     # Stop lane movement
@@ -129,6 +130,12 @@ Crafty.c 'Player',
       else if e.keyCode == 32
         Crafty.pause()
         $('#pause').toggleClass('active')
+    $('#controls .up').bind 'touchstart', (e) =>
+      if @y > @calcHeight(Game.options.header) - 220
+        @moveLane 'down'
+    $('#controls .down').bind 'touchstart', (e) =>
+      if @y < @calcHeight(Game.options.lanes) - 240
+        @moveLane 'up'
     @
 
   moveLane: (direction) ->
