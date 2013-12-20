@@ -184,11 +184,6 @@ $ ->
 
   window.game = new Game
 
-  $(document).on 'click', '.play', (e) ->
-    e.preventDefault()
-    $('#start').hide()
-    $('#game').show()
-
   $(document).on 'click', '#pause', (e) ->
     e.preventDefault()
     Crafty.pause()
@@ -210,7 +205,14 @@ $ ->
 
   $('body').on 'click touchstart', 'button.play', (e) ->
     e.preventDefault()
-    Crafty.scene 'game'
+    $('#start').hide()
+    $('#keys').show()
+    setTimeout ->
+      $('#keys').hide()
+      $('#game').show()
+      Crafty.scene 'game'
+    ,
+    1500
 
   $('body').on 'click touchstart', '.score .save', (e) ->
     e.preventDefault()
