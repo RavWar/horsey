@@ -37,6 +37,7 @@ class @Game extends GameAssets
       @initBackground()
       @scoreboard = Crafty.e('Scoreboard')
       @player = Crafty.e('Player').player(@scoreboard)
+      #@bind 'Draw', @generateElements
     , =>
       $('#game').hide()
 
