@@ -5,8 +5,8 @@
       %td= score.name
       %td= number_with_delimiter score.value
 
-  - if defined?(current) and index = Score.all.index(current) + 1 and index > 10
-    %tr{ class: 'current separate' }
-      %td= index
-      %td= current.name
-      %td= number_with_delimiter current.value
+- if defined?(current) and index = Score.all.index(current) + 1 and index > 10
+  %div{ class: 'current' }
+    %span= index
+    %span= current.name
+    %span= number_with_delimiter current.value
