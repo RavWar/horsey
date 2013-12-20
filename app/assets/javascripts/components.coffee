@@ -157,7 +157,7 @@ Crafty.c 'Player',
     timesRun = 0
 
     @changeLane = setInterval (=>
-      tiles = Game.tile.height / 25
+      tiles = Game.tile.height / 50
       @y += if direction == 'up' then tiles else -tiles
       timesRun += tiles
 
@@ -190,7 +190,7 @@ Crafty.c 'Player',
     @bind 'EnterFrame', @gameFrame
 
   gameFrame: ->
-    #game.generateElements()
+    game.generateElements()
 
     # Move everything
     @advance Game.speed
