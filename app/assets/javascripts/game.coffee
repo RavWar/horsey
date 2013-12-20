@@ -203,16 +203,19 @@ $ ->
   #h = $(window).height()
   #$('#container').css 'zoom', 0.5 if hasTouch && (w < 962 || h < 602)
 
-  $('body').on 'click touchstart', 'button.play', (e) ->
+  $('body').on 'click touchstart', '#gameover .play', (e) ->
     e.preventDefault()
+    Crafty.scene 'game'
+
+  $('body').on 'click touchstart', '#start .play', ->
     $('#start').hide()
     $('#keys').show()
+
     setTimeout ->
       $('#keys').hide()
       $('#game').show()
       Crafty.scene 'game'
-    ,
-    1500
+    , 1500
 
   $('body').on 'click touchstart', '.score .save', (e) ->
     e.preventDefault()
