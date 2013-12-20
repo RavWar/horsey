@@ -86,6 +86,7 @@ Crafty.c 'Player',
   player: (scoreboard) ->
     @count = 0
     @last_town  = 0
+    @last_viewport = 0
     @last_speed = Game.speed
     @scoreboard = scoreboard
     @
@@ -115,6 +116,8 @@ Crafty.c 'Player',
       return Crafty.scene('end') if @scoreboard.lives <= 0
 
       x = object[0].obj.x + 50 - @x
+      @last_viewport = Crafty.viewport.x - x
+
       @advance x
       @movement()
       @bindKeyboard()
@@ -219,6 +222,12 @@ Crafty.c 'Player',
           other_id = if Crafty(entity)[0] == id then 1 else 0
           other_el = Crafty Crafty(entity)[other_id]
           element.x = other_el.x + other_el.w
+
+    # Prevent viewport abuse
+    if Crafty.viewport.x < @last_viewport - Game.speed
+      Crafty.viewport.x = @last_viewport
+
+    @last_viewport = Crafty.viewport.x
 
     # Update scoreboard
     @scoreboard.updateScore parseInt -Crafty.viewport.x / 200
