@@ -6,7 +6,7 @@ input, textarea, select, button {color: $font-color; font: 200%/1.2 $font-family
 textarea {vertical-align: top}
 
 .mail {
-  min-width: 540px;
+  min-width: 740px;
   padding: 20px;
 }
 
@@ -25,8 +25,7 @@ textarea {vertical-align: top}
     font-size: 20px;
   }
   input {
-    width: 50%;
-    min-width: 300px;
+    width: 500px;
     padding: 8px 10px;
     font-size: 20px;
     font-family: $normal-font-family;

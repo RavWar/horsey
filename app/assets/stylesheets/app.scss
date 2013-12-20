@@ -19,7 +19,7 @@ html, body {
   #game { display: none }
 }
 
-#start, #gameover {
+#start, #keys, #game, #gameover {
   display: none;
 }
 
@@ -35,23 +35,21 @@ html, body {
   border: 1px solid rgba(0,0,0,0.1);
   overflow: hidden;
 }
-#main {
-  width: 960px;
-  height: 600px;
-}
 
 #game .frame {
   background: $background-color;
-  //&:after {
-  //  display: block;
-  //  position: absolute;
-  //  left: 0;
-  //  right: 0;
-  //  top: 200px;
-  //  height: 1px;
-  //  border-top: 1px solid #C7B33B;
-  //  content: "";
-  //}
+  /*
+  &:after {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 200px;
+    height: 1px;
+    border-top: 1px solid #C7B33B;
+    content: "";
+  }
+  */
 }
 
 .Player {
@@ -64,11 +62,22 @@ html, body {
 .PlayField {
   background-position: 0 20px !important;
 }
+.NewYearsSprite {
+  top: 25px;
+}
+.Object7Sprite, .Object8Sprite, .Object9Sprite, .Object10Sprite, .Object11Sprite, .Object12Sprite, .Object13Sprite, .Object14Sprite, .Object15Sprite, .Object16Sprite, .Object17Sprite, .Object18Sprite, .Object20Sprite {
+  top: 5px;
+}
+.Object19Sprite {
+  top: 16px;
+}
+.Object21Sprite {
+  top: 10px;
+}
 
 button {
   display: inline-block;
   vertical-align: top;
-  min-width: 240px;
   padding: 0.25em 20px;
   color: #F3DB43;
   font-size: 40px;
@@ -161,6 +170,146 @@ button {
   }
 }
 
+.buttons {
+  margin: 60px 0 30px;
+  text-align: center;
+  > div {
+    display: inline-block;
+    vertical-align: top;
+    width: 100px;
+    margin: 0 12px;
+  }
+}
+
+.footer {
+  margin: 30px 0 0;
+  padding: 0 0 30px;
+  font-size: 24px;
+  line-height: 1.2;
+  text-align: center;
+  a {
+    text-decoration: none;
+  }
+}
+
+#keys {
+  i {
+    display: block;
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 50%;
+    margin: 0 0 30px;
+    font-size: 48px;
+    font-style: normal;
+    text-align: center;
+  }
+  span {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: 10px 0 0;
+    width: 51px;
+    height: 55px;
+    background: image-url('keys.png') no-repeat;
+    &.up {
+      margin-left: -71px;
+      background-position: 0 0;
+      &.pressed {
+        background-position: 0 -73px;
+      }
+    }
+    &.down {
+      margin-left: 20px;
+      background-position: -74px 0;
+      &.pressed {
+        background-position: -74px -73px;
+      }
+    }
+  }
+}
+
+#start {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: image-url('dirt-bg.png') no-repeat 50% 50%;
+  .frame {
+    border: 0;
+  }
+  h1 {
+    position: absolute;
+    left: 394px;
+    right: 30px;
+    top: 94px;
+    font-size: 120px;
+    text-align: center;
+    //text-transform: uppercase;
+  }
+  h2 {
+    position: absolute;
+    left: 394px;
+    right: 30px;
+    top: 94px;
+    margin-top: 4em;
+    font-size: 32px;
+    text-align: center;
+    text-transform: lowercase;
+  }
+  img {
+    display: block;
+    position: absolute;
+    left: 30px;
+    top: 90px;
+  }
+  button {
+    display: block;
+    position: absolute;
+    left: 640px;
+    width: 182px;
+    height: 63px;
+    font-size: 32px;
+    line-height: 50px;
+    background: image-url('button.png') no-repeat 0 0;
+    span {
+      position: relative;
+      top: -0.25em;
+    }
+    &:active {
+      background-position: -184px 0;
+      line-height: 54px;
+    }
+    &.play {
+      top: 312px;
+    }
+    &.top {
+      top: 382px;
+    }
+  }
+  .buttons {
+    position: absolute;
+    left: 500px;
+    top: 332px;
+    width: 100px;
+    margin: 0;
+    text-align: left;
+    > div {
+      margin: 0;
+      height: 36px;
+    }
+  }
+  .footer {
+    position: absolute;
+    left: 394px;
+    right: 30px;
+    bottom: 40px;
+    margin: 0;
+  }
+}
+
 #gameover {
   .result {}
   form {
@@ -204,17 +353,6 @@ button {
   }
 }
 
-.footer {
-  margin: 30px 0 0;
-  padding: 0 0 30px;
-  font-size: 24px;
-  line-height: 1.2;
-  text-align: center;
-  a {
-    text-decoration: none;
-  }
-}
-
 .message {
   padding: 20px 0 0 20px;
   font-size: 20px;
@@ -249,17 +387,7 @@ button {
     }
     s {
       text-decoration: none;
-      background: image-url('line.png') no-repeat 0 50%;
-    }
-  }
-  .buttons {
-    margin: 60px 0 30px;
-    text-align: center;
-    > div {
-      display: inline-block;
-      vertical-align: top;
-      width: 100px;
-      margin: 0 12px;
+      //background: image-url('line.png') no-repeat 0 50%;
     }
   }
 }

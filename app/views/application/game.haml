@@ -1,12 +1,47 @@
 - content_for :javascript do
   = javascript_include_tag :game
+  %script{:src => "//vk.com/js/api/openapi.js?105"}
+  :javascript
+    // Twitter
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+    // Facebook
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=457100904321833";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    // VK
+    VK.init({apiId: 4064171, onlyWidgets: true});
+    VK.Widgets.Like("vk_like", {type: "mini", height: 20});
 
 #container
   #start
     .frame
       %h1 Велоконь
+      %h2 Игра о жизни, смерти и коне
+      = image_tag "velogame.png", :alt => ""
       %button.play Играть
-      %button.top TOP 15
+      %button.top
+        TOP
+        %span 15
+      .buttons
+        .facebook
+          #fb-root
+          .fb-like{:data => {:href => "http://velogame.molinos.ru", :layout => "button_count", :action => "like", :"show-faces" => "false", :share => "false"}}
+        .vkontakte
+          #vk_like
+        .twitter
+          %a.twitter-share-button{:href => "https://twitter.com/share", :data => {:url => "http://velogame.molinos.ru", :text => "Велоконь", :lang => "en"}}
+      .footer
+        &copy;
+        %a{:href => "http://molinos.ru"} Molinos.Ru
+  #keys
+    .frame
+      %i Используй клавиши
+      %span.up
+      %span.down
   #game
     .frame
       #main
