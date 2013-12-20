@@ -44,7 +44,7 @@ Crafty.c 'Life',
   init: ->
     @requires('Grid, Solid, Collision, SpriteAnimation, LifeSprite')
     .collision(new Crafty.polygon([0,40], [0,90], [100,90], [100,40]))
-    .reel('LifeBounce', 1000, 0, 0, 16).animate('LifeBounce', -1)
+    .reel('LifeBounce', 1000, 0, 0, 16).animate('LifeBounce', -1).attr z: 3
 
 Crafty.c 'Scoreboard',
   init: ->
@@ -212,8 +212,13 @@ Crafty.c 'Player',
     # Move some background entities if needed
     for entity in ['PlayField', 'Clouds', 'Mountains', 'Line']
       for id in Crafty(entity)
-        if Crafty(id).x <= -Crafty.viewport.x - Crafty(id).w
-          Crafty(id).x = -Crafty.viewport.x + Crafty(id).w - 12
+        element = Crafty id
+
+        if element.x <= -Crafty.viewport.x - element.w
+          # Line positions up
+          other_id = if Crafty(entity)[0] == id then 1 else 0
+          other_el = Crafty Crafty(entity)[other_id]
+          element.x = other_el.x + other_el.w
 
     # Update scoreboard
     @scoreboard.updateScore parseInt -Crafty.viewport.x / 200
