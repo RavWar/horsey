@@ -37,6 +37,9 @@ class @Game extends GameAssets
       @initBackground()
       @scoreboard = Crafty.e('Scoreboard')
       @player = Crafty.e('Player').player(@scoreboard)
+      setInterval (=>
+        @generateElements()
+      ), 5
     , =>
       $('#game').hide()
 
@@ -158,7 +161,7 @@ class @Game extends GameAssets
     h = Game.options.lanes * Game.tile.width
     add = Game.speed * 3
 
-    Crafty.map.search(_x: x-400-add, _y: y, _w: 540+add, _h: h).filter((v) ->
+    Crafty.map.search(_x: x-550-add, _y: y, _w: 690+add, _h: h).filter((v) ->
       v.has 'Stone'
     ).length > 1
 

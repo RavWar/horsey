@@ -66,7 +66,7 @@ Crafty.c 'Scoreboard',
       Game.appendLife()
     else
       $('.life:last').remove()
-      #Crafty.audio.play 'hit', 1, 0.4
+      Crafty.audio.play 'hit', 1, 1
       #hit.play()
 
 Crafty.c 'Player',
@@ -157,14 +157,14 @@ Crafty.c 'Player',
     timesRun = 0
 
     @changeLane = setInterval (=>
-      tiles = Game.tile.height / 50
+      tiles = Game.tile.height / 25
       @y += if direction == 'up' then tiles else -tiles
       timesRun += tiles
 
       if timesRun >= Game.tile.height
         clearInterval @changeLane
         @running = false
-    ), 1
+    ), 2
 
   calcHeight: (lanes) ->
     (lanes + 1) * Game.tile.height
@@ -190,7 +190,7 @@ Crafty.c 'Player',
     @bind 'EnterFrame', @gameFrame
 
   gameFrame: ->
-    game.generateElements()
+    #game.generateElements()
 
     # Move everything
     @advance Game.speed
@@ -211,6 +211,10 @@ Crafty.c 'Player',
 
       @reel('PlayerRunning', @spriteSpeed(), 0, 0, 30).animate('PlayerRunning', -1)
         .reelPosition(position)
+
+    # Play pedal sounds
+    Crafty.audio.play 'pedal1', 1, 1 if @reelPosition() == 1
+    Crafty.audio.play 'pedal2', 1, 1 if @reelPosition() == 15
 
     # Move some background entities if needed
     for entity in ['PlayField', 'Clouds', 'Mountains', 'Line']
