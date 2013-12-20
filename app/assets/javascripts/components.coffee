@@ -157,7 +157,7 @@ Crafty.c 'Player',
     timesRun = 0
 
     @changeLane = setInterval (=>
-      multiplier = if Game.speed > 20 then 2 else 1
+      multiplier = if Game.speed > 30 then 2 else 1
       num = if isMobile then 10/multiplier else 20/multiplier
       tiles = Game.tile.height / num
       @y += if direction == 'up' then tiles else -tiles
