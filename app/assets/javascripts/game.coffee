@@ -2,6 +2,8 @@
 //= require assets
 //= require components
 
+isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
+
 class @Game extends GameAssets
   @options =
     el: 'main'
@@ -81,16 +83,16 @@ class @Game extends GameAssets
       .attr
         x: line.w
 
-    #unless isMobile
-    clouds = Crafty.e('Clouds')
-    Crafty.e('Clouds')
-     .attr
-       x: clouds.w
+    unless isMobile
+      clouds = Crafty.e('Clouds')
+      Crafty.e('Clouds')
+       .attr
+         x: clouds.w
 
-    mountains = Crafty.e('Mountains')
-    Crafty.e('Mountains')
-     .attr
-       x: mountains.w
+      mountains = Crafty.e('Mountains')
+      Crafty.e('Mountains')
+       .attr
+         x: mountains.w
 
   generateElements: ->
     @generateStones()
@@ -178,7 +180,6 @@ class @Game extends GameAssets
     ).length
 
 $ ->
-  isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
   hasTouch = "ontouchstart" of window or navigator.msMaxTouchPoints
   request  = null
 
