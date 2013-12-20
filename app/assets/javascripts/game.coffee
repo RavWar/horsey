@@ -2,7 +2,7 @@
 //= require assets
 //= require components
 
-isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
+window.isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
 
 class @Game extends GameAssets
   @options =
@@ -39,7 +39,7 @@ class @Game extends GameAssets
       @player = Crafty.e('Player').player(@scoreboard)
       setInterval (=>
         @generateElements()
-      ), 5
+      ), 10
     , =>
       $('#game').hide()
 
