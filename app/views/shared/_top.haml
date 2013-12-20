@@ -1,0 +1,12 @@
+%table
+  - Score.limit(10).each_with_index do |score, i|
+    %tr{ class: defined?(current) && current == score && 'current' }
+      %td= i + 1
+      %td= score.name
+      %td= number_with_delimiter score.value
+
+  - if defined?(current) and index = Score.all.index(current) + 1 and index > 10
+    %tr{ class: 'current separate' }
+      %td= index
+      %td= current.name
+      %td= number_with_delimiter current.value

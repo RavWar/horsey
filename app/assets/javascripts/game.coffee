@@ -38,6 +38,12 @@ class @Game extends GameAssets
     , =>
       $('#game').hide()
 
+      # Save score and freeze the value
+      a = @scoreboard.score
+      window.score = ((a) ->
+        -> a
+      )(a)
+
       # Reset game state
       Game.speed = 8
       Crafty.viewport.x = 0
@@ -46,6 +52,18 @@ class @Game extends GameAssets
 
     Crafty.scene 'end', =>
       $('#gameover').show()
+      $('#gameover .top').hide()
+      $('#gameover .prelim-score').show()
+      $('#gameover .result span').text score()
+
+      $.ajax
+        type: 'post'
+        url: '/place'
+        data:
+          score: score()
+        async: false
+        success: (place) ->
+          $('#gameover .place span').text place
     , =>
       $('#gameover').hide()
 
@@ -162,6 +180,7 @@ class @Game extends GameAssets
 $ ->
   isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
   hasTouch = "ontouchstart" of window or navigator.msMaxTouchPoints
+  request  = null
 
   window.game = new Game
 
@@ -192,3 +211,15 @@ $ ->
   $('body').on 'click touchstart', 'button.play', (e) ->
     e.preventDefault()
     Crafty.scene 'game'
+
+  $('body').on 'click touchstart', '.score .save', (e) ->
+    e.preventDefault()
+    return unless name = $('.score input').val()
+
+    request.abort() if request
+    request = $.post '/save', { value: score(), name: name }, (data) ->
+      $('.top').html $(data)
+
+      request = null
+      $('#gameover .prelim-score').hide()
+      $('#gameover .top').show()

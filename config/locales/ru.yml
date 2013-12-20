@@ -1,0 +1,5 @@
+ru:
+  number:
+    format:
+      separator: ","
+      delimiter: " "

@@ -5,4 +5,7 @@ Horsey::Application.routes.draw do
 
   post 'mail', to: 'application#send_mail'
   get 'mail', to: 'application#mail'
+
+  post 'save', to: 'application#save_score'
+  post 'place', to: 'application#get_place'
 end
