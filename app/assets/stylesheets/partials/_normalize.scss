@@ -3,7 +3,7 @@ html, body, div, span, object, iframe, embed, h1, h2, h3, h4, h5, h6, p, blockqu
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {display: block}
 audio, canvas, video {display: inline-block}
 
-body {width: 100%; color: $font-color; font-family: $font-family; font-size: 0.625em; line-height: 1; background-color: $background-color}
+body {width: 100%; color: $font-color; font-family: $font-family; font-size: 0.625em; line-height: 1; text-transform: uppercase; background-color: $background-color}
 
 h1 {color: $heading-font-color; margin: 0 0 0.5em 0; font: normal 360%/1.2 $heading-font-family}
 h2 {color: $heading-font-color; margin: 1.5em 0 0.75em 0; font: normal 240%/1.2 $heading-font-family}

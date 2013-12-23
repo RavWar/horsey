@@ -10,6 +10,15 @@
 */
 
 @font-face {
+  font-family: 'Horsey';
+  src: url('/fonts/horsey.eot?#iefix') format('embedded-opentype'), 
+       url('/fonts/horsey.woff') format('woff'), 
+       url('/fonts/horsey.ttf')  format('truetype'),
+       url('/fonts/horsey.svg#Horsey') format('svg');
+  font-weight: normal;
+}
+
+@font-face {
   font-family: 'Score';
   src: url('/fonts/score.eot?#iefix') format('embedded-opentype'), 
        url('/fonts/score.woff') format('woff'), 
