@@ -22,6 +22,14 @@ html, body {
 #start, #keys, #game, #gameover {
   display: none;
 }
+/*
+#start {
+  display: none !important;
+}
+#gameover {
+  display: block !important;
+}
+*/
 
 .frame {
   position: absolute;
@@ -63,19 +71,19 @@ html, body {
   background-position: 0 20px !important;
 }
 .NewYearsSprite {
-  top: 25px;
+  top: 23px;
 }
 .Object7Sprite, .Object8Sprite, .Object9Sprite, .Object10Sprite, .Object11Sprite, .Object12Sprite, .Object13Sprite, .Object14Sprite, .Object15Sprite, .Object16Sprite, .Object17Sprite, .Object18Sprite, .Object20Sprite {
-  top: 5px;
+  top: 3px;
 }
 .Object19Sprite {
-  top: 16px;
+  top: 14px;
 }
 .Object21Sprite {
-  top: 10px;
+  top: 8px;
 }
 .Town1Sprite {
-  top: 9px;
+  top: 7px;
 }
 
 button {
@@ -83,8 +91,9 @@ button {
   vertical-align: top;
   padding: 0.25em 20px;
   color: #F3DB43;
-  font-size: 40px;
+  font-size: 20px;
   text-align: center;
+  text-transform: uppercase;
   border: 0;
   background-color: #000;
   cursor: pointer;
@@ -187,7 +196,7 @@ button {
 .footer {
   margin: 30px 0 0;
   padding: 0 0 30px;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.2;
   text-align: center;
   a {
@@ -203,11 +212,11 @@ button {
     right: 20px;
     bottom: 50%;
     margin: 0 0 30px;
-    font-size: 48px;
+    font-size: 36px;
     font-style: normal;
     text-align: center;
   }
-  span {
+  .arrow {
     display: block;
     position: absolute;
     left: 50%;
@@ -247,10 +256,9 @@ button {
     position: absolute;
     left: 394px;
     right: 30px;
-    top: 94px;
-    font-size: 120px;
+    top: 86px;
+    font-size: 96px;
     text-align: center;
-    //text-transform: uppercase;
   }
   h2 {
     position: absolute;
@@ -258,9 +266,8 @@ button {
     right: 30px;
     top: 94px;
     margin-top: 4em;
-    font-size: 32px;
+    font-size: 24px;
     text-align: center;
-    text-transform: lowercase;
   }
   img {
     display: block;
@@ -274,34 +281,30 @@ button {
     left: 640px;
     width: 182px;
     height: 63px;
-    font-size: 32px;
+    font-size: 36px;
     line-height: 50px;
     background: image-url('button.png') no-repeat 0 0;
-    span {
-      position: relative;
-      top: -0.25em;
-    }
     &:active {
       background-position: -184px 0;
       line-height: 54px;
     }
     &.play {
-      top: 312px;
+      top: 286px;
     }
     &.top {
-      top: 382px;
+      top: 364px;
     }
   }
   .buttons {
     position: absolute;
     left: 500px;
-    top: 332px;
+    top: 308px;
     width: 100px;
     margin: 0;
     text-align: left;
     > div {
       margin: 0;
-      height: 36px;
+      height: 38px;
     }
   }
   .footer {
@@ -324,8 +327,56 @@ button {
       }
     }
   }
-  .play {}
-  .top { display: none }
+  .top {
+    display: none;
+  }
+  label {
+    display: inline-block;
+    vertical-align: middle;
+    height: 44px;
+    padding: 14px 0;
+    line-height: 18px;
+  }
+  input {
+    display: inline-block;
+    vertical-align: middle;
+    width: 248px;
+    height: 44px;
+    padding: 14px 10px;
+    font-size: 16px;
+    line-height: 18px;
+    text-transform: uppercase;
+    background: transparent image-url('input.png') no-repeat 0 0;
+    border: 0;
+  }
+  .save {
+    display: inline-block;
+    vertical-align: middle;
+    width: 152px;
+    height: 44px;
+    padding: 14px 0;
+    font-size: 16px;
+    line-height: 18px;
+    background: image-url('button-submit.png') no-repeat 0 0;
+    &:active {
+      background-position: -154px 0;
+      line-height: 22px;
+    }
+  }
+  .play {
+    display: block;
+    position: absolute;
+    left: 640px;
+    width: 302px;
+    height: 63px;
+    font-size: 36px;
+    line-height: 50px;
+    background: image-url('button-big.png') no-repeat 0 0;
+    &:active {
+      background-position: -304px 0;
+      line-height: 54px;
+    }
+  }
 }
 
 #controls {
@@ -356,6 +407,9 @@ button {
     }
   }
 }
+.touch #controls {
+  display: block;
+}
 
 .message {
   padding: 20px 0 0 20px;
@@ -367,12 +421,12 @@ button {
   width: 100%;
   height: 100%;
   min-width: 962px;
-  min-height: 700px;
+  min-height: 652px;
   background: image-url('dirt-bg.png') no-repeat 50% 50%;
   .frame {
-    height: 700px;
-    min-height: 700px;
-    margin-top: -350px;
+    height: 650px;
+    min-height: 652px;
+    margin-top: -326px;
     border: 0;
   }
   .intro {
@@ -380,13 +434,13 @@ button {
     text-align: center;
     p {
       margin: 0 0 20px;
-      font-size: 24px;
+      font-size: 20px;
       line-height: 1.2;
       span {
         display: block;
       }
       &.nb {
-        font-size: 48px;
+        font-size: 36px;
       }
     }
     s {
@@ -399,3 +453,7 @@ button {
 @import "partials/forms";
 
 @import "partials/mq";
+
+.desktop .mobile, .mobile .desktop {
+  display: none !important;
+}

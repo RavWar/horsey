@@ -187,6 +187,8 @@ $ ->
   hasTouch = "ontouchstart" of window or navigator.msMaxTouchPoints
   request  = null
 
+  if hasTouch then $('html').addClass 'mobile' else $('html').addClass 'desktop'
+
   window.game = new Game
 
   $(document).on 'click', '#pause', (e) ->
@@ -198,7 +200,6 @@ $ ->
   #hit = $('#hit').get(0)
   #hit.volume = 0.3
 
-  $('#controls').show() if hasTouch
   $(document).on 'click touchstart', '#controls button', (e) ->
     e.preventDefault()
     #hit.play()

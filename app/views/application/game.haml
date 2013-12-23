@@ -23,9 +23,7 @@
       %h2 Игра о жизни, смерти и коне
       = image_tag "velogame.png", :alt => ""
       %button.play Играть
-      %button.top
-        TOP
-        %span 15
+      %button.top TOP 10
       .buttons
         .facebook
           #fb-root
@@ -39,9 +37,12 @@
         %a{:href => "http://molinos.ru"} Molinos.Ru
   #keys
     .frame
-      %i Используй клавиши
-      %span.up
-      %span.down
+      %i
+        Используй
+        %span.desktop клавиши
+        %span.mobile кнопки
+      %span.arrow.up
+      %span.arrow.down
   #game
     .frame
       #main
@@ -63,27 +64,45 @@
       .prelim-score
         .result
           Результат:
-          %span
-        .place
-          Место
-          %span
-        -# Минимальный функционал — простая форма для ввода имени.
+          %span 123
+        -#
+          .place
+            Место
+            %span
         %form.score
-          .field
-            %label Представтесь
-            %input
-          .submit
-            %button.save Прославиться
-        -# Желательно — авторизация через фейсбуки.
-        -# Тогда форма для ввода имени не нужна? Можно обсудить.
-        %ul
-          %li
-            %a.vk{:href => "#"} ВКонтакте
-          %li
-            %a.fb{:href => "#"} Фейсбук
-      -# По макету после авторизации здесь выводится таблица. Можно обсудить.
-      .top
-      %button.play Ещё разок
+          %label Представтесь
+          %input{:maxlength => "20"}
+          %button.save Прославиться
+      .top{:style => "display: block"}
+        %h3 TOP 10
+        %table
+          %tr
+            %td 1.
+            %td Костя
+            %td 200
+          %tr.current
+            %td 2.
+            %td Костя
+            %td 187
+          %tr
+            %td 3.
+            %td Костя
+            %td 183
+        .current
+          16.
+          Костя
+          114
+      %button.play Еще разок
+      .share
+        %span Поделиться с друзьями
+        -#%a.vkontakte{:href => "http://vkontakte.ru/share.php?url=http://velogame.molinos.ru", :target =>"_blank"}
+        %a.vkontakte{:href => "http://vkontakte.ru/share.php?title=Я%20гоняю%20на%20коне!&url=http://velogame.molinos.ru&description=Велоконь:%20игра%20о%20жизни,%20смерти%20и%20коне&image=http://velogame.molinos.ru/i/share.png", :target =>"_blank"} VK
+        -#%a.facebook{:href => "http://www.facebook.com/sharer.php?u=http://velogame.molinos.ru&t=Title", :target =>"_blank"}
+        %a.facebook{:href => "http://www.facebook.com/sharer.php?s=100&p[title]=Я%20гоняю%20на%20коне!&p[url]=http://velogame.molinos.ru&p[summary]=Велоконь:%20игра%20о%20жизни,%20смерти%20и%20коне&p[images][0]=http://velogame.molinos.ru/i/share.png", :target =>"_blank"} FB
+        %a.twitter{:href => "http://twitter.com/share?text=Я%20гоняю%20на%20коне!&url=http://velogame.molinos.ru", :target =>"_blank"}
+      .footer
+        &copy;
+        %a{:href => "http://molinos.ru"} Molinos.Ru
 -#
   %audio#hit{:preload => "auto"}
     %source{:src => "/sounds/fall.ogg"}
