@@ -18,6 +18,7 @@ class @Game extends GameAssets
   @speed  = 8
   @width  = 960
   @height = (Game.options.lanes + Game.options.header) * Game.tile.height
+  @lifeRandom  = 0.00005
 
   @appendLife: ->
     $('#lives').append "<div class='life'>"
@@ -37,9 +38,7 @@ class @Game extends GameAssets
       @initBackground()
       @scoreboard = Crafty.e('Scoreboard')
       @player = Crafty.e('Player').player(@scoreboard)
-      setInterval (=>
-        @generateElements()
-      ), 10
+      @lifeRandom = Game.lifeRandom
     , =>
       $('#game').hide()
 
@@ -111,10 +110,12 @@ class @Game extends GameAssets
 
     random = Math.floor(Math.random()*4) + 1
     sprite = "Stone#{random}Sprite"
-    Crafty.e('Stone').addComponent(sprite).at pos.x / Game.tile.width, pos.lane
+    e = Crafty.e('Stone').addComponent(sprite).at(pos.x / Game.tile.width, pos.lane)
+    e.collision(new Crafty.polygon([0,20], [e.w,20], [e.w,e.h+10], [0,e.h+10]))
 
   generateLives: ->
-    return if Math.random() > 0.0022
+    return @lifeRandom += 0.000002 if Math.random() > @lifeRandom
+    @lifeRandom = Game.lifeRandom
     pos = @randPosition()
     pos.x -= 200
 

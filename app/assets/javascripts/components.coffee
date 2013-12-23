@@ -86,7 +86,7 @@ Crafty.c 'Player',
   player: (scoreboard) ->
     @count = 0
     @last_town  = 0
-    @last_viewport = 0
+    #@last_viewport = 0
     @last_speed = Game.speed
     @scoreboard = scoreboard
     @
@@ -116,7 +116,7 @@ Crafty.c 'Player',
       return Crafty.scene('end') if @scoreboard.lives <= 0
 
       x = object[0].obj.x + 50 - @x
-      @last_viewport = Crafty.viewport.x - x
+      #@last_viewport = Crafty.viewport.x - x
 
       @advance x
       @movement()
@@ -157,7 +157,7 @@ Crafty.c 'Player',
     timesRun = 0
 
     @changeLane = setInterval (=>
-      multiplier = if Game.speed > 30 then 2 else 1
+      multiplier = if Game.speed > 25 then 2 else 1
       num = if isMobile then 10/multiplier else 20/multiplier
       tiles = Game.tile.height / num
       @y += if direction == 'up' then tiles else -tiles
@@ -181,10 +181,10 @@ Crafty.c 'Player',
       Crafty(id).x += x * 0.9
 
     # Slow down last visible town
-    id = Crafty('Town')[Crafty('Town').length-1]
-    town = Crafty(id) if id
-    if town and town.x > -Crafty.viewport.x - 1000
-      town.x += x * 0.75
+    #id = Crafty('Town')[Crafty('Town').length-1]
+    #town = Crafty(id) if id
+    #if town and town.x > -Crafty.viewport.x - 1000
+    #  town.x += x * 0.75
 
     Crafty.viewport.x -= x
 
@@ -192,7 +192,7 @@ Crafty.c 'Player',
     @bind 'EnterFrame', @gameFrame
 
   gameFrame: ->
-    #game.generateElements()
+    game.generateElements()
 
     # Move everything
     @advance Game.speed
@@ -230,15 +230,15 @@ Crafty.c 'Player',
           element.x = other_el.x + other_el.w
 
     # Prevent viewport abuse
-    if Crafty.viewport.x < @last_viewport - Game.speed
-      Crafty.viewport.x = @last_viewport
-
-    @last_viewport = Crafty.viewport.x
+    #if Crafty.viewport.x < @last_viewport - Game.speed
+    #  Crafty.viewport.x = @last_viewport
+    #
+    #@last_viewport = Crafty.viewport.x
 
     # Update scoreboard
     @scoreboard.updateScore parseInt -Crafty.viewport.x / 200
 
     # Generate town
-    if parseInt(@scoreboard.score / 97) > @last_town
-      @last_town += 1
-      Crafty.e('Town').attr x: -Crafty.viewport.x + 1000
+    #if parseInt(@scoreboard.score / 97) > @last_town
+    #  @last_town += 1
+    #  Crafty.e('Town').attr x: -Crafty.viewport.x + 1000
