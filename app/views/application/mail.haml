@@ -1,7 +1,7 @@
 .mail
   = form_for :mail, url: mail_path, html: { id: 'mail' } do |f|
     .field
-      = f.label :to, 'Адреса (через запятую)'
+      = f.label :to, 'Адрес'
       = f.text_field :to
     .field
       = f.label :name, 'От кого (имя)'
