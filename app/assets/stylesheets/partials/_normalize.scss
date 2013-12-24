@@ -31,8 +31,8 @@ li {margin: 0 0 0.5em; padding: 0; font-size: 160%; line-height: 1.4}
 li ul, li ol {margin-top: 0.75em}
 
 table {width: 100%; margin: 0; padding: 0; border-collapse: collapse; border-spacing: 0}
-table tr, table th, table td {vertical-align: top}
-table th, table td {padding: 12px 10px 10px; font-size: 160%; line-height: 1.2; font-weight: normal; text-align: left; border: 0}
+table tr, table th, table td {vertical-align: middle}
+table th, table td {padding: 6px 10px 4px; font-size: 160%; line-height: 1.2; font-weight: normal; text-align: left; border: 0}
 table td:first-child {width: 42px; text-align: right}
 table td:last-child {width: 60px; text-align: right}
 table tr:nth-child(odd) td {background: rgba(0,0,0,0.05)}
