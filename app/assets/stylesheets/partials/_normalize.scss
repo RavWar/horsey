@@ -10,7 +10,7 @@ h2 {color: $heading-font-color; margin: 1.5em 0 0.75em 0; font: normal 240%/1.2 
 h3 {color: $heading-font-color; margin: 1em 0 1em 0; font: bold 160%/1.4 $heading-font-family}
 h4, h5, h6 {color: $heading-font-color; margin: 1em 0 1em 0; font: bold 160%/1.4 $font-family}
 
-a {color: $link-color; text-decoration: underline}
+a {color: $link-color; text-decoration: none}
 a:link {}
 a:visited {}
 a:hover, a:active {color: $link-hover-color; outline: 0}
