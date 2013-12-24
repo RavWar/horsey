@@ -19,6 +19,7 @@ class @Game extends GameAssets
   @width  = 960
   @height = (Game.options.lanes + Game.options.header) * Game.tile.height
   @lifeRandom  = 0.00005
+  @stoneRandom = 0.015
 
   @appendLife: ->
     $('#lives').append "<div class='life'>"
@@ -38,14 +39,15 @@ class @Game extends GameAssets
       @initBackground()
       @scoreboard = Crafty.e('Scoreboard')
       @player = Crafty.e('Player').player(@scoreboard)
-      @lifeRandom = Game.lifeRandom
+      @lifeRandom  = Game.lifeRandom
+      @stoneRandom = Game.stoneRandom
       @lastX = Crafty.viewport.x
 
       setInterval (=>
         return unless Crafty.viewport.x < @lastX
         @lastX = Crafty.viewport.x
         @generateElements()
-      ), 20
+      ), 50
     , =>
       $('#game').hide()
 
@@ -93,10 +95,10 @@ class @Game extends GameAssets
         x: line.w
 
     unless isMobile
-      clouds = Crafty.e('Clouds')
+      ###clouds = Crafty.e('Clouds')
       Crafty.e('Clouds')
        .attr
-         x: clouds.w
+         x: clouds.w###
 
       mountains = Crafty.e('Mountains')
       Crafty.e('Mountains')
@@ -110,7 +112,8 @@ class @Game extends GameAssets
     @generateObjects rand
 
   generateStones: (rand) ->
-    return if rand > 0.055 + Game.speed / 1000
+    return @stoneRandom += 0.006 if rand > @stoneRandom + Game.speed / 900
+    @stoneRandom = Game.stoneRandom
     pos = @randPosition()
 
     return if @horizontalStoneLimit(pos.x, pos.y)
@@ -122,7 +125,7 @@ class @Game extends GameAssets
     e.collision(new Crafty.polygon([0,20], [e.w,20], [e.w,e.h+10], [0,e.h+10]))
 
   generateLives: (rand) ->
-    return @lifeRandom += 0.000002 if rand > @lifeRandom
+    return @lifeRandom += 0.000015 if rand > @lifeRandom
     @lifeRandom = Game.lifeRandom
     pos = @randPosition()
     pos.x -= 200
@@ -135,19 +138,19 @@ class @Game extends GameAssets
     random = Math.floor(Math.random()*15) + 7
 
     chance = if random in [13, 14, 15, 16]
-      0.08
+      0.15
     else if random in [7, 8, 9, 10, 11, 12]
-      0.16
+      0.3
     else if random in [17, 18]
-      0.04
+      0.08
     else if random is 19
-      0.0005
+      0.0015
     else if random is 20
-      0.001
+      0.002
     else if random is 21
-      0.0005
+      0.0007
     else
-      0.05
+      0.07
 
     return if rand > chance
 
