@@ -86,7 +86,7 @@ Crafty.c 'Player',
   player: (scoreboard) ->
     @count = 0
     @last_town  = 0
-    #@last_viewport = 0
+    @last_viewport = 0
     @last_speed = Game.speed
     @scoreboard = scoreboard
     @
@@ -116,7 +116,7 @@ Crafty.c 'Player',
       return Crafty.scene('end') if @scoreboard.lives <= 0
 
       x = object[0].obj.x + 50 - @x
-      #@last_viewport = Crafty.viewport.x - x
+      @last_viewport = Crafty.viewport.x - x
 
       @advance x
       @movement()
@@ -174,8 +174,8 @@ Crafty.c 'Player',
   advance: (x) ->
     Crafty('Player').x += x
 
-    for id in Crafty('Clouds')
-      Crafty(id).x += x * 0.98
+    #for id in Crafty('Clouds')
+    #  Crafty(id).x += x * 0.98
 
     for id in Crafty('Mountains')
       Crafty(id).x += x * 0.9
@@ -192,7 +192,7 @@ Crafty.c 'Player',
     @bind 'EnterFrame', @gameFrame
 
   gameFrame: ->
-    game.generateElements()
+    # game.generateElements()
 
     # Move everything
     @advance Game.speed
@@ -219,7 +219,8 @@ Crafty.c 'Player',
     Crafty.audio.play 'pedal2', 1, 1 if @reelPosition() == 15
 
     # Move some background entities if needed
-    for entity in ['PlayField', 'Clouds', 'Mountains', 'Line']
+    #for entity in ['PlayField', 'Clouds', 'Mountains', 'Line']
+    for entity in ['PlayField', 'Mountains', 'Line']
       for id in Crafty(entity)
         element = Crafty id
 
@@ -230,10 +231,10 @@ Crafty.c 'Player',
           element.x = other_el.x + other_el.w
 
     # Prevent viewport abuse
-    #if Crafty.viewport.x < @last_viewport - Game.speed
-    #  Crafty.viewport.x = @last_viewport
-    #
-    #@last_viewport = Crafty.viewport.x
+    if Crafty.viewport.x < @last_viewport - Game.speed
+      Crafty.viewport.x = @last_viewport
+
+    @last_viewport = Crafty.viewport.x
 
     # Update scoreboard
     @scoreboard.updateScore parseInt -Crafty.viewport.x / 200
