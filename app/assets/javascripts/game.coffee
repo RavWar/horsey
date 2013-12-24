@@ -19,7 +19,7 @@ class @Game
   @width  = 960
   @height = (Game.options.lanes + Game.options.header) * Game.tile.height
   @lifeRandom  = 0.00006
-  @stoneRandom = 0.02
+  @stoneRandom = 0.032
 
   @appendLife: ->
     $('#lives').append "<div class='life'>"
@@ -112,7 +112,7 @@ class @Game
     @generateObjects rand
 
   generateStones: (rand) ->
-    step = if isMobile then 0.06 else 0.01
+    step = if isMobile then 0.06 else 0.016
     return @stoneRandom += step if rand > @stoneRandom + Game.speed / 900
     @stoneRandom = Game.stoneRandom
     pos = @randPosition()
