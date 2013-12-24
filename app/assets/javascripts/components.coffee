@@ -44,7 +44,7 @@ Crafty.c 'Life',
   init: ->
     @requires('Grid, Solid, Collision, SpriteAnimation, LifeSprite')
     .collision(new Crafty.polygon([0,40], [0,90], [100,90], [100,40]))
-    .reel('LifeBounce', 1000, 0, 0, 16).animate('LifeBounce', -1).attr z: 3
+    .reel('LifeBounce', 1000, 0, 0, 16).animate('LifeBounce', -1).attr z: 4
 
 Crafty.c 'Scoreboard',
   init: ->
