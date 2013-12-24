@@ -19,7 +19,7 @@ class @Game extends GameAssets
   @width  = 960
   @height = (Game.options.lanes + Game.options.header) * Game.tile.height
   @lifeRandom  = 0.00005
-  @stoneRandom = 0.015
+  @stoneRandom = 0.02
 
   @appendLife: ->
     $('#lives').append "<div class='life'>"
@@ -47,7 +47,7 @@ class @Game extends GameAssets
         return unless Crafty.viewport.x < @lastX
         @lastX = Crafty.viewport.x
         @generateElements()
-      ), 50
+      ), 100
     , =>
       $('#game').hide()
 
@@ -112,7 +112,7 @@ class @Game extends GameAssets
     @generateObjects rand
 
   generateStones: (rand) ->
-    return @stoneRandom += 0.006 if rand > @stoneRandom + Game.speed / 900
+    return @stoneRandom += 0.008 if rand > @stoneRandom + Game.speed / 900
     @stoneRandom = Game.stoneRandom
     pos = @randPosition()
 
@@ -125,7 +125,7 @@ class @Game extends GameAssets
     e.collision(new Crafty.polygon([0,20], [e.w,20], [e.w,e.h+10], [0,e.h+10]))
 
   generateLives: (rand) ->
-    return @lifeRandom += 0.000015 if rand > @lifeRandom
+    return @lifeRandom += 0.00003 if rand > @lifeRandom
     @lifeRandom = Game.lifeRandom
     pos = @randPosition()
     pos.x -= 200
@@ -138,11 +138,11 @@ class @Game extends GameAssets
     random = Math.floor(Math.random()*15) + 7
 
     chance = if random in [13, 14, 15, 16]
-      0.15
+      0.12
     else if random in [7, 8, 9, 10, 11, 12]
-      0.3
+      0.24
     else if random in [17, 18]
-      0.08
+      0.075
     else if random is 19
       0.0015
     else if random is 20

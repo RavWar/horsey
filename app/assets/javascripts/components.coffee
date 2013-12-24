@@ -66,7 +66,7 @@ Crafty.c 'Scoreboard',
       Game.appendLife()
     else
       $('.life:last').remove()
-      Crafty.audio.play 'hit', 1, 1
+      Crafty.audio.play 'hit', 1, 1 unless isMobile
       #hit.play()
 
 Crafty.c 'Player',
@@ -215,8 +215,9 @@ Crafty.c 'Player',
         .reelPosition(position)
 
     # Play pedal sounds
-    Crafty.audio.play 'pedal1', 1, 1 if @reelPosition() == 1
-    Crafty.audio.play 'pedal2', 1, 1 if @reelPosition() == 15
+    unless isMobile
+      Crafty.audio.play 'pedal1', 1, 1 if @reelPosition() == 1
+      Crafty.audio.play 'pedal2', 1, 1 if @reelPosition() == 15
 
     # Move some background entities if needed
     #for entity in ['PlayField', 'Clouds', 'Mountains', 'Line']
