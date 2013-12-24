@@ -68,6 +68,7 @@ class @Game
       $('#gameover .top').hide()
       $('#gameover .prelim-score').show()
       $('#gameover .result span').text score()
+      Crafty.audio.play 'gameover', 1, 0.5 unless isMobile
 
       $.ajax
         type: 'post'
