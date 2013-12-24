@@ -68,7 +68,7 @@ class @Game
       $('#gameover .top').hide()
       $('#gameover .prelim-score').show()
       $('#gameover .result span').text score()
-      Crafty.audio.play 'gameover', 1, 0.5 unless isMobile
+      Crafty.audio.play 'gameover', 1, 0.2 unless isMobile
 
       $.ajax
         type: 'post'
@@ -227,9 +227,9 @@ $ ->
     Crafty.scene 'game'
 
   $('body').on 'click touchstart', '#start .play', ->
+    Crafty.audio.play 'bell', 0.5
     Crafty.load GameAssets.list(), =>
       $('#start').hide()
-      Crafty.audio.play 'bell', 0.8
       $('#keys').show()
 
       setTimeout ->

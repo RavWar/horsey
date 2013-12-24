@@ -22,6 +22,7 @@
       %h1 Велоконь
       %h2 Игра о жизни, смерти и коне
       = image_tag "velogame.png", :alt => ""
+      = render partial: 'shared/top'
       %button.play Играть
       -#%button.top TOP 10
       .buttons
@@ -46,8 +47,7 @@
   #game
     .frame
       #main
-      -#
-        #pause
+      #pause{:title => "Пауза (пробел)"}
       #lives
         .life
         .life

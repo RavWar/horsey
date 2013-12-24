@@ -66,7 +66,7 @@ Crafty.c 'Scoreboard',
       Game.appendLife()
     else
       $('.life:last').remove()
-      Crafty.audio.play 'hit', 1, 0.8 unless isMobile
+      Crafty.audio.play 'hit', 1, 0.5 unless isMobile
       #hit.play()
 
 Crafty.c 'Player',
@@ -122,11 +122,11 @@ Crafty.c 'Player',
 
       @removeComponent('PlayerDropSprite').addComponent('PlayerSprite')
         .reel('PlayerRunning', @spriteSpeed(), 0, 0, 30).animate('PlayerRunning', -1)
-    ), 2400
+    ), 2000
 
   lifeHit: (object) ->
     @scoreboard.updateLives 1
-    Crafty.audio.play 'pickup', 1, 0.1 unless isMobile
+    Crafty.audio.play 'pickup', 1, 0.025 unless isMobile
     object[0].obj.destroy()
 
   bindKeyboard: ->
@@ -216,8 +216,8 @@ Crafty.c 'Player',
 
     # Play pedal sounds
     unless isMobile
-      Crafty.audio.play 'pedal1', 1, 0.5 if @reelPosition() == 1
-      Crafty.audio.play 'pedal2', 1, 0.5 if @reelPosition() == 15
+      Crafty.audio.play 'pedal1', 1, 0.2 if @reelPosition() == 1
+      Crafty.audio.play 'pedal2', 1, 0.2 if @reelPosition() == 15
 
     # Move some background entities if needed
     #for entity in ['PlayField', 'Clouds', 'Mountains', 'Line']
