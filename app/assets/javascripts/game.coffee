@@ -4,7 +4,7 @@
 
 window.isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|Android|Windows Phone|Opera Mobi)/i)?
 
-class @Game extends GameAssets
+class @Game
   @options =
     el: 'main'
     lives: 3
@@ -225,14 +225,15 @@ $ ->
     Crafty.scene 'game'
 
   $('body').on 'click touchstart', '#start .play', ->
-    $('#start').hide()
-    $('#keys').show()
+    Crafty.load GameAssets.list(), =>
+      $('#start').hide()
+      $('#keys').show()
 
-    setTimeout ->
-      $('#keys').hide()
-      $('#game').show()
-      Crafty.scene 'game'
-    , 1500
+      setTimeout ->
+        $('#keys').hide()
+        $('#game').show()
+        Crafty.scene 'game'
+      , 1500
 
   $('body').on 'click touchstart', '.score .save', (e) ->
     e.preventDefault()
