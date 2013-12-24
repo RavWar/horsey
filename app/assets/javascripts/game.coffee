@@ -18,7 +18,7 @@ class @Game
   @speed  = 8
   @width  = 960
   @height = (Game.options.lanes + Game.options.header) * Game.tile.height
-  @lifeRandom  = 0.00005
+  @lifeRandom  = 0.00006
   @stoneRandom = 0.02
 
   @appendLife: ->
@@ -112,7 +112,8 @@ class @Game
     @generateObjects rand
 
   generateStones: (rand) ->
-    return @stoneRandom += 0.008 if rand > @stoneRandom + Game.speed / 900
+    step = if isMobile then 0.06 else 0.01
+    return @stoneRandom += step if rand > @stoneRandom + Game.speed / 900
     @stoneRandom = Game.stoneRandom
     pos = @randPosition()
 
@@ -125,7 +126,7 @@ class @Game
     e.collision(new Crafty.polygon([0,20], [e.w,20], [e.w,e.h+10], [0,e.h+10]))
 
   generateLives: (rand) ->
-    return @lifeRandom += 0.00003 if rand > @lifeRandom
+    return @lifeRandom += 0.00004 if rand > @lifeRandom
     @lifeRandom = Game.lifeRandom
     pos = @randPosition()
     pos.x -= 200

@@ -95,25 +95,18 @@ Crafty.sprite 798, 80, "<%= asset_path 'town1.png' %>",
 
 class @GameAssets
   @list: ->
-    list = \
-      [
-        "<%= asset_path 'main-motion.png' %>", "<%= asset_path 'drop-motion.png' %>",
-        "<%= asset_path 'stone1.png' %>", "<%= asset_path 'stone2.png' %>",
-        "<%= asset_path 'stone3.png' %>", "<%= asset_path 'stone4.png' %>",
-        "<%= asset_path 'dirt.png' %>", "<%= asset_path 'bonus-life.png' %>",
-        "<%= asset_path 'object7.png' %>", "<%= asset_path 'object8.png' %>",
-        "<%= asset_path 'object9.png' %>", "<%= asset_path 'object10.png' %>",
-        "<%= asset_path 'object11.png' %>", "<%= asset_path 'object12.png' %>",
-        "<%= asset_path 'object13.png' %>", "<%= asset_path 'object14.png' %>",
-        "<%= asset_path 'object15.png' %>", "<%= asset_path 'object16.png' %>",
-        "<%= asset_path 'object17.png' %>", "<%= asset_path 'object18.png' %>",
-        "<%= asset_path 'object19.png' %>", "<%= asset_path 'object20.png' %>",
-        "<%= asset_path 'object21.png' %>", "<%= asset_path 'ny.png' %>",
-        "<%= asset_path 'line.png' %>", "<%= asset_path 'town1.png' %>"
-      ]
-
-    return list if isMobile
-
-    list.concat ['sounds/bell.ogg', 'sounds/hit.ogg', 'sounds/pedal1.ogg',
-      'sounds/pedal2.ogg', 'sounds/hit.mp3']
-    #'sounds/pedal1.mp3', 'sounds/pedal2.mp3', 'sounds/bell.mp3'
+    [
+      "<%= asset_path 'main-motion.png' %>", "<%= asset_path 'drop-motion.png' %>",
+      "<%= asset_path 'stone1.png' %>", "<%= asset_path 'stone2.png' %>",
+      "<%= asset_path 'stone3.png' %>", "<%= asset_path 'stone4.png' %>",
+      "<%= asset_path 'dirt.png' %>", "<%= asset_path 'bonus-life.png' %>",
+      "<%= asset_path 'object7.png' %>", "<%= asset_path 'object8.png' %>",
+      "<%= asset_path 'object9.png' %>", "<%= asset_path 'object10.png' %>",
+      "<%= asset_path 'object11.png' %>", "<%= asset_path 'object12.png' %>",
+      "<%= asset_path 'object13.png' %>", "<%= asset_path 'object14.png' %>",
+      "<%= asset_path 'object15.png' %>", "<%= asset_path 'object16.png' %>",
+      "<%= asset_path 'object17.png' %>", "<%= asset_path 'object18.png' %>",
+      "<%= asset_path 'object19.png' %>", "<%= asset_path 'object20.png' %>",
+      "<%= asset_path 'object21.png' %>", "<%= asset_path 'ny.png' %>",
+      "<%= asset_path 'line.png' %>", "<%= asset_path 'town1.png' %>"
+    ]
