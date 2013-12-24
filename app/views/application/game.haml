@@ -22,7 +22,7 @@
       %h1 Велоконь
       %h2 Игра о жизни, смерти и коне
       = image_tag "velogame.png", :alt => ""
-      = render partial: 'shared/top'
+      -#= render partial: 'shared/top'
       %button.play Играть
       -#%button.top TOP 10
       .buttons
@@ -65,10 +65,9 @@
         .result
           Результат:
           %span 123
-        -#
-          .place
-            Место
-            %span
+        .place
+          Место
+          %span
         %form.score
           %label Представьтесь:
           %input{:maxlength => "20"}

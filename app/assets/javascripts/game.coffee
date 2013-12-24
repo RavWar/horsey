@@ -18,7 +18,7 @@ class @Game
   @speed  = 8
   @width  = 960
   @height = (Game.options.lanes + Game.options.header) * Game.tile.height
-  @lifeRandom  = 0.00006
+  @lifeRandom  = 0.00008
   @stoneRandom = 0.032
 
   @appendLife: ->
@@ -127,7 +127,7 @@ class @Game
     e.collision(new Crafty.polygon([0,20], [e.w,20], [e.w,e.h+10], [0,e.h+10]))
 
   generateLives: (rand) ->
-    return @lifeRandom += 0.00004 if rand > @lifeRandom
+    return @lifeRandom += 0.00005 if rand > @lifeRandom
     @lifeRandom = Game.lifeRandom
     pos = @randPosition()
     pos.x -= 200
@@ -173,14 +173,14 @@ class @Game
   verticalStoneLimit: (x) ->
     y = Game.options.header * Game.tile.height
     h = Game.options.lanes * Game.tile.width
-    add = Game.speed * 3
+    add = Game.speed * 4
 
     Crafty.map.search(_x: x-550-add, _y: y, _w: 690+add, _h: h).filter((v) ->
       v.has 'Stone'
     ).length > 1
 
   horizontalStoneLimit: (x, y) ->
-    add = Game.speed * 3
+    add = Game.speed * 4
 
     Crafty.map.search(_x: x-400-add, _y: y, _w: 540+add, _h: 50).filter((v) ->
       v.has 'Stone'

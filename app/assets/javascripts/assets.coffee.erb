@@ -114,7 +114,7 @@ class @GameAssets
         "<%= asset_path 'line.png' %>", "<%= asset_path 'town1.png' %>"
       ]
 
-    return list if isMobile
+    return list if isMobile or $.browser.opera
 
-    list.concat ['sounds/fall.ogg', 'sounds/bell.ogg', 'sounds/pickup.ogg', 'sounds/gameover.ogg', 'sounds/pedal1.ogg',
-      'sounds/pedal2.ogg']
+    list.concat ['sounds/fall.ogg', 'sounds/bell.ogg', 'sounds/pickup.ogg',
+      'sounds/gameover.ogg', 'sounds/pedal1.ogg', 'sounds/pedal2.ogg']
