@@ -26,8 +26,11 @@ html, body {
 #start {
   display: none !important;
 }
+#game {
+  display: none !important;
+}
 #gameover {
-  display: block !important;
+  display: none !important;
 }
 */
 
@@ -385,29 +388,29 @@ button {
     display: block;
     position: absolute;
     z-index: 100;
-    bottom: 20px;
+    bottom: 0;
     min-width: 0;
-    width: 83px;
-    height: 87px;
+    width: 123px;
+    height: 127px;
     padding: 0;
-    background: transparent image-url('controls.png') no-repeat 0 0;
+    background: transparent image-url('controls.png?v2') no-repeat 0 0;
   }
   .up {
-    right: 20px;
-    background-position: -170px 0;
+    right: 0;
+    background-position: -250px 20px;
     &:active {
-      background-position: -255px 0;
+      background-position: -375px 20px;
     }
   }
   .down {
-    left: 20px;
-    background-position: 0 0;
+    left: 0;
+    background-position: 0 20px;
     &:active {
-      background-position: -85px 0;
+      background-position: -125px 20px;
     }
   }
 }
-.touch #controls {
+.mobile #controls {
   display: block;
 }
 
