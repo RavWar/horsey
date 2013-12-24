@@ -192,7 +192,7 @@ Crafty.c 'Player',
     @bind 'EnterFrame', @gameFrame
 
   gameFrame: ->
-    game.generateElements()
+    # game.generateElements()
 
     # Move everything
     @advance Game.speed

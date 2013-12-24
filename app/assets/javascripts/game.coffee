@@ -39,6 +39,13 @@ class @Game extends GameAssets
       @scoreboard = Crafty.e('Scoreboard')
       @player = Crafty.e('Player').player(@scoreboard)
       @lifeRandom = Game.lifeRandom
+      @lastX = Crafty.viewport.x
+
+      setInterval (=>
+        return unless Crafty.viewport.x < @lastX
+        @lastX = Crafty.viewport.x
+        @generateElements()
+      ), 20
     , =>
       $('#game').hide()
 
@@ -97,12 +104,13 @@ class @Game extends GameAssets
          x: mountains.w
 
   generateElements: ->
-    @generateStones()
-    @generateLives()
-    @generateObjects()
+    rand = Math.random()
+    @generateStones rand
+    @generateLives rand
+    @generateObjects rand
 
-  generateStones: ->
-    return if Math.random() > 0.055 + Game.speed / 1000
+  generateStones: (rand) ->
+    return if rand > 0.055 + Game.speed / 1000
     pos = @randPosition()
 
     return if @horizontalStoneLimit(pos.x, pos.y)
@@ -113,8 +121,8 @@ class @Game extends GameAssets
     e = Crafty.e('Stone').addComponent(sprite).at(pos.x / Game.tile.width, pos.lane)
     e.collision(new Crafty.polygon([0,20], [e.w,20], [e.w,e.h+10], [0,e.h+10]))
 
-  generateLives: ->
-    return @lifeRandom += 0.000002 if Math.random() > @lifeRandom
+  generateLives: (rand) ->
+    return @lifeRandom += 0.000002 if rand > @lifeRandom
     @lifeRandom = Game.lifeRandom
     pos = @randPosition()
     pos.x -= 200
@@ -123,7 +131,7 @@ class @Game extends GameAssets
 
     Crafty.e('Life').attr x: pos.x, y: pos.y - 20
 
-  generateObjects: ->
+  generateObjects: (rand) ->
     random = Math.floor(Math.random()*15) + 7
 
     chance = if random in [13, 14, 15, 16]
@@ -141,7 +149,7 @@ class @Game extends GameAssets
     else
       0.05
 
-    return if Math.random() > chance
+    return if rand > chance
 
     pos = @randPosition 1
     return if @objectLimit(pos.x, pos.y)
