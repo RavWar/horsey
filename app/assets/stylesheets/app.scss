@@ -235,6 +235,35 @@ button {
   }
 }
 
+.table {
+  width: 500px;
+  margin: 0 auto;
+}
+div.current {
+  position: relative;
+  padding: 6px 70px 4px 52px;
+  font-size: 160%;
+  line-height: 1.2;
+  text-align: left;
+  border: 2px solid #3c3c3c;
+  span {
+    display: block;
+    &.position {
+      position: absolute;
+      left: 10px;
+      top: 6px;
+      width: 22px;
+      text-align: right;
+    }
+    &.score {
+      position: absolute;
+      right: 10px;
+      top: 6px;
+      text-align: right;
+    }
+  }
+}
+
 #start {
   position: absolute;
   left: 0;
@@ -251,15 +280,6 @@ button {
     right: 30px;
     top: 86px;
     font-size: 96px;
-    text-align: center;
-  }
-  h2 {
-    position: absolute;
-    left: 394px;
-    right: 30px;
-    top: 94px;
-    margin-top: 4em;
-    font-size: 24px;
     text-align: center;
   }
   img {
@@ -287,6 +307,15 @@ button {
     &.top {
       top: 364px;
     }
+    &.back {
+      left: 20px;
+      top: 20px;
+      width: 196px;
+      background: image-url('back.png') no-repeat 0 0;
+      &:active {
+        background-position: -198px 0;
+      }
+    }
   }
   .buttons {
     position: absolute;
@@ -307,6 +336,26 @@ button {
     bottom: 40px;
     margin: 0;
   }
+  .start-screen {
+    h2 {
+      position: absolute;
+      left: 394px;
+      right: 30px;
+      top: 94px;
+      margin-top: 4em;
+      font-size: 24px;
+      text-align: center;
+    }
+  }
+  .top-screen {
+    display: none;
+    padding-top: 112px;
+    text-align: center;
+    h2 {
+      margin: 0 0 8px;
+      font-size: 36px;
+    }
+  }
 }
 
 #gameover {
@@ -318,44 +367,14 @@ button {
     margin: 0 0 8px;
     font-size: 36px;
   }
-  .prelim-score {}
-  .result {
+  .result, .place {
+    display: inline-block;
+    margin: 0 18px;
     font-size: 24px;
     line-height: 1.2;
   }
   form {
-    margin: 14px 0 -4px;
-  }
-  .top {
-    display: none;
-    .table {
-      width: 500px;
-      margin: 0 auto;
-    }
-    div.current {
-      position: relative;
-      padding: 6px 70px 4px 52px;
-      font-size: 160%;
-      line-height: 1.2;
-      text-align: left;
-      border: 2px solid #3c3c3c;
-      span {
-        display: block;
-        &.position {
-          position: absolute;
-          left: 10px;
-          top: 6px;
-          width: 22px;
-          text-align: right;
-        }
-        &.score {
-          position: absolute;
-          right: 10px;
-          top: 6px;
-          text-align: right;
-        }
-      }
-    }
+    margin: 30px 0 0;
   }
   label {
     display: inline-block;
@@ -369,7 +388,7 @@ button {
     vertical-align: middle;
     width: 248px;
     height: 44px;
-    margin: 0 4px;
+    margin: 0 12px;
     padding: 14px 10px;
     font-size: 16px;
     line-height: 18px;
@@ -394,7 +413,7 @@ button {
   .play {
     width: 302px;
     height: 63px;
-    margin: 30px 0 0;
+    margin: 22px 0 0;
     font-size: 36px;
     line-height: 50px;
     background: image-url('button-big.png') no-repeat 0 0;
@@ -404,12 +423,11 @@ button {
     }
   }
   .share {
-    margin: 10px 0 0;
+    margin: 24px 0 0;
     font-size: 16px;
     span {
-      display: inline-block;
-      vertical-align: middle;
-      margin: 4px 0 0;
+      display: block;
+      margin: 0 auto 12px;
     }
     a {
       display: inline-block;
@@ -438,12 +456,26 @@ button {
     }
   }
   .footer {
-    position: absolute;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    margin: 0;
+    margin: 30px 0 0;
     padding: 0;
+  }
+  .prelim-score {
+    padding-top: 60px;
+    h2 {
+      margin-bottom: 24px;
+    }
+    .play {
+      margin-top: 36px;
+    }
+    .share {
+      margin-top: 40px;
+    }
+    .footer {
+      margin-top: 36px;
+    }
+  }
+  .top {
+    display: none;
   }
 }
 

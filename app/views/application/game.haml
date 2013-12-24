@@ -19,23 +19,29 @@
 #container
   #start
     .frame
-      %h1 Велоконь
-      %h2 Игра о жизни, смерти и коне
-      = image_tag "velogame.png", :alt => ""
-      -#= render partial: 'shared/top'
-      %button.play Играть
-      -#%button.top TOP 10
-      .buttons
-        .facebook
-          #fb-root
-          .fb-like{:data => {:href => "http://velogame.pro", :layout => "button_count", :action => "like", :"show-faces" => "false", :share => "false"}}
-        .vkontakte
-          #vk_like
-        .twitter
-          %a.twitter-share-button{:href => "https://twitter.com/share", :data => {:url => "http://velogame.pro", :text => "Велоконь", :lang => "en"}}
-      .footer
-        &copy;
-        %a{:href => "http://molinos.ru"} Molinos.Ru
+      .start-screen
+        %h1 Велоконь
+        %h2 Игра о жизни, смерти и коне
+        = image_tag "velogame.png", :alt => ""
+        %button.play Играть
+        %button.top TOP 10
+        .buttons
+          .facebook
+            #fb-root
+            .fb-like{:data => {:href => "http://velogame.pro", :layout => "button_count", :action => "like", :"show-faces" => "false", :share => "false"}}
+          .vkontakte
+            #vk_like
+          .twitter
+            %a.twitter-share-button{:href => "https://twitter.com/share", :data => {:url => "http://velogame.pro", :text => "Велоконь", :lang => "en"}}
+        
+        .footer
+          &copy;
+          %a{:href => "http://molinos.ru", :target => "_blank"} Molinos.Ru
+      .top-screen
+        %h2 TOP 10
+        .table
+          = render partial: 'shared/top'
+        %button.back Назад
   #keys
     .frame
       %i
@@ -64,28 +70,81 @@
         %h2 Приехали…
         .result
           Результат:
-          %span 123
+          %span
         .place
-          Место
+          Место:
           %span
         %form.score
           %label Представьтесь:
           %input{:maxlength => "20"}
           %button.save Прославиться
+        %button.play Еще разок
+        .share
+          %span Поделиться с друзьями
+          -#%a.facebook{:href => "http://www.facebook.com/sharer.php?u=http://velogame.pro&t=Title", :target =>"_blank"}
+          %a.facebook{:href => "http://www.facebook.com/sharer.php?s=100&p[title]=Я%20гоняю%20на%20коне!&p[url]=http://velogame.pro&p[summary]=Велоконь:%20игра%20о%20жизни,%20смерти%20и%20коне&p[images][0]=http://velogame.pro/i/share.png", :target =>"_blank"}
+          -#%a.vkontakte{:href => "http://vkontakte.ru/share.php?url=http://velogame.pro", :target =>"_blank"}
+          %a.vkontakte{:href => "http://vkontakte.ru/share.php?title=Я%20гоняю%20на%20коне!&url=http://velogame.pro&description=Велоконь:%20игра%20о%20жизни,%20смерти%20и%20коне&image=http://velogame.pro/i/share.png", :target =>"_blank"}
+          %a.twitter{:href => "http://twitter.com/share?text=Я%20гоняю%20на%20коне!&url=http://velogame.pro", :target =>"_blank"}
+        .footer
+          &copy;
+          %a{:href => "http://molinos.ru", :target => "_blank"} Molinos.Ru
       .top
         %h2 TOP 10
         .table
-      %button.play Еще разок
-      .share
-        %span Поделиться с друзьями
-        -#%a.facebook{:href => "http://www.facebook.com/sharer.php?u=http://velogame.pro&t=Title", :target =>"_blank"}
-        %a.facebook{:href => "http://www.facebook.com/sharer.php?s=100&p[title]=Я%20гоняю%20на%20коне!&p[url]=http://velogame.pro&p[summary]=Велоконь:%20игра%20о%20жизни,%20смерти%20и%20коне&p[images][0]=http://velogame.pro/i/share.png", :target =>"_blank"}
-        -#%a.vkontakte{:href => "http://vkontakte.ru/share.php?url=http://velogame.pro", :target =>"_blank"}
-        %a.vkontakte{:href => "http://vkontakte.ru/share.php?title=Я%20гоняю%20на%20коне!&url=http://velogame.pro&description=Велоконь:%20игра%20о%20жизни,%20смерти%20и%20коне&image=http://velogame.pro/i/share.png", :target =>"_blank"}
-        %a.twitter{:href => "http://twitter.com/share?text=Я%20гоняю%20на%20коне!&url=http://velogame.pro", :target =>"_blank"}
-      .footer
-        &copy;
-        %a{:href => "http://molinos.ru"} Molinos.Ru
+          %table
+            %tr
+              %td 1.
+              %td ajklsdla skjdla skjdals k
+              %td 233
+            %tr
+              %td 1.
+              %td ajklsdla skjdla skjdals k
+              %td 233
+            %tr
+              %td 1.
+              %td ajklsdla skjdla skjdals k
+              %td 233
+            %tr
+              %td 1.
+              %td ajklsdla skjdla skjdals k
+              %td 233
+            %tr
+              %td 1.
+              %td ajklsdla skjdla skjdals k
+              %td 233
+            %tr
+              %td 1.
+              %td ajklsdla skjdla skjdals k
+              %td 233
+            %tr
+              %td 1.
+              %td ajklsdla skjdla skjdals k
+              %td 233
+            %tr
+              %td 1.
+              %td ajklsdla skjdla skjdals k
+              %td 233
+            %tr
+              %td 1.
+              %td ajklsdla skjdla skjdals k
+              %td 233
+            %tr
+              %td 1.
+              %td ajklsdla skjdla skjdals k
+              %td 233
+          .current
+            %span.position 1
+            %span.name asdaklsjdlaksjd
+            %span.score 123
+        %button.play Еще разок
+        .share
+          %span Поделиться с друзьями
+          -#%a.facebook{:href => "http://www.facebook.com/sharer.php?u=http://velogame.pro&t=Title", :target =>"_blank"}
+          %a.facebook{:href => "http://www.facebook.com/sharer.php?s=100&p[title]=Я%20гоняю%20на%20коне!&p[url]=http://velogame.pro&p[summary]=Велоконь:%20игра%20о%20жизни,%20смерти%20и%20коне&p[images][0]=http://velogame.pro/i/share.png", :target =>"_blank"}
+          -#%a.vkontakte{:href => "http://vkontakte.ru/share.php?url=http://velogame.pro", :target =>"_blank"}
+          %a.vkontakte{:href => "http://vkontakte.ru/share.php?title=Я%20гоняю%20на%20коне!&url=http://velogame.pro&description=Велоконь:%20игра%20о%20жизни,%20смерти%20и%20коне&image=http://velogame.pro/i/share.png", :target =>"_blank"}
+          %a.twitter{:href => "http://twitter.com/share?text=Я%20гоняю%20на%20коне!&url=http://velogame.pro", :target =>"_blank"}
 -#
   %audio#hit{:preload => "auto"}
     %source{:src => "/sounds/fall.ogg"}

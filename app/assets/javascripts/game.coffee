@@ -238,13 +238,21 @@ $ ->
         Crafty.scene 'game'
       , 2000
 
+  $('body').on 'click touchstart', '#start .top', ->
+    $('.start-screen').hide()
+    $('.top-screen').show()
+
+  $('body').on 'click touchstart', '#start .back', ->
+    $('.top-screen').hide()
+    $('.start-screen').show()
+
   $('body').on 'click touchstart', '.score .save', (e) ->
     e.preventDefault()
     return unless name = $('.score input').val()
 
     request.abort() if request
     request = $.post '/save', { value: score(), name: name }, (data) ->
-      $('.top .table').html $(data)
+      $('#gameover .top .table').html $(data)
 
       request = null
       $('#gameover .prelim-score').hide()
