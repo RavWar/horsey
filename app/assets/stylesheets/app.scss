@@ -22,7 +22,6 @@ html, body {
 #start, #keys, #game, #gameover {
   display: none;
 }
-/*
 #start {
   display: none !important;
 }
@@ -30,9 +29,8 @@ html, body {
   display: none !important;
 }
 #gameover {
-  display: none !important;
+  display: block !important;
 }
-*/
 
 .frame {
   position: absolute;
@@ -332,6 +330,9 @@ button {
   }
   .top {
     display: none;
+    .table {
+      width: 600px;
+    }
   }
   label {
     display: inline-block;

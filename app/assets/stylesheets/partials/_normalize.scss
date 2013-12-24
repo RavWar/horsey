@@ -3,7 +3,7 @@ html, body, div, span, object, iframe, embed, h1, h2, h3, h4, h5, h6, p, blockqu
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {display: block}
 audio, canvas, video {display: inline-block}
 
-body {width: 100%; color: $font-color; font-family: $font-family; font-size: 0.625em; line-height: 1; text-transform: uppercase; background-color: $background-color}
+body {width: 100%; color: $font-color; font-family: $font-family; font-size: 0.625em; line-height: 1; text-transform: uppercase; background-color: $background-color; -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased}
 
 h1 {color: $heading-font-color; margin: 0 0 0.5em 0; font: normal 360%/1.2 $heading-font-family}
 h2 {color: $heading-font-color; margin: 1.5em 0 0.75em 0; font: normal 240%/1.2 $heading-font-family}
@@ -30,9 +30,23 @@ ol {list-style: decimal; margin: 0 0 1.6em; padding: 0 0 0 3em}
 li {margin: 0 0 0.5em; padding: 0; font-size: 160%; line-height: 1.4}
 li ul, li ol {margin-top: 0.75em}
 
-table {margin: 0; padding: 0; border-collapse: collapse; border-spacing: 0}
+table {width: 100%; margin: 0; padding: 0; border-collapse: collapse; border-spacing: 0}
 table tr, table th, table td {vertical-align: top}
-table th, table td {padding: 4px; font-size: 160%; line-height: 1.4; font-weight: normal; text-align: left; border-bottom: 1px solid #000}
+table th, table td {padding: 12px 10px 10px; font-size: 160%; line-height: 1.2; font-weight: normal; text-align: left; border: 0}
+table td:first-child {width: 42px; text-align: right}
+table td:last-child {width: 60px; text-align: right}
+table tr:nth-child(odd) td {background: rgba(0,0,0,0.05)}
+table tr.current td {
+  background: transparent;
+  border: solid #3c3c3c;
+  border-width: 2px 0;
+  &:first-child {
+    border-width: 2px 0 2px 2px;
+  }
+  &:last-child {
+    border-width: 2px 2px 2px 0;
+  }
+}
 
 li li, th p, td p, th blockquote, td blockquote, th li, td li, blockquote p, li p {font-size: 100%}
 table th p, table td p, blockquote p {margin: 0}
