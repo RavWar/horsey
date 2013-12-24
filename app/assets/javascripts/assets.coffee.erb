@@ -1,7 +1,7 @@
 Crafty.audio.add
   #wheels: ['sounds/wheels.mp3', 'sounds/wheels.ogg'],
   #creak: ['sounds/creak.mp3', 'sounds/creak.ogg'],
-  hit: ['sounds/falling2.mp3', 'sounds/falling2.ogg'],
+  hit: ['sounds/fall.mp3', 'sounds/fall.ogg'],
   bell: ['sounds/bell.mp3', 'sounds/bell.ogg'],
   pickup: ['sounds/pickup.mp3', 'sounds/pickup.ogg'],
   gameover: ['sounds/gameover.mp3', 'sounds/gameover.ogg'],
@@ -116,5 +116,5 @@ class @GameAssets
 
     return list if isMobile or $.browser.opera
 
-    list.concat ['sounds/falling2.ogg', 'sounds/bell.ogg', 'sounds/pickup.ogg',
+    list.concat ['sounds/fall.ogg', 'sounds/bell.ogg', 'sounds/pickup.ogg',
       'sounds/gameover.ogg', 'sounds/pedal1.ogg', 'sounds/pedal2.ogg']
