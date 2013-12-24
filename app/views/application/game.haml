@@ -23,7 +23,7 @@
       %h2 Игра о жизни, смерти и коне
       = image_tag "velogame.png", :alt => ""
       %button.play Играть
-      %button.top TOP 10
+      -#%button.top TOP 10
       .buttons
         .facebook
           #fb-root
@@ -70,28 +70,29 @@
             Место
             %span
         %form.score
-          %label Представтесь
+          %label Представьтесь
           %input{:maxlength => "20"}
           %button.save Прославиться
       .top{:style => "display: block"}
         %h3 TOP 10
-        %table
-          %tr
-            %td 1.
-            %td Костя
-            %td 200
-          %tr.current
-            %td 2.
-            %td Костя
-            %td 187
-          %tr
-            %td 3.
-            %td Костя
-            %td 183
-        .current
-          16.
-          Костя
-          114
+        .table
+          %table
+            %tr
+              %td 1.
+              %td Костя
+              %td 200
+            %tr.current
+              %td 2.
+              %td Костя
+              %td 187
+            %tr
+              %td 3.
+              %td Костя
+              %td 183
+          .current
+            16.
+            Костя
+            114
       %button.play Еще разок
       .share
         %span Поделиться с друзьями

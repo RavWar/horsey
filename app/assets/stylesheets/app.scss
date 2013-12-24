@@ -30,7 +30,7 @@ html, body {
   display: none !important;
 }
 #gameover {
-  display: none !important;
+  display: block !important;
 }
 */
 
@@ -332,6 +332,9 @@ button {
   }
   .top {
     display: none;
+    .table {
+      width: 600px;
+    }
   }
   label {
     display: inline-block;

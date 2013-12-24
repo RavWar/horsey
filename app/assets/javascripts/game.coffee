@@ -241,7 +241,7 @@ $ ->
 
     request.abort() if request
     request = $.post '/save', { value: score(), name: name }, (data) ->
-      $('.top').html $(data)
+      $('.top .table').html $(data)
 
       request = null
       $('#gameover .prelim-score').hide()
