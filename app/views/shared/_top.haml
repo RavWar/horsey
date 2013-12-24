@@ -7,6 +7,6 @@
 
 - if defined?(current) and index = Score.all.index(current) + 1 and index > 10
   .current
-    %span= index
-    %span= current.name
-    %span= number_with_delimiter current.value
+    %span.position= index
+    %span.name= current.name
+    %span.score= number_with_delimiter current.value
