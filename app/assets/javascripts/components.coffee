@@ -66,7 +66,7 @@ Crafty.c 'Scoreboard',
       Game.appendLife()
     else
       $('.life:last').remove()
-      Crafty.audio.play 'hit', 1, 1
+      Crafty.audio.play 'hit', 1, 1 unless isMobile
       #hit.play()
 
 Crafty.c 'Player',
@@ -158,7 +158,7 @@ Crafty.c 'Player',
 
     @changeLane = setInterval (=>
       multiplier = if Game.speed > 25 then 2 else 1
-      num = if isMobile then 10/multiplier else 20/multiplier
+      num = if isMobile then 5/multiplier else 20/multiplier
       tiles = Game.tile.height / num
       @y += if direction == 'up' then tiles else -tiles
       timesRun += tiles
@@ -215,8 +215,9 @@ Crafty.c 'Player',
         .reelPosition(position)
 
     # Play pedal sounds
-    Crafty.audio.play 'pedal1', 1, 1 if @reelPosition() == 1
-    Crafty.audio.play 'pedal2', 1, 1 if @reelPosition() == 15
+    unless isMobile
+      Crafty.audio.play 'pedal1', 1, 1 if @reelPosition() == 1
+      Crafty.audio.play 'pedal2', 1, 1 if @reelPosition() == 15
 
     # Move some background entities if needed
     #for entity in ['PlayField', 'Clouds', 'Mountains', 'Line']
