@@ -66,7 +66,7 @@ Crafty.c 'Scoreboard',
       Game.appendLife()
     else
       $('.life:last').remove()
-      Crafty.audio.play 'hit', 1, 1 unless isMobile
+      Crafty.audio.play 'hit', 1, 0.8 unless isMobile
       #hit.play()
 
 Crafty.c 'Player',
@@ -80,8 +80,6 @@ Crafty.c 'Player',
       .onHit('Life', @lifeHit)
       .bindKeyboard()
       .movement()
-
-    #Crafty.audio.play 'bell', 1
 
   player: (scoreboard) ->
     @count = 0
@@ -108,7 +106,7 @@ Crafty.c 'Player',
     @y = object[0].obj.y - 210
 
     @removeComponent('PlayerSprite').addComponent('PlayerDropSprite')
-      .reel('PlayerDropping', 1050, 0, 0, 23).animate('PlayerDropping', -1)
+      .reel('PlayerDropping', 1050, 0, 0, 23).animate('PlayerDropping', 1)
 
     @last_speed = Game.speed + 1
 
@@ -124,10 +122,11 @@ Crafty.c 'Player',
 
       @removeComponent('PlayerDropSprite').addComponent('PlayerSprite')
         .reel('PlayerRunning', @spriteSpeed(), 0, 0, 30).animate('PlayerRunning', -1)
-    ), 1000
+    ), 2400
 
   lifeHit: (object) ->
     @scoreboard.updateLives 1
+    Crafty.audio.play 'pickup', 1, 0.1 unless isMobile
     object[0].obj.destroy()
 
   bindKeyboard: ->
@@ -217,8 +216,8 @@ Crafty.c 'Player',
 
     # Play pedal sounds
     unless isMobile
-      Crafty.audio.play 'pedal1', 1, 1 if @reelPosition() == 1
-      Crafty.audio.play 'pedal2', 1, 1 if @reelPosition() == 15
+      Crafty.audio.play 'pedal1', 1, 0.5 if @reelPosition() == 1
+      Crafty.audio.play 'pedal2', 1, 0.5 if @reelPosition() == 15
 
     # Move some background entities if needed
     #for entity in ['PlayField', 'Clouds', 'Mountains', 'Line']

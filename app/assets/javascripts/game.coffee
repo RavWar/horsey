@@ -227,13 +227,14 @@ $ ->
   $('body').on 'click touchstart', '#start .play', ->
     Crafty.load GameAssets.list(), =>
       $('#start').hide()
+      Crafty.audio.play 'bell', 0.8
       $('#keys').show()
 
       setTimeout ->
         $('#keys').hide()
         $('#game').show()
         Crafty.scene 'game'
-      , 1500
+      , 2000
 
   $('body').on 'click touchstart', '.score .save', (e) ->
     e.preventDefault()
