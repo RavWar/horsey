@@ -131,23 +131,28 @@ Crafty.c 'Player',
 
   bindKeyboard: ->
     $('body').bind 'keydown', (e) =>
-      if e.keyCode == 38 and @y > @calcHeight(Game.options.header) - 220
+      # Arrows or W and S
+      if e.keyCode == 38 or e.keyCode == 87
         @moveLane 'down'
-      else if e.keyCode == 40 and @y < @calcHeight(Game.options.lanes) - 240
+      else if e.keyCode == 40 or e.keyCode == 83
         @moveLane 'up'
       else if e.keyCode == 32
         Crafty.pause()
         $('#pause').toggleClass('active')
+
     $('#controls .up').bind 'touchstart', (e) =>
-      if @y > @calcHeight(Game.options.header) - 220
-        @moveLane 'down'
+      @moveLane 'down'
     $('#controls .down').bind 'touchstart', (e) =>
-      if @y < @calcHeight(Game.options.lanes) - 240
-        @moveLane 'up'
+      @moveLane 'up'
     @
 
   moveLane: (direction) ->
     return if @running
+
+    if direction == 'up'
+      return unless @y < @calcHeight(Game.options.lanes) - 240
+    else
+      return unless @y > @calcHeight(Game.options.header) - 220
 
     # Always unpause
     Crafty.pause false
