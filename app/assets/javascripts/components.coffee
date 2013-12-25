@@ -137,7 +137,7 @@ Crafty.c 'Player',
       else if e.keyCode == 40 or e.keyCode == 83
         @moveLane 'up'
       else if e.keyCode == 32
-        Game.pause()
+        Game.togglePause()
 
     $('#controls .up').bind 'touchstart', (e) =>
       @moveLane 'down'
@@ -146,16 +146,12 @@ Crafty.c 'Player',
     @
 
   moveLane: (direction) ->
-    return if @running
+    return if @running or Crafty._paused
 
     if direction == 'up'
       return unless @y < @calcHeight(Game.options.lanes) - 240
     else
       return unless @y > @calcHeight(Game.options.header) - 220
-
-    # Always unpause
-    Crafty.pause false
-    $('#pause').removeClass('active')
 
     @running = true
     timesRun = 0

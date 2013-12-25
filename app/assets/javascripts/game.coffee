@@ -22,17 +22,18 @@ class @Game
   @stoneRandom = 0.032
   @pauseHalted = false
 
-  @pause: ->
-    return if @pauseHalted
-
-    ###@pauseHalted = true
-    setTimeout (=>
-      @pauseHalted = false
-    ), 10000###
+  @togglePause: ->
+    return if @pauseHalted and !Crafty._paused
 
     Crafty.pause()
     $('#pause').toggleClass('active')
     playing = not playing
+
+    if Crafty._paused
+      @pauseHalted = true
+      setTimeout (=>
+        @pauseHalted = false
+      ), 5000
 
   @appendLife: ->
     $('#lives').append "<div class='life'>"
@@ -219,7 +220,7 @@ $ ->
 
   $(document).on 'click', '#pause', (e) ->
     e.preventDefault()
-    Game.pause()
+    Game.togglePause()
 
   #hit = $('#hit').get(0)
   #hit.volume = 0.3
