@@ -20,6 +20,19 @@ class @Game
   @height = (Game.options.lanes + Game.options.header) * Game.tile.height
   @lifeRandom  = 0.00008
   @stoneRandom = 0.032
+  @pauseHalted = false
+
+  @pause: ->
+    return if @pauseHalted
+
+    ###@pauseHalted = true
+    setTimeout (=>
+      @pauseHalted = false
+    ), 10000###
+
+    Crafty.pause()
+    $('#pause').toggleClass('active')
+    playing = not playing
 
   @appendLife: ->
     $('#lives').append "<div class='life'>"
@@ -206,9 +219,7 @@ $ ->
 
   $(document).on 'click', '#pause', (e) ->
     e.preventDefault()
-    Crafty.pause()
-    $(this).toggleClass('active')
-    playing = not playing
+    Game.pause()
 
   #hit = $('#hit').get(0)
   #hit.volume = 0.3
