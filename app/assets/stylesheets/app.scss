@@ -273,6 +273,7 @@ div.current {
   background: image-url('dirt-bg.png') no-repeat 50% 50%;
   .frame {
     border: 0;
+    overflow: visible;
   }
   h1 {
     position: absolute;
