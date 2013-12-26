@@ -31,6 +31,7 @@ class @Game
 
     if Crafty._paused
       @pauseHalted = true
+    else
       setTimeout (=>
         @pauseHalted = false
       ), 5000
