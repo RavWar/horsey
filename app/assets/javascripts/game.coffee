@@ -98,7 +98,7 @@ class @Game
 
   initBackground: ->
     $('#game').show()
-    Crafty.e('Object').addComponent('NewYearsSprite').attr x: 1200, y: 46, z: 4
+    #Crafty.e('Object').addComponent('NewYearsSprite').attr x: 1200, y: 46, z: 4
 
     field = Crafty.e('PlayField')
     Crafty.e('PlayField')

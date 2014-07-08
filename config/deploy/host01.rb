@@ -1,5 +1,4 @@
-server '84.52.78.90', :app, :web, :db, primary: true
-set :port, 11111
+server 'host01.molinos.ru', :app, :web, :db, primary: true
 set :user, :velogame
 set :user_home_dir, "/home/#{user}"
 set :keep_releases, 3
