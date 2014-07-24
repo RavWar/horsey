@@ -1,4 +1,6 @@
 Horsey::Application.configure do
+  config.action_dispatch.default_headers['X-Frame-Options'] = 'ALLOW-FROM http://molinos.ru'
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
