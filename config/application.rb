@@ -8,7 +8,7 @@ Bundler.require(:default, Rails.env)
 
 module Horsey
   class Application < Rails::Application
-    config.action_dispatch.default_headers[:'X-Frame-Options'] = 'ALLOW-FROM http://molinos.ru/velogame'
+    config.action_dispatch.default_headers = { 'X-Frame-Options' => 'ALLOW-FROM http://molinos.ru' }
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
