@@ -21,3 +21,21 @@
 
 en:
   hello: "Hello world"
+  root:
+    title: 'Velogame'
+    description: 'A game about live, death and a horse'
+    play: 'Play'
+  top10:
+    back: 'Back'
+  game:
+    use: 'Use'
+    keys: 'keys'
+    buttons: 'buttons'
+    pause: 'Pause (space)'
+    gameover: 'Game over'
+    score: 'Score:'
+    rating: 'Rating:'
+    again: 'Once again'
+    register: 'Enter your name:'
+    famous: 'Become famous'
+    share: 'Share'

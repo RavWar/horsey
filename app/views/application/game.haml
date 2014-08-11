@@ -20,10 +20,10 @@
   #start
     .frame
       .start-screen
-        %h1 Велоконь
-        %h2 Игра о жизни, смерти и коне
+        %h1= t('root.title')
+        %h2= t('root.description')
         = image_tag "velogame.png", :alt => ""
-        %button.play Играть
+        %button.play= t('root.play')
         %button.top TOP 10
         .buttons
           .facebook
@@ -33,7 +33,7 @@
             #vk_like
           .twitter
             %a.twitter-share-button{:href => "https://twitter.com/share", :data => {:url => "http://velogame.pro", :text => "Я гоняю на коне! #velogame", :lang => "en"}}
-        
+
         .footer
           &copy;
           %a{:href => "http://molinos.ru", :target => "_blank"} Molinos.Ru
@@ -41,19 +41,19 @@
         %h2 TOP 10
         .table
           = render partial: 'shared/top'
-        %button.back Назад
+        %button.back= t('top10.back')
   #keys
     .frame
       %i
-        Используй
-        %span.desktop клавиши
-        %span.mobile кнопки
+        = t('game.use')
+        %span.desktop= t('game.keys')
+        %span.mobile= t('game.buttons')
       %span.arrow.up
       %span.arrow.down
   #game
     .frame
       #main
-      #pause{:title => "Пауза (пробел)"}
+      #pause{ title: t('game.pause') }
       #lives
         .life
         .life
@@ -67,20 +67,20 @@
   #gameover
     .frame
       .prelim-score
-        %h2 Приехали…
+        %h2= t('game.gameover')
         .result
-          Результат:
+          = t('game.score')
           %span
         .place
-          Место:
+          = t('game.rating')
           %span
         %form.score
-          %label Представьтесь:
+          %label= t('game.register')
           %input{:maxlength => "20"}
-          %button.save Прославиться
-        %button.play Еще разок
+          %button.save= t('game.famous')
+        %button.play= t('game.again')
         .share
-          %span Поделиться с друзьями
+          %span= t('game.share')
           -#%a.facebook{:href => "http://www.facebook.com/sharer.php?u=http://velogame.pro&t=Title", :target =>"_blank"}
           %a.facebook{:href => "http://www.facebook.com/sharer.php?s=100&p[title]=Я%20гоняю%20на%20коне!&p[url]=http://velogame.pro&p[summary]=Велоконь:%20игра%20о%20жизни,%20смерти%20и%20коне%20%23velogame&p[images][0]=http://velogame.pro/i/share.png", :target =>"_blank"}
           -#%a.vkontakte{:href => "http://vkontakte.ru/share.php?url=http://velogame.pro", :target =>"_blank"}
@@ -92,9 +92,9 @@
       .top
         %h2 TOP 10
         .table
-        %button.play Еще разок
+        %button.play= t('game.again')
         .share
-          %span Поделиться с друзьями
+          %span= t('game.share')
           -#%a.facebook{:href => "http://www.facebook.com/sharer.php?u=http://velogame.pro&t=Title", :target =>"_blank"}
           %a.facebook{:href => "http://www.facebook.com/sharer.php?s=100&p[title]=Я%20гоняю%20на%20коне!&p[url]=http://velogame.pro&p[summary]=Велоконь:%20игра%20о%20жизни,%20смерти%20и%20коне%20%23velogame&p[images][0]=http://velogame.pro/i/share.png", :target =>"_blank"}
           -#%a.vkontakte{:href => "http://vkontakte.ru/share.php?url=http://velogame.pro", :target =>"_blank"}

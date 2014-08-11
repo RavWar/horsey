@@ -3,3 +3,21 @@ ru:
     format:
       separator: ","
       delimiter: " "
+  root:
+    title: 'Велоконь'
+    description: 'Игра о жизни, смерти и коне'
+    play: 'Играть'
+  top10:
+    back: 'Назад'
+  game:
+    use: 'Используй'
+    keys: 'клавиши'
+    buttons: 'кнопки'
+    pause: 'Пауза (пробел)'
+    gameover: 'Приехали…'
+    score: 'Результат:'
+    rating: 'Место:'
+    again: 'Еще разок'
+    register: 'Представьтесь:'
+    famous: 'Прославиться'
+    share: 'Поделиться с друзьями'

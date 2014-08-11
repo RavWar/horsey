@@ -241,15 +241,16 @@ $ ->
 
   $('body').on 'click touchstart', '#start .play', ->
     Crafty.audio.play 'bell', 0.5
-    Crafty.load GameAssets.list(), =>
-      $('#start').hide()
-      $('#keys').show()
 
-      setTimeout ->
-        $('#keys').hide()
-        $('#game').show()
-        Crafty.scene 'game'
-      , 2000
+    #Crafty.load GameAssets.list(), =>
+    $('#start').hide()
+    $('#keys').show()
+
+    setTimeout ->
+      $('#keys').hide()
+      $('#game').show()
+      Crafty.scene 'game'
+    , 2000
 
   $('body').on 'click touchstart', '#start .top', ->
     $('.start-screen').hide()
