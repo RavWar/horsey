@@ -23,7 +23,7 @@ en:
   hello: "Hello world"
   root:
     title: 'Velogame'
-    description: 'A game about live, death and a horse'
+    description: 'A game about life, death and a horse'
     play: 'Play'
   top10:
     back: 'Back'
@@ -37,5 +37,5 @@ en:
     rating: 'Rating:'
     again: 'Once again'
     register: 'Enter your name:'
-    famous: 'Get famous'
+    famous: 'Get famous!'
     share: 'Share'
