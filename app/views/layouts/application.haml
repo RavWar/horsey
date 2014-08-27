@@ -11,15 +11,15 @@
     %link{:href => "http://fonts.googleapis.com/css?family=Bad+Script&subset=latin,cyrillic", :rel => "stylesheet"}
     = stylesheet_link_tag :app, :media => "all"
 
-    %meta{:property => "og:title", :content => "Наконяшимся!"}
-    %meta{:property => "og:description", :content => "Велоконь: игра о жизни, смерти и коне #velogame"}
-    %meta{:property => "vk:description", :content => "Велоконь: игра о жизни, смерти и коне #velogame"}
+    %meta{:property => "og:title", :content => t('meta.title')}
+    %meta{:property => "og:description", :content => "#{t('meta.description')} #velogame"}
+    %meta{:property => "vk:description", :content => "#{t('meta.description')} #velogame"}
     %meta{:property => "og:url", :content => "http://velogame.pro"}
     %meta{:property => "vk:url", :content => "http://velogame.pro?v3"}
     %meta{:property => "og:image", :content => "http://velogame.pro/i/share.png"}
     %meta{:property => "vk:image", :content => "http://velogame.pro/i/share-vk.png"}
-    %meta{:name => "title", :content => "Наконяшимся!"}
-    %meta{:name => "description", :content => "Велоконь: игра о жизни, смерти и коне #velogame"}
+    %meta{:name => "title", :content => t('meta.title')}
+    %meta{:name => "description", :content => "#{t('meta.description')} #velogame"}
     %link{:rel => "image_src", :href => "http://velogame.pro/i/share.png"}
     %meta{:property => "og:type", :content => "website"}
     %meta{:property => "fb:admins", :content => "647725985"}

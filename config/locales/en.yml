@@ -25,6 +25,9 @@ en:
     title: 'Velogame'
     description: 'A game about life, death and a horse'
     play: 'Play'
+  meta:
+    title: 'Go horse yourself!'
+    description: 'Velogame: a game about life, death and a horse'
   top10:
     back: 'Back'
   game:
