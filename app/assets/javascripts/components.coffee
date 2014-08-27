@@ -96,7 +96,7 @@ Crafty.c 'Player',
     object[0].obj.collision(new Crafty.polygon([]))
 
     @unbind 'EnterFrame', @gameFrame
-    $('body').unbind 'keypress'
+    $('body').unbind 'keydown'
     $('#controls .up, #controls .down').unbind 'touchstart'
     @scoreboard.updateLives -1
 
@@ -130,7 +130,11 @@ Crafty.c 'Player',
     object[0].obj.destroy()
 
   bindKeyboard: ->
-    $('body').bind 'keypress', (e) =>
+    $(document).bind 'keydown', (e) =>
+      keys = [38, 40]
+      if keys.indexOf(e.which) > -1
+        e.preventDefault()
+        e.stopPropagation()
       # Arrows or W and S
       if e.keyCode == 38 or e.keyCode == 87
         @moveLane 'down'
@@ -138,6 +142,20 @@ Crafty.c 'Player',
         @moveLane 'up'
       else if e.keyCode == 32
         Game.togglePause()
+
+$( document ).bind( 'keydown', function ( event ) {
+
+    var keys = [32, 33, 34, 35, 36, 37, 38, 39, 40, 44];
+
+    if( keys.indexOf( event.which ) > -1 ) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+    };
+
+} );
+
 
     $('#controls .up').bind 'touchstart', (e) =>
       @moveLane 'down'
