@@ -143,20 +143,6 @@ Crafty.c 'Player',
       else if e.keyCode == 32
         Game.togglePause()
 
-$( document ).bind( 'keydown', function ( event ) {
-
-    var keys = [32, 33, 34, 35, 36, 37, 38, 39, 40, 44];
-
-    if( keys.indexOf( event.which ) > -1 ) {
-
-        event.preventDefault();
-        event.stopPropagation();
-
-    };
-
-} );
-
-
     $('#controls .up').bind 'touchstart', (e) =>
       @moveLane 'down'
     $('#controls .down').bind 'touchstart', (e) =>
