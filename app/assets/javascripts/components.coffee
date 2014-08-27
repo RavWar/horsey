@@ -96,7 +96,7 @@ Crafty.c 'Player',
     object[0].obj.collision(new Crafty.polygon([]))
 
     @unbind 'EnterFrame', @gameFrame
-    $('body').unbind 'keydown'
+    $('body').unbind 'keypress'
     $('#controls .up, #controls .down').unbind 'touchstart'
     @scoreboard.updateLives -1
 
@@ -130,7 +130,7 @@ Crafty.c 'Player',
     object[0].obj.destroy()
 
   bindKeyboard: ->
-    $('body').bind 'keydown', (e) =>
+    $('body').bind 'keypress', (e) =>
       # Arrows or W and S
       if e.keyCode == 38 or e.keyCode == 87
         @moveLane 'down'
